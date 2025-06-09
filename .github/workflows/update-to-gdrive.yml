@@ -70,11 +70,9 @@ jobs:
         service = build('drive', 'v3', credentials=creds)
 
         # Carpeta padre en Drive
-        FOLDER_ID = '1URO8Kkwfo1YF8jQ5jyXPoCAvdEvadI9w'
+        FOLDER_ID = '1Vg-_bYPd8H2RIdDZQJbcO-WoZud0kY-S'
 
         # Subir/actualizar archivos
-        upload_or_update_file(service, 'Reporte Final.pdf', 'Reporte/Reporte_Final/reporte.pdf', FOLDER_ID)
-        upload_or_update_file(service, 'Documentación.pdf', 'Reporte/Documentacion/reporte.pdf', FOLDER_ID)
-        upload_or_update_file(service, 'bitacora.md', 'bitacora.md', FOLDER_ID)
+        upload_or_update_file(service, 'Reporte Final.pdf', 'Docuemntacion/reporte.pdf', FOLDER_ID)
         " > upload_to_drive.py
         python upload_to_drive.py
