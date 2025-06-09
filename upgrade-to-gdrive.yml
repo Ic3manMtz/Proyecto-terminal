@@ -1,0 +1,80 @@
+name: Upload to Google Drive
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  upload_to_drive:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install google-api-python-client google-auth google-auth-httplib2 google-auth-oauthlib
+
+    - name: Upload to Google Drive
+      env:
+        GDRIVE_TOKEN: ${{ secrets.GDRIVE_TOKEN }}
+      run: |
+        echo "from googleapiclient.discovery import build
+        from googleapiclient.http import MediaFileUpload
+        from google.oauth2.credentials import Credentials
+        import json
+        import os
+
+        def upload_or_update_file(service, file_name, local_path, parent_id):
+            # Buscar archivo existente
+            query = f\"name = '{file_name}' and '{parent_id}' in parents and trashed = false\"
+            results = service.files().list(
+                q=query,
+                spaces='drive',
+                fields='files(id, name)'
+            ).execute()
+            items = results.get('files', [])
+
+            media = MediaFileUpload(local_path, resumable=True)
+            
+            if items:
+                # Actualizar archivo existente
+                file_id = items[0]['id']
+                updated_file = service.files().update(
+                    fileId=file_id,
+                    media_body=media,
+                    fields='id'
+                ).execute()
+                print(f'Archivo actualizado ID: {updated_file.get(\"id\")}')
+            else:
+                # Crear nuevo archivo
+                file_metadata = {'name': file_name, 'parents': [parent_id]}
+                new_file = service.files().create(
+                    body=file_metadata,
+                    media_body=media,
+                    fields='id'
+                ).execute()
+                print(f'Nuevo archivo creado ID: {new_file.get(\"id\")}')
+
+        # Configurar cliente
+        creds_dict = json.loads(os.environ['GDRIVE_TOKEN'])
+        creds = Credentials.from_authorized_user_info(creds_dict)
+        service = build('drive', 'v3', credentials=creds)
+
+        # Carpeta padre en Drive
+        FOLDER_ID = '1URO8Kkwfo1YF8jQ5jyXPoCAvdEvadI9w'
+
+        # Subir/actualizar archivos
+        upload_or_update_file(service, 'Reporte Final.pdf', 'Reporte/Reporte_Final/reporte.pdf', FOLDER_ID)
+        upload_or_update_file(service, 'Documentación.pdf', 'Reporte/Documentacion/reporte.pdf', FOLDER_ID)
+        upload_or_update_file(service, 'bitacora.md', 'bitacora.md', FOLDER_ID)
+        " > upload_to_drive.py
+        python upload_to_drive.py
