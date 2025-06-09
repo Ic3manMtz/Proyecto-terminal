@@ -1,0 +1,123 @@
+\section{Arquitectura}
+
+\subsection{Diagrama de la estructura del proyecto}
+
+\begin{figure}[h]
+
+\dirtree{%
+.1 Proyecto/.
+.2 .venv/.
+.2 src/.
+.3 converted\_videos/.
+.3 database/.
+.4 connection.py.
+.4 creationOfModels.py.
+.4 db\_crud.py.
+.4 models/.
+.3 features/.
+.4 detect\_tracking.py.
+.4 handler.py.
+.4 reconstruct\_video.py.
+.4 video\_functions.py.
+.4 video\_to\_frames\_concurrent.py.
+.3 frames/.
+.3 menus/.
+.4 main\_menu.py.
+.3 main.py.
+.3 yolo8n.pt.
+.2 tests/.
+.3 check\_requirements.py.
+.2 .env.
+.2 requirements.txt.
+}
+
+    \caption{Diagrama de la estructura del proyecto}
+    \label{project_struct}
+\end{figure}
+
+\subsection{Descripci\'on de los componentes}
+
+\noindent El orden en el que se presentan los componentes será de acuerdo al diagrama de la \textit{Figura.} \ref{project_struct}
+
+\subsubsection*{src}
+\noindent Contiene el código fuente principal de la aplicación, donde se organizan los módulos y paquetes necesarios para su funcionamiento.
+
+\paragraph{database}
+\noindent Este paquete contiene todo lo necesario para la concexión con la base de datos. Así como la creación de las tablas de acuerdo al modelo establecido
+\begin{description}
+    \item[connection.py] - Script que carga las variables de entorno para poder obtener el \texttt{connection string} para realizar la conexión con la base de datos.
+    
+    \item[creationOfModels.py] - Este script crea una conexión con la base de datos para poder crear las tablas con base en los modelos creados.
+    
+    \item[db\_crud.py] - Script que contiene los métodos CRUD para la base de datos.
+    
+    \item[models.py] - Script que contiene la descripción de los modelos usados en el proyecto. Estos modelos se usan para la creación de las tablas de la base de datos
+\end{description}
+
+
+\paragraph{features}
+\noindent Este paquete contiene los scripts que manipulan los videos.
+\begin{description}
+    \item[handler.py] - Este archivo es una clase de Python. Tiene dos atributos: el primero guarda la ruta en la que se guardan los videos que se analizarán; mientras que la segunda guarda la ruta en la que se guardarán los resultados que se generen durante la ejecución del programa. \\La clase contiene varios métodos. El primero se llama \texttt{configure\_requirements}, su función es instalar las dependecias necesarias para el funcionamiento del programa. También contiene métodos para obtener y asignar los valores de las rutas antes mencionada. \\Los demás métodos manejan la respuesta de los menús para poder direccionar al usuario de forma correcta.
+    
+    \item[video\_functions.py] - Esta clase contiene métodos abstractos que llaman a otros scripts de Python para poder realizar el manejo, análisis y creación de videos.
+    
+    \item[video\_to\_frames\_concurrent.py] - Script que con base en un directorio convierte todos los videos \texttt{.mp4} a frames de forma concurrente. El script crea una carpeta por cada video dentro del directorio, tiene el mismo nombre que el video convertido.\\ La variable \texttt{sampling\_rate} puede ser ajustada de acuerdo a la necesidad. Al empezar el análisis de un video se guardan sus metadatos en la tabla \texttt{VideoMetadata} de la base de datos.
+\end{description}
+
+\paragraph{frames}
+\noindent Esta carpeta contiene carpetas que contienen los frames de cada video convertido. Cada carpeta tiene el mismo nombre que el video del cual se generaron los frames. Dentro de cada carpeta se guardan los frames en formato \texttt{.jpg}.
+
+\paragraph{menus}
+\noindent Este paquete contiene los scripts que crean los menus y mensajes que se ven en la terminal.
+\paragraph{main.py}
+\noindent Este script contiene los menus que se ven en la terminal así como algunos de los mensajes que se crean durante la interacción con el usuario.
+
+\subsubsection*{tests}
+\noindent Directorio dedicado a las pruebas automatizadas, que incluye tanto pruebas unitarias como de integración para asegurar la calidad del código.
+\paragraph{check\_requirements.py}
+\noindent Este script revisa las dependecias contenidas en el archivo \texttt{requirements.txt} para poder determinar que dependencias hacen falta en el sistema. Antes de la instalación de las dependencias faltantes se actualiza el \texttt{pip} para evitar errores.
+
+\subsubsection*{\. env}
+\noindent Este archivo contiene las variables de entorno necesarias para el programa. 
+
+\subsubsection*{requirements.txt}
+\noindent Archivo que lista las dependencias del proyecto, especificando las versiones de los paquetes necesarios para su correcto funcionamiento.
+
+\subsection{Flujo de datos}
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    node distance=0.7cm,  % Espaciado más ajustado
+    startstop/.style={
+        rectangle, 
+        rounded corners, 
+        draw, 
+        fill=red!20,
+        minimum width=3cm,
+        text width=2.8cm,
+        align=center
+    },
+    process/.style={
+        rectangle, 
+        draw, 
+        fill=blue!20,
+        minimum width=3cm,
+        text width=2.8cm,
+        align=center
+    }
+]
+    \node (start) [startstop] {Grabación de video};
+    \node (convertion) [process, below=of start] {Conversión del video a frames};
+    \node (analysis) [process, below=of convertion] {Análisis de frames}; 
+	\node (reconstruction) [process, below=of analysis] {Reconstrucción de video};
+	\node (end) [startstop, below=of reconstruction] {Análisis de los datos obtenidos};
+    
+    % Conexiones con flechas
+    \draw [-Stealth, thick] (start) -- (convertion);
+    \draw [-Stealth, thick] (convertion) -- (analysis);
+	\draw [-Stealth, thick] (analysis) -- (reconstruction);
+	\draw [-Stealth, thick] (reconstruction) -- (end);
+\end{tikzpicture}
+\caption{Flujo de datos}
+\end{figure}

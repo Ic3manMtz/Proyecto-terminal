@@ -1,1 +1,1 @@
-# Proyecto-terminal
+# Proyecto terminal

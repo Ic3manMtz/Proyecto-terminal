@@ -1,0 +1,112 @@
+\section{Caracterización de datos de trayectorias individuales}
+
+\noindent El primer paso en el proceso de análisis de datos es la caracterización de los datos. Este proceso implica examinar y comprender la estructura, el contenido y las características de los datos antes de realizar cualquier análisis más profundo. A continuación, se describen las tareas realizadas para caracterizar los datos de trayectorias individuales:
+\begin{itemize}
+    \item Cargar los datos de trayectorias individuales desde un archivo CSV.
+    \item Explorar las primeras filas del conjunto de datos para obtener una visión general de su estructura.
+    \item Verificar el número total de registros y columnas en el conjunto de datos.
+    \item Identificar y eliminar columnas innecesarias que no aportan valor al análisis.
+    \item Verificar que todos los campos sigan el mismo formato y contengan datos válidos.
+    \item Identificar y manejar valores faltantes o nulos en el conjunto de datos.
+
+\end{itemize}
+\noindent A continuación, se detallan los pasos específicos realizados en el proceso de caracterización:
+
+\subsection{Carga de datos}
+\noindent Se cargaron los datos de trayectorias individuales desde un archivo CSV utilizando la biblioteca \texttt{dask}. El archivo contiene información sobre las trayectorias de diferentes individuos, incluyendo coordenadas geográficas y otros atributos relevantes. 
+
+\subsection{Exploración inicial}
+\noindent Se exploraron las primeras 101 filas del conjunto de datos para obtener una visión general de su estructura. Esto incluye la identificación de las columnas presentes y un par de registros. Esto se logró gracias al siguiente código:
+
+    \begin{lstlisting}[language=Python, breaklines=true]
+        import dask.dataframe as dd
+
+        ruta_archivo = "Mobility_Data.csv"  
+
+        ddf = dd.read_csv(
+            ruta_archivo,
+            encoding="utf-8",  
+            sep=",",          
+            dtype="object",    luego)
+        )
+
+        columnas = ddf.columns.tolist()
+
+        print("Columnas y 2 ejemplos por cada una:\n")
+        for col in columnas:
+            ejemplos = ddf[col].head(2).values.tolist() 
+            print(f"- {col}: {ejemplos}")
+    \end{lstlisting}
+
+\noindent El resultado de la ejecución de este código es el siguiente:
+\begin{enumerate}[leftmargin=*, align=left, noitemsep]
+    \item \texttt{id}: Identificador numérico único para cada registro ['34284565','34284566'].
+    \item \texttt{identifier}: Identificador único del dispositivo 
+    \begin{small}
+    ['f2640430-7e39-41b7-80bb-3fddaa44779c', 'f2640430-7e39-41b7-80bb-3fddaa44779c'].    
+    \end{small}
+    
+    \item \texttt{identifier\_type}: Tipo de identificador del dispositivo. En este caso, 'gaid' (Google Advertising ID para Android). Otros posibles: 'idfa' (Apple), 'imei' ['gaid', 'gaid'].
+    \item \texttt{timestamp}: Fecha y hora del registro de movilida ['2022-11-07 02:04:21', '2022-11-08 17:29:35']
+    \item \texttt{device\_lat/device\_lon}: Coordenadas geográficas (latitud y longitud) donde se detectó el dispositivo ['21.843149', '21.843149'], ['-102.196838', '-102.196838'].
+    
+    \begin{small}
+    \item \texttt{country\_short/province\_short}: Código del país (MX = México) y región (MX.01 = Aguascalientes, según estándar ISO) ['MX', 'MX'], ['MX.01', 'MX.01'].
+    \item \texttt{ip\_address}: Dirección IP del dispositivo (en formato IPv6)['2806:103e:16::', '2806:103e:16::'].    
+    \end{small}
+    \item \texttt{device\_horizontal\_accuracy}: Precisión del GPS en metro. Menor valor = mayor precisión ['8.0', '8.0'].
+    
+    \begin{small}
+    \item \texttt{source\_id}: Hash único que identifica la fuente de los datos. Puede ser un identificador de la aplicación o del dispositivo ['449d086de6d9c3d192345c992dfac54319b9d550a92bcd20c37f8368cb428344', '449d086de6d9c3d192345c992dfac54319b9d550a92bcd20c37f8368cb428344'].
+    \item \texttt{record\_id}: Identificador único del registro de movilidad (diferente al id) ['77d795df-6972-4f00-ac41-d10d1812bb2d', '8f8e1281-bc4d-4d2c-b00b-eb5c52d75bc1'].
+    \item \texttt{home\_country\_code}: País de residencia del usuario ['MX', 'MX'].
+    \item \texttt{home\_geog\_point/work\_geog\_point}: Coordenadas geográficas del hogar y del trabajo en formato WKT (Well-Known Text) ['POINT(-102.370380092263 22.2075340951743)', 'POINT(-102.370380092263 22.2075340951743)'].    
+    \end{small}
+    
+    \item \texttt{home\_hex\_id/work\_hex\_id}: Identificador hexadecimal del hogar y del trabajo, representando una ubicación geográfica en un sistema de cuadrícula hexagonal ['85498853fffffff', '85498853fffffff'].
+    \item \texttt{data\_execute}: Fecha de procesamiento del registro de movilidad, no necesariamente la fecha de recolección ['2023-05-30', '2023-05-30'].
+    \item \texttt{time\_zone\_name}: Zona horaria del dispositivo ['America\textdollar/Mexico\_City', 'America/Mexico\_City'].
+\end{enumerate}
+
+\newpage
+\subsection{Número de registros y columnas}
+\noindent Se verificó el número total de registros y columnas en el conjunto de datos utilizando el siguiente código:
+
+\begin{figure}[h]
+    \centering
+    \begin{lstlisting}[language=Python, breaklines=true]
+        import dask.dataframe as dd
+
+        ruta_archivo = "Mobility_Data.csv" 
+        columnas_usar = ["id"]  
+
+        ddf = dd.read_csv(
+            ruta_archivo,
+            usecols=columnas_usar, 
+            sep=",",             
+            dtype={"id": "str"},  
+            blocksize="256MB",   
+        )
+
+        print("Contando registros (paciencia para archivos grandes)...")
+        total_registros = ddf.shape[0].compute() 
+
+        print(f" Total de registros: {total_registros:,}")
+    \end{lstlisting}
+\end{figure}
+
+
+\noindent El resultado de la ejecución de este código es que el conjunto de datos contiene un total de 69,980,000 registros y 19 campos. Esto indica que hay una cantidad significativa de datos disponibles para el análisis.
+
+\subsection{Identificar y eliminar campos innecesarios que no aportan valor al análisis}
+\noindent Ya que tenemmos un conjunto de datos con 19 campos, es importante identificar y eliminar aquellas que no aportan valor al análisis. Para ello, vamos a revisar los valores únicos de los siguiente campos, para determinar si son redundantes o no aportan información relevante:
+\begin{itemize}
+    \item \texttt{country\_short}: El único valor encontrado es 'MX', por lo que este campo se eliminará.
+    \item \texttt{province\_short}: Este campo contiene los código de los estados de México, esta es información innecesaria para las trayectorias.
+\end{itemize}
+
+\subsection{Verificar que todos los campos sigan el mismo formato y contengan datos válidos}
+
+\subsection{Identificar y manejar valores faltantes o nulos en el conjunto de datos}
+
+prueba de push
