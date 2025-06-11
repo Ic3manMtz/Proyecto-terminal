@@ -1,6 +1,6 @@
-PWD c:\Users\Joge\Documents\Proyecto terminal\Documentacion\Documentacion
+PWD c:\Users\Joge\Documents\Proyecto-terminal\Documentacion
 INPUT C:\Users\Joge\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\Joge\Documents\Proyecto terminal\Documentacion\Documentacion\reporte.tex
+INPUT c:\Users\Joge\Documents\Proyecto-terminal\Documentacion\reporte.tex
 OUTPUT reporte.log
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls

@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1749508688.73096 "c:/Users/Joge/Documents/Proyecto terminal/Documentacion/Documentacion/reporte.tex" "reporte.pdf" "reporte" 1749508692.1743 0
+["pdflatex"] 1749592989.88091 "c:/Users/Joge/Documents/Proyecto-terminal/Documentacion/reporte.tex" "reporte.pdf" "reporte" 1749592991.13336 0
   "C:/Users/Joge/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1749500785 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Joge/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1095.pk" 1748969071 12668 84ff0839586d9c0eee2bf2792d7b90ea ""
   "C:/Users/Joge/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1748897127 13158840 96878671d51f2db38fb8210bd4fc6101 ""
@@ -196,12 +196,12 @@
   "C:/Users/Joge/AppData/Local/Programs/MiKTeX/tex/latex/tools/xspace.sty" 1730400552 4545 e3f4de576c914e2000f07f69a891c071 ""
   "C:/Users/Joge/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/Joge/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "Secciones/caracterizacion.tex" 1749508687 6968 9acee09a12a8e1b31a8b5983d3eae22d ""
+  "Secciones/caracterizacion.tex" 1749592989 6931 860c09ffb8baf9a801360a3bbb1ffe91 ""
   "Secciones/introduccion.tex" 1749492411 1659 672c047504cef24d9b7d6a70434627ef ""
   "Secciones/requisitos.tex" 1749492506 1390 b4748b43fed30d19599ea76a662860c1 ""
-  "c:/Users/Joge/Documents/Proyecto terminal/Documentacion/Documentacion/reporte.tex" 1749500783 2559 e2eb31baa9c46a164a15ae8cc60e2492 ""
-  "reporte.aux" 1749508691 2357 4ea5260ae50c1f0311a527709e733621 "pdflatex"
-  "reporte.out" 1749508691 3436 b37cbc84ed23e3965ed0e6d9c51bd6bd "pdflatex"
+  "c:/Users/Joge/Documents/Proyecto-terminal/Documentacion/reporte.tex" 1749500783 2559 e2eb31baa9c46a164a15ae8cc60e2492 ""
+  "reporte.aux" 1749592990 2357 4ea5260ae50c1f0311a527709e733621 "pdflatex"
+  "reporte.out" 1749592990 3436 b37cbc84ed23e3965ed0e6d9c51bd6bd "pdflatex"
   "reporte.tex" 1749500783 2559 e2eb31baa9c46a164a15ae8cc60e2492 ""
   (generated)
   "reporte.aux"
