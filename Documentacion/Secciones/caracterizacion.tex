@@ -15,9 +15,11 @@
 \subsection{Carga de datos}
 \noindent Se cargaron los datos de trayectorias individuales desde un archivo CSV utilizando la biblioteca \texttt{dask}. El archivo contiene información sobre las trayectorias de diferentes individuos, incluyendo coordenadas geográficas y otros atributos relevantes. 
 
+\newpage
 \subsection{Exploración inicial}
-\noindent Se exploraron las primeras 101 filas del conjunto de datos para obtener una visión general de su estructura. Esto incluye la identificación de las columnas presentes y un par de registros. Esto se logró gracias al siguiente código:
+\noindent Se exploraron las primeras 2 filas del conjunto de datos para obtener una visión general de su estructura. Esto incluye la identificación de las columnas presentes y un par de registros. Esto se logró gracias al siguiente código:
 
+\begin{figure}[H]
     \begin{lstlisting}[language=Python, breaklines=true]
         import dask.dataframe as dd
 
@@ -37,6 +39,10 @@
             ejemplos = ddf[col].head(2).values.tolist() 
             print(f"- {col}: {ejemplos}")
     \end{lstlisting}
+    \caption{csv\_glance.py, exploracion inicial del conjunto de datos.}
+    \label{fig:csv_glance}
+\end{figure}
+
 
 \noindent El resultado de la ejecución de este código es el siguiente:
 \begin{enumerate}[leftmargin=*, align=left, noitemsep]
@@ -93,17 +99,58 @@
 
         print(f" Total de registros: {total_registros:,}")
     \end{lstlisting}
+    \caption{csv\_count\_registers.py, conteo de registros en el conjunto de datos.}
+    \label{fig:csv_count}
 \end{figure}
 
 
 \noindent El resultado de la ejecución de este código es que el conjunto de datos contiene un total de 69,980,000 registros y 19 campos. Esto indica que hay una cantidad significativa de datos disponibles para el análisis.
 
 \subsection{Identificar y eliminar campos innecesarios que no aportan valor al análisis}
-\noindent Ya que tenemmos un conjunto de datos con 19 campos, es importante identificar y eliminar aquellas que no aportan valor al análisis. Para ello, vamos a revisar los valores únicos de los siguiente campos, para determinar si son redundantes o no aportan información relevante:
+\noindent Ya que tenemmos un conjunto de datos con 19 campos, es importante identificar y eliminar aquellas que no aportan valor al análisis. Para ello, vamos a revisar los valores únicos de los siguiente campos, para determinar si son redundantes o no aportan información relevante. A continuación, se presentan los campos que se consideran innecesarios:
 \begin{itemize}
-    \item \texttt{country\_short}: El único valor encontrado es 'MX'.
-    \item \texttt{province\_short}: Este campo contiene los código de los estados de México, esta es información innecesaria para las trayectorias.
+    \item \texttt{id}
+    \item \texttt{identifier\_type}
+    \item \texttt{country\_short}
+    \item \texttt{province\_short}
+    \item \texttt{ip\_address}
+    \item \texttt{source\_id}
+    \item \texttt{home\_country\_code}
+    \item \texttt{home\_geog\_point}
+    \item \texttt{work\_geog\_point}
+    \item \texttt{home\_hex\_id}
+    \item \texttt{work\_hex\_id}
+    \item \texttt{data\_execute}
 \end{itemize}
+
+\noindent Para eliminar estos campos vamos a tomar solamente las columnas que sí vamos a conservar. A continuación, se muestra el código utilizado para realizar esta tarea:
+\begin{figure}[h]
+    \centering
+    \begin{lstlisting}[language=Python, breaklines=true]
+        import dask.dataframe as dd
+
+        # Columnas que si vamos a conservar
+        columnas_deseadas = [
+            'identifier',
+            'timestamp',
+            'device_lat',
+            'device_lon',
+            'device_horizontal_accuracy',
+            'record_id',
+            'time_zone_name'
+            ]
+
+        # Cargar solo las columnas necesarias
+        df = dd.read_csv('Mobility_Data.csv', usecols=columnas_deseadas)
+
+        # Guardar el resultado
+        df.to_csv('Mobility_Data_Slim.csv', index=False, single_file=True, encoding='utf-8-sig')
+    \end{lstlisting}
+    \caption{remove\_columns.py, eliminación de campos innecesarios en el conjunto de datos.}
+    \label{fig:csv_slim}
+\end{figure}
+
+\noindent El resultado de la ejecución de este código es un nuevo archivo CSV llamado \texttt{Mobility\_Data\_Slim.csv} que contiene únicamente las columnas seleccionadas, eliminando así las que no aportan valor al análisis. 
 
 \subsection{Verificar que todos los campos sigan el mismo formato y contengan datos válidos}
 

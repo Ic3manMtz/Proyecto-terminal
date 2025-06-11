@@ -1,7 +1,7 @@
 import dask.dataframe as dd
 
 # 1. Especifica la ruta del archivo CSV
-ruta_archivo = "Mobility_Data.csv"  
+ruta_archivo = "Mobility_Data_Slim.csv"  
 
 # 2. Carga el archivo con Dask (no carga todo en RAM)
 ddf = dd.read_csv(

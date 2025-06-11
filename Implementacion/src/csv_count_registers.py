@@ -1,8 +1,8 @@
 import dask.dataframe as dd
 
 # Configuración inicial 
-ruta_archivo = "Mobility_Data.csv" 
-columnas_usar = ["id"]  # Usamos una columna ligera para contar
+ruta_archivo = "Mobility_Data_Slim.csv" 
+columnas_usar = ["record_id"]  # Usamos una columna ligera para contar
 
 # 1. Cargar solo una columna (para minimizar memoria)
 ddf = dd.read_csv(

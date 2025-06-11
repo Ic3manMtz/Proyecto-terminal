@@ -346,8 +346,6 @@ INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Users\Joge\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
-INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsl10.tfm
-INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsl10.tfm
 INPUT .\Secciones\requisitos.tex
 INPUT .\Secciones\requisitos.tex
 INPUT Secciones\requisitos.tex
@@ -366,6 +364,8 @@ INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\base\omscmr.fd
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
+INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsl10.tfm
+INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsl10.tfm
 INPUT .\Secciones\caracterizacion.tex
 INPUT .\Secciones\caracterizacion.tex
 INPUT Secciones\caracterizacion.tex
