@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1749665771.06045 "c:/Users/Joge/Documents/Proyecto-terminal/Documentacion/reporte.tex" "reporte.pdf" "reporte" 1749665772.3342 0
+["pdflatex"] 1749838751.74081 "c:/Users/Joge/Documents/Proyecto-terminal/Documentacion/reporte.tex" "reporte.pdf" "reporte" 1749838753.28063 0
   "C:/Users/Joge/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1749500785 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Joge/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1095.pk" 1748969071 12668 84ff0839586d9c0eee2bf2792d7b90ea ""
   "C:/Users/Joge/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1748897127 13158840 96878671d51f2db38fb8210bd4fc6101 ""
@@ -196,12 +196,13 @@
   "C:/Users/Joge/AppData/Local/Programs/MiKTeX/tex/latex/tools/xspace.sty" 1730400552 4545 e3f4de576c914e2000f07f69a891c071 ""
   "C:/Users/Joge/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/Joge/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "Secciones/caracterizacion.tex" 1749665769 8705 158e04514891c682fad282db971463b7 ""
+  "Secciones/caracterizacion.tex" 1749838751 13485 b241f0198203c820e35a0aab01561096 ""
   "Secciones/introduccion.tex" 1749660610 1646 e9d457128d4e94e522dde23d5c30c725 ""
   "Secciones/requisitos.tex" 1749492506 1390 b4748b43fed30d19599ea76a662860c1 ""
   "c:/Users/Joge/Documents/Proyecto-terminal/Documentacion/reporte.tex" 1749660580 2469 ccde1f2bf9958aaeb148ec3cac411d79 ""
-  "reporte.aux" 1749665772 3356 87f0e6d260dcf97bf66f349ee16626dd "pdflatex"
-  "reporte.out" 1749665772 3436 b37cbc84ed23e3965ed0e6d9c51bd6bd "pdflatex"
+  "img/histograma_frecuencias_rangos.png" 1749837921 148392 46d8549f4193c67a93e34743fc742377 ""
+  "reporte.aux" 1749838753 4478 2450bec683f77ee1c8f5ae758696c318 "pdflatex"
+  "reporte.out" 1749838753 3428 a2e85f8c392557c8a6eb742299cbc63e "pdflatex"
   "reporte.tex" 1749660580 2469 ccde1f2bf9958aaeb148ec3cac411d79 ""
   (generated)
   "reporte.aux"

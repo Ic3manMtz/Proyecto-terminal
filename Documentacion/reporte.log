@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.2)  11 JUN 2025 12:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.2)  13 JUN 2025 12:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -782,17 +782,42 @@ Overfull \hbox (79.35786pt too wide) in paragraph at lines 153--154
 []\OT1/cmr/m/n/10.95 El re-sul-ta-do de la eje-cu-ci^^Son de es-te c^^Sodi-go es un nue-vo ar-chi-vo CSV lla-ma-do \OT1/cmtt/m/n/10.95 Mobility[]Data[]Slim.csv
  []
 
+
+
+LaTeX Info: Redefining \. on input line 155.
+LaTeX Info: Redefining \% on input line 155.
+[7]
+<img/histograma_frecuencias_rangos.png, id=192, 723.6636pt x 412.1799pt>
+File: img/histograma_frecuencias_rangos.png Graphic file (type png)
+<use img/histograma_frecuencias_rangos.png>
+Package pdftex.def Info: img/histograma_frecuencias_rangos.png  used on input line 175.
+(pdftex.def)             Requested size: 318.67207pt x 181.50436pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 )
 :<-
 
 
 LaTeX Info: Redefining \. on input line 74.
 LaTeX Info: Redefining \% on input line 74.
-[7]
+[8 <./img/histograma_frecuencias_rangos.png>]
 
 LaTeX Info: Redefining \. on input line 74.
 LaTeX Info: Redefining \% on input line 74.
-[8] (reporte.aux
+[9]
+
+LaTeX Info: Redefining \. on input line 74.
+LaTeX Info: Redefining \% on input line 74.
+[10]
+
+LaTeX Info: Redefining \. on input line 74.
+LaTeX Info: Redefining \% on input line 74.
+[11] (reporte.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -801,20 +826,20 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-29>
  ***********
 Package rerunfilecheck Info: File `reporte.out' has not changed.
-(rerunfilecheck)             Checksum: B37CBC84ED23E3965ED0E6D9C51BD6BD;3436.
+(rerunfilecheck)             Checksum: A2E85F8C392557C8A6EB742299CBC63E;3428.
  ) 
 Here is how much of TeX's memory you used:
- 29033 strings out of 469923
- 556398 string characters out of 5469655
- 1176039 words of memory out of 5000000
- 55269 multiletter control sequences out of 15000+600000
+ 29155 strings out of 469923
+ 558239 string characters out of 5469655
+ 1313408 words of memory out of 5000000
+ 55333 multiletter control sequences out of 15000+600000
  635021 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,6n,91p,601b,1530s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,6n,91p,890b,1530s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Joge\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on reporte.pdf (8 pages, 174445 bytes).
+Output written on reporte.pdf (11 pages, 323991 bytes).
 PDF statistics:
- 264 PDF objects out of 1000 (max. 8388607)
- 110 named destinations out of 1000 (max. 500000)
- 125 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 346 PDF objects out of 1000 (max. 8388607)
+ 168 named destinations out of 1000 (max. 500000)
+ 130 words of extra memory for PDF output out of 10000 (max. 10000000)
 

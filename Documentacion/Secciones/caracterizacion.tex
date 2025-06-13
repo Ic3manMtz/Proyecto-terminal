@@ -6,7 +6,7 @@
     \item Explorar las primeras filas del conjunto de datos para obtener una visión general de su estructura.
     \item Verificar el número total de registros y columnas en el conjunto de datos.
     \item Identificar y eliminar columnas innecesarias que no aportan valor al análisis.
-    \item Verificar que todos los campos sigan el mismo formato y contengan datos válidos.
+    \item Identificar y eliminar las filas innecesarias que no aportan valor al análisis.
     \item Identificar y manejar valores faltantes o nulos en el conjunto de datos.
 
 \end{itemize}
@@ -152,7 +152,96 @@
 
 \noindent El resultado de la ejecución de este código es un nuevo archivo CSV llamado \texttt{Mobility\_Data\_Slim.csv} que contiene únicamente las columnas seleccionadas, eliminando así las que no aportan valor al análisis. 
 
-\subsection{Verificar que todos los campos sigan el mismo formato y contengan datos válidos}
+\newpage
+\subsection{Identificar y eliminar las filas innecesarias que no aportan valor al análisis}
+\noindent Ahora que tenemos una base datos más ligera, es importante identificar y eliminar las filas que no aportan valor al análisis. Para ellos, vamos a realizar diagramas que nos permitan identificar la distribución de los datos y poder determinar si hay filas que no aportan valor al análisis. Las tablas seleccionadas para este análisis son las siguientes:
+\begin{itemize}
+    \item \texttt{identifier}: Identificador único del dispositivo.
+    \item \texttt{device\_horizontal\_accuracy}: Precisión del GPS en metro. Menor valor = mayor precisión. 
+\end{itemize}
+
+\noindent La primer columna analizada fue \texttt{device\_horizontal\_accuracy}, que representa la precisión del GPS en metros. Estos valores dependen del sistema de medición y la fuente de los datos, generalemente se sigue la siguiente escala:
+\begin{itemize}
+    \item GPS puro (satelital): 1-20 metros.
+    \item A-GPS (Asistido por red): 5-50 metros.
+    \item Triangulación por WiFi/redes móviles: 20-500 metros.
+    \item Geolocalización por IP: 1000-5000 metros.
+\end{itemize}
+
+\noindent Con base en esta escala, el primer paso es identificar el rango de valores que contiene la columna. Para ello, se utilizó el código de la \textit{Figura:} \ref{fig:unique_values}, que permite obtener los valores únicos de la columna \texttt{device\_horizontal\_accuracy} y guardarlos en un archivo de texto. Una vez obtenidos los valores únicos pudimos determinar que el rango de valores es de 0 a 200. Este rango es muy importante para poder crear un script que grafique los valores de la columna \texttt{device\_horizontal\_accuracy} y nos permita identificar la frecuencia de los valores para poder determinar si hay filas que no aportan valor al análisis. Este script se muestra en la \textit{Figura:} \ref{fig:accuracy_histogram}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/histograma_frecuencias_rangos.png}
+    \caption{Histograma de frecuencias de la columna 'device\_horizontal\_accuracy'.}
+    \label{fig:accuracy_histogram_plot}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \begin{lstlisting}[language=Python, breaklines=true]
+        import dask.dataframe as dd
+        import pandas as pd
+        from tqdm import tqdm
+
+        archivo_csv = "Mobility_Data.csv" 
+        columna_objetivo = "device_horizontal_accuracy"  # Columna a analizar
+
+        archivo_salida = "valores_unicos.txt"
+        chunksize = 1_000_000  # Procesar 1M de registros a la vez
+
+        valores_unicos = set()
+
+        for chunk in tqdm(pd.read_csv(archivo_csv, usecols=[columna_objetivo], chunksize=chunksize)):
+            valores_unicos.update(chunk[columna_objetivo].dropna().astype(str))  # Ignorar NaN y convertir a string
+
+        with open(archivo_salida, "w", encoding="utf-8") as f:
+            f.write("\n".join(sorted(valores_unicos)))  
+
+        print(f"\n Se encontraron {len(valores_unicos):,} valores unicos.")
+        print(f" Guardados en: {archivo_salida}")
+
+        print("\n Ejemplo de valores unicos:")
+        print("\n".join(sorted(valores_unicos)[:10]))
+    \end{lstlisting}
+    \caption{unique\_values.py, obtención del rango de valores únicos en la columna 'device\_horizontal\_accuracy'.}
+    \label{fig:unique_values}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \begin{lstlisting}[language=Python, breaklines=true]
+        import os
+        import pandas as pd
+        import matplotlib.pyplot as plt
+        import numpy as np
+
+        archivo_csv = "Mobility_Data_Slim.csv"
+        columna = "device_horizontal_accuracy"  
+        bins = 100 
+        os.makedirs("img", exist_ok=True) 
+
+        frecuencias = pd.Series(dtype=float)
+        for chunk in pd.read_csv(archivo_csv, usecols=[columna], chunksize=1_000_000):
+            frecuencias = pd.concat([frecuencias, chunk[columna].value_counts()])
+
+        counts, edges = np.histogram(frecuencias.index, bins=bins, weights=frecuencias.values)
+
+        plt.figure(figsize=(12, 6))
+        plt.bar(edges[:-1], counts, width=np.diff(edges), align='edge', edgecolor='black', alpha=0.7)
+        plt.title("Frecuencias de Valores Agrupados por Rangos (0-200)")
+        plt.xlabel("Rango de Valores")
+        plt.ylabel("Frecuencia Total (Millones)")
+        plt.xticks(edges[::5], rotation=45) 
+        plt.grid(axis='y', linestyle='--')
+
+        output_path = "img/histograma_frecuencias_rangos.png"
+        plt.savefig(output_path, dpi=300, bbox_inches='tight')
+        plt.close()
+    \end{lstlisting}
+    \caption{accuracy\_histogram.py, creación de un histograma de frecuencias de la columna 'device\_horizontal\_accuracy'.}
+    \label{fig:accuracy_histogram}
+\end{figure}
 
 \subsection{Identificar y manejar valores faltantes o nulos en el conjunto de datos}
 
