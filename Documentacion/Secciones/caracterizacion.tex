@@ -15,12 +15,14 @@
 \subsection{Carga de datos}
 \noindent Se cargaron los datos de trayectorias individuales desde un archivo CSV utilizando la biblioteca \texttt{dask}. El archivo contiene información sobre las trayectorias de diferentes individuos, incluyendo coordenadas geográficas y otros atributos relevantes. 
 
-\newpage
 \subsection{Exploración inicial}
 \noindent Se exploraron las primeras 2 filas del conjunto de datos para obtener una visión general de su estructura. Esto incluye la identificación de las columnas presentes y un par de registros. Esto se logró gracias al siguiente código:
 
-\begin{figure}[H]
-    \begin{lstlisting}[language=Python, breaklines=true]
+    \begin{lstlisting}[
+        language=Python,
+        caption={csv\_glance.py, exploración inicial del conjunto de datos.},
+        label={cod:csv_glance}
+        ]
         import dask.dataframe as dd
 
         ruta_archivo = "Mobility_Data.csv"  
@@ -39,10 +41,6 @@
             ejemplos = ddf[col].head(2).values.tolist() 
             print(f"- {col}: {ejemplos}")
     \end{lstlisting}
-    \caption{csv\_glance.py, exploracion inicial del conjunto de datos.}
-    \label{fig:csv_glance}
-\end{figure}
-
 
 \noindent El resultado de la ejecución de este código es el siguiente:
 \begin{enumerate}[leftmargin=*, align=left, noitemsep]
@@ -78,9 +76,11 @@
 \subsection{Número de registros y columnas}
 \noindent Se verificó el número total de registros y columnas en el conjunto de datos utilizando el siguiente código:
 
-\begin{figure}[h]
-    \centering
-    \begin{lstlisting}[language=Python, breaklines=true]
+    \begin{lstlisting}[
+        language=Python,
+        caption={csv\_count\_registers.py, conteo de registros en el conjunto de datos.},
+        label={cod:csv_count}
+        ]
         import dask.dataframe as dd
 
         ruta_archivo = "Mobility_Data.csv" 
@@ -99,10 +99,6 @@
 
         print(f" Total de registros: {total_registros:,}")
     \end{lstlisting}
-    \caption{csv\_count\_registers.py, conteo de registros en el conjunto de datos.}
-    \label{fig:csv_count}
-\end{figure}
-
 
 \noindent El resultado de la ejecución de este código es que el conjunto de datos contiene un total de 69,980,000 registros y 19 campos. Esto indica que hay una cantidad significativa de datos disponibles para el análisis.
 
@@ -124,9 +120,12 @@
 \end{itemize}
 
 \noindent Para eliminar estos campos vamos a tomar solamente las columnas que sí vamos a conservar. A continuación, se muestra el código utilizado para realizar esta tarea:
-\begin{figure}[h]
-    \centering
-    \begin{lstlisting}[language=Python, breaklines=true]
+
+    \begin{lstlisting}[
+        language=Python,
+        caption={remove\_columns.py, eliminación de campos innecesarios en el conjunto de datos.},
+        label={cod:csv_slim}
+        ]
         import dask.dataframe as dd
 
         # Columnas que si vamos a conservar
@@ -146,11 +145,8 @@
         # Guardar el resultado
         df.to_csv('Mobility_Data_Slim.csv', index=False, single_file=True, encoding='utf-8-sig')
     \end{lstlisting}
-    \caption{remove\_columns.py, eliminación de campos innecesarios en el conjunto de datos.}
-    \label{fig:csv_slim}
-\end{figure}
 
-\noindent El resultado de la ejecución de este código es un nuevo archivo CSV llamado \texttt{Mobility\_Data\_Slim.csv} que contiene únicamente las columnas seleccionadas, eliminando así las que no aportan valor al análisis. 
+\noindent El resultado de la ejecución de este código es un nuevo archivo CSV que se guarda en la misma carpeta el cual contiene únicamente las columnas seleccionadas, eliminando así las que no aportan valor al análisis. 
 
 \newpage
 \subsection{Identificar y eliminar las filas innecesarias que no aportan valor al análisis}
@@ -168,33 +164,29 @@
     \item Geolocalización por IP: 1000-5000 metros.
 \end{itemize}
 
-\noindent Con base en esta escala, el primer paso es identificar el rango de valores que contiene la columna. Para ello, se utilizó el código de la \textit{Figura:} \ref{fig:unique_values}, que permite obtener los valores únicos de la columna \texttt{device\_horizontal\_accuracy} y guardarlos en un archivo de texto. Una vez obtenidos los valores únicos pudimos determinar que el rango de valores es de 0 a 200. Este rango es muy importante para poder crear un script que grafique los valores de la columna \texttt{device\_horizontal\_accuracy} y nos permita identificar la frecuencia de los valores para poder determinar si hay filas que no aportan valor al análisis. Este script se muestra en la \textit{Figura:} \ref{fig:accuracy_histogram}.
+\noindent Con base en esta escala, el primer paso es identificar el rango de valores que contiene la columna. Para ello, se utilizó el \textit{Código:} \ref{cod:unique_values}, que permite obtener los valores únicos de la columna \texttt{device\_horizontal\_accuracy} y guardarlos en un archivo de texto. 
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{img/histograma_frecuencias_rangos.png}
-    \caption{Histograma de frecuencias de la columna 'device\_horizontal\_accuracy'.}
-    \label{fig:accuracy_histogram_plot}
-\end{figure}
-
-\begin{figure}[h]
-    \centering
-    \begin{lstlisting}[language=Python, breaklines=true]
+    \begin{lstlisting}[
+        language=Python,
+        breaklines=true,
+        caption={unique\_values.py, obtención de valores únicos de la columna 'device\_horizontal\_accuracy'.},
+        label={cod:unique_values}
+        ]
         import dask.dataframe as dd
         import pandas as pd
         from tqdm import tqdm
 
         archivo_csv = "Mobility_Data.csv" 
-        columna_objetivo = "device_horizontal_accuracy"  # Columna a analizar
-
+        columna_objetivo = "device_horizontal_accuracy"  
         archivo_salida = "valores_unicos.txt"
         chunksize = 1_000_000  # Procesar 1M de registros a la vez
 
         valores_unicos = set()
 
         for chunk in tqdm(pd.read_csv(archivo_csv, usecols=[columna_objetivo], chunksize=chunksize)):
-            valores_unicos.update(chunk[columna_objetivo].dropna().astype(str))  # Ignorar NaN y convertir a string
+            valores_unicos.update(chunk[columna_objetivo].dropna().astype(str)) 
 
+    
         with open(archivo_salida, "w", encoding="utf-8") as f:
             f.write("\n".join(sorted(valores_unicos)))  
 
@@ -204,13 +196,14 @@
         print("\n Ejemplo de valores unicos:")
         print("\n".join(sorted(valores_unicos)[:10]))
     \end{lstlisting}
-    \caption{unique\_values.py, obtención del rango de valores únicos en la columna 'device\_horizontal\_accuracy'.}
-    \label{fig:unique_values}
-\end{figure}
 
-\begin{figure}[h]
-    \centering
-    \begin{lstlisting}[language=Python, breaklines=true]
+\noindent Una vez obtenidos los valores únicos pudimos determinar que el rango de valores es de 0 a 200. Este rango es muy importante para poder crear un script que grafique los valores de la columna \texttt{device\_horizontal\_accuracy} y que nos permita identificar la frecuencia de los valores para poder determinar si hay filas que no aportan valor al análisis. Este script se muestra en el \textit{Código:} \ref{cod:accuracy_histogram}.
+
+    \begin{lstlisting}[
+        language=Python,
+        caption={accuracy\_histogram.py, creación de un histograma de frecuencias de la columna 'device\_horizontal\_accuracy'.},
+        label={cod:accuracy_histogram}
+        ]
         import os
         import pandas as pd
         import matplotlib.pyplot as plt
@@ -239,9 +232,18 @@
         plt.savefig(output_path, dpi=300, bbox_inches='tight')
         plt.close()
     \end{lstlisting}
-    \caption{accuracy\_histogram.py, creación de un histograma de frecuencias de la columna 'device\_horizontal\_accuracy'.}
+
+\noindent El resultado de la ejecución del script anterior es un histograma que muestra la frecuencia de los valores agrupados por rangos. En la siguiente figure se puede observar que la mayoría de los valores se encuentran en el rango de 0 a 20 metros, lo cual es consistente con la precisión del GPS puro. Con base en esto podemos acotar los valores que serán considerados válidos para el análisis.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/histograma_frecuencias_rangos.png}
+    \caption{Frecuencias de valores agrupados por rangos (0-200).}
     \label{fig:accuracy_histogram}
 \end{figure}
+
+\noindent La siguiente columna analizada fue \texttt{identifier}, que representa el identificador único del dispositivo. Para esta columna, se realizó un análisis de los valores únicos para determinar si hay dispositivos que no aportan valor al análisis. El \textit{Código:} \ref{cod:unique_identifiers} muestra el código utilizado para obtener los valores únicos de la columna \texttt{identifier} y guardarlos en un archivo de texto.
+
 
 \subsection{Identificar y manejar valores faltantes o nulos en el conjunto de datos}
 

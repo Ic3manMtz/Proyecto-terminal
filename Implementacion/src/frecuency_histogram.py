@@ -18,18 +18,23 @@ for chunk in pd.read_csv(archivo_csv, usecols=[columna], chunksize=chunksize):
 # Convertir a Series de pandas
 frecuencias = pd.Series(counter)
 
-# Paso 2: Crear histograma logarítmico
+# Definir los rangos de 1000 en 1000
+max_freq = frecuencias.max()
+bins = [0] + [10**i for i in range(0, int(np.log10(max_freq)) + 2)]  # Ej: [0, 1, 10, 100, 1000, ...]
+frecuencias_agrupadas = pd.cut(frecuencias, bins=bins, right=False).value_counts().sort_index()
+
+# Paso 2: Crear gráfico de barras (logarítmico en Y)
 plt.figure(figsize=(12, 7))
-bins = 10 ** np.linspace(0, np.log10(frecuencias.max()), 100)  # Bins logarítmicos
-plt.hist(frecuencias, bins=bins, edgecolor='black', alpha=0.7)
-plt.xscale('log')
-plt.yscale('log')
-plt.title("Distribución de Frecuencias (6M valores únicos)")
-plt.xlabel("Frecuencia de aparición (log)")
-plt.ylabel("Cantidad de valores (log)")
-plt.grid(True, which="both", ls="--")
+frecuencias_agrupadas.plot(kind='bar', logy=True, alpha=0.7, edgecolor='black')
+
+# Mejorar formato de etiquetas en el eje X
+plt.xticks(rotation=45, ha='right')  # Rotar etiquetas para mejor legibilidad
+plt.title("Distribución de Frecuencias Agrupadas en Bloques de 1000 Repeticiones")
+plt.xlabel("Rango de repeticiones (ej: [0, 1000) significa 0-999 repeticiones)")
+plt.ylabel("Cantidad de valores únicos (log)")
+plt.grid(True, which="both", ls="--", axis='y')
 
 # Paso 3: Guardar
-output_path = os.path.join("img", "histograma_identifier.png")
+output_path = os.path.join("img", "histograma_frecuencias_agrupadas_1000.png")
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
 plt.close()

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.2)  13 JUN 2025 12:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.2)  13 JUN 2025 15:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -646,26 +646,26 @@ Package babel Info: 'spanish' activates 'spanish' shorthands.
 )
 \openout1 = `reporte.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Info: Redefining \. on input line 48.
-LaTeX Info: Redefining \% on input line 48.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Info: Redefining \. on input line 59.
+LaTeX Info: Redefining \% on input line 59.
  (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count356
@@ -685,7 +685,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring OFF on input line 48.
+Package hyperref Info: Link coloring OFF on input line 59.
  (reporte.out) (reporte.out)
 \@outlinefile=\write4
 \openout4 = `reporte.out'.
@@ -693,16 +693,16 @@ Package hyperref Info: Link coloring OFF on input line 48.
 \c@lstlisting=\count362
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 60.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 71.
  (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 60.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 71.
  (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 \c@Theorem=\count363
-Package srcltx Info: Expanded filename `Secciones/introduccion.tex' to `Secciones/introduccion.tex' on input line 68.
+Package srcltx Info: Expanded filename `Secciones/introduccion.tex' to `Secciones/introduccion.tex' on input line 79.
 
 :<+ Secciones/introduccion.tex
 (Secciones/introduccion.tex
@@ -711,113 +711,89 @@ Package srcltx Info: Expanded filename `Secciones/introduccion.tex' to `Seccione
 
 {C:/Users/Joge/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}])
 :<-
-Package srcltx Info: Expanded filename `Secciones/requisitos.tex' to `Secciones/requisitos.tex' on input line 70.
+Package srcltx Info: Expanded filename `Secciones/requisitos.tex' to `Secciones/requisitos.tex' on input line 81.
 :<+ Secciones/requisitos.tex
 (Secciones/requisitos.tex (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 ) (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 19.
- (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
-File: omscmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 19.
-
 Overfull \hbox (10.97923pt too wide) in paragraph at lines 22--23
 \OT1/cmr/m/n/10.95 mi-nal de Po-werShell: \OT1/cmtt/m/n/10.95 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
  []
 
 (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
-)
-Overfull \hbox (3.53038pt too wide) in paragraph at lines 30--31
-[][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-)
+))
 :<-
 
 
-LaTeX Info: Redefining \. on input line 72.
-LaTeX Info: Redefining \% on input line 72.
+LaTeX Info: Redefining \. on input line 83.
+LaTeX Info: Redefining \% on input line 83.
 [2]
-Package srcltx Info: Expanded filename `Secciones/caracterizacion.tex' to `Secciones/caracterizacion.tex' on input line 73.
+Package srcltx Info: Expanded filename `Secciones/caracterizacion.tex' to `Secciones/caracterizacion.tex' on input line 84.
 
 :<+ Secciones/caracterizacion.tex
 (Secciones/caracterizacion.tex
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 25.
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 26.
 
-LaTeX Info: Redefining \. on input line 18.
-LaTeX Info: Redefining \% on input line 18.
+
+LaTeX Info: Redefining \. on input line 43.
+LaTeX Info: Redefining \% on input line 43.
 [3]
-Overfull \hbox (23.51166pt too wide) in paragraph at lines 50--54
+Overfull \hbox (23.51166pt too wide) in paragraph at lines 48--52
 [][]\OT1/cmtt/m/n/10.95 identifier\OT1/cmr/m/n/10.95 : Iden-ti-fi-ca-dor ^^Suni-co del dis-po-si-ti-vo  \OT1/cmr/m/n/10 ['f2640430-7e39-41b7-80bb-3fddaa44779c',
  []
 
 
-Overfull \hbox (13.93677pt too wide) in paragraph at lines 61--63
+Overfull \hbox (13.93677pt too wide) in paragraph at lines 59--61
 [][]\OT1/cmtt/m/n/10 ip[]address\OT1/cmr/m/n/10 : Di-rec-ci^^Son IP del dis-po-si-ti-vo (en for-ma-to IPv6)['2806:103e:16::', '2806:103e:16::']. 
  []
 
 
-Overfull \hbox (71.32094pt too wide) in paragraph at lines 66--67
+Overfull \hbox (71.32094pt too wide) in paragraph at lines 64--65
 \OT1/cmr/m/n/10 la apli-ca-ci^^Son o del dis-po-si-ti-vo ['449d086de6d9c3d192345c992dfac54319b9d550a92bcd20c37f8368cb428344',
  []
 
 
 
-LaTeX Info: Redefining \. on input line 68.
-LaTeX Info: Redefining \% on input line 68.
+LaTeX Info: Redefining \. on input line 75.
+LaTeX Info: Redefining \% on input line 75.
 [4]
 
-LaTeX Info: Redefining \. on input line 77.
-LaTeX Info: Redefining \% on input line 77.
+LaTeX Info: Redefining \. on input line 117.
+LaTeX Info: Redefining \% on input line 117.
 [5]
 
-LaTeX Info: Redefining \. on input line 119.
-LaTeX Info: Redefining \% on input line 119.
+LaTeX Info: Redefining \. on input line 151.
+LaTeX Info: Redefining \% on input line 151.
 [6]
-Overfull \hbox (79.35786pt too wide) in paragraph at lines 153--154
-[]\OT1/cmr/m/n/10.95 El re-sul-ta-do de la eje-cu-ci^^Son de es-te c^^Sodi-go es un nue-vo ar-chi-vo CSV lla-ma-do \OT1/cmtt/m/n/10.95 Mobility[]Data[]Slim.csv
- []
 
-
-
-LaTeX Info: Redefining \. on input line 155.
-LaTeX Info: Redefining \% on input line 155.
+LaTeX Info: Redefining \. on input line 196.
+LaTeX Info: Redefining \% on input line 196.
 [7]
-<img/histograma_frecuencias_rangos.png, id=192, 723.6636pt x 412.1799pt>
+
+LaTeX Info: Redefining \. on input line 237.
+LaTeX Info: Redefining \% on input line 237.
+[8]
+<img/histograma_frecuencias_rangos.png, id=245, 723.6636pt x 412.1799pt>
 File: img/histograma_frecuencias_rangos.png Graphic file (type png)
 <use img/histograma_frecuencias_rangos.png>
-Package pdftex.def Info: img/histograma_frecuencias_rangos.png  used on input line 175.
-(pdftex.def)             Requested size: 318.67207pt x 181.50436pt.
+Package pdftex.def Info: img/histograma_frecuencias_rangos.png  used on input line 240.
+(pdftex.def)             Requested size: 398.33858pt x 226.88202pt.
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: Reference `cod:unique_identifiers' on page 9 undefined on input line 245.
 
 )
 :<-
 
 
-LaTeX Info: Redefining \. on input line 74.
-LaTeX Info: Redefining \% on input line 74.
-[8 <./img/histograma_frecuencias_rangos.png>]
-
-LaTeX Info: Redefining \. on input line 74.
-LaTeX Info: Redefining \% on input line 74.
-[9]
-
-LaTeX Info: Redefining \. on input line 74.
-LaTeX Info: Redefining \% on input line 74.
-[10]
-
-LaTeX Info: Redefining \. on input line 74.
-LaTeX Info: Redefining \% on input line 74.
-[11] (reporte.aux
+LaTeX Info: Redefining \. on input line 85.
+LaTeX Info: Redefining \% on input line 85.
+[9 <./img/histograma_frecuencias_rangos.png>] (reporte.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -825,21 +801,25 @@ LaTeX Info: Redefining \% on input line 11.
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-29>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `reporte.out' has not changed.
 (rerunfilecheck)             Checksum: A2E85F8C392557C8A6EB742299CBC63E;3428.
  ) 
 Here is how much of TeX's memory you used:
- 29155 strings out of 469923
- 558239 string characters out of 5469655
- 1313408 words of memory out of 5000000
- 55333 multiletter control sequences out of 15000+600000
- 635021 words of font info for 70 fonts, out of 8000000 for 9000
+ 29132 strings out of 469923
+ 557934 string characters out of 5469655
+ 1353395 words of memory out of 5000000
+ 55319 multiletter control sequences out of 15000+600000
+ 635189 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,6n,91p,890b,1530s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Joge\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on reporte.pdf (11 pages, 323991 bytes).
+ 84i,7n,91p,600b,2048s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Joge\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on reporte.pdf (9 pages, 319699 bytes).
 PDF statistics:
- 346 PDF objects out of 1000 (max. 8388607)
- 168 named destinations out of 1000 (max. 500000)
+ 331 PDF objects out of 1000 (max. 8388607)
+ 161 named destinations out of 1000 (max. 500000)
  130 words of extra memory for PDF output out of 10000 (max. 10000000)
 

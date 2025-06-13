@@ -34,6 +34,17 @@
 \renewcommand{\baselinestretch}{1}
 \renewcommand{\thesection}{\arabic{section}}
 
+% Cambia "Listing" por "Código" en todos los lstlistings
+\renewcommand{\lstlistingname}{Código}
+
+% Configuración básica de listings
+\lstset{
+    basicstyle=\ttfamily\small,
+    frame=single,
+    breaklines=true,
+    captionpos=b, % Coloca el caption debajo (bottom)
+}
+
 \setcounter{page}{1}
 \setlength{\textheight}{21.6cm}
 \setlength{\textwidth}{14cm}
