@@ -237,14 +237,183 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{img/histograma_frecuencias_rangos.png}
+    \includegraphics[width=\textwidth]{img/histograma_frecuencias_accuracy.png}
     \caption{Frecuencias de valores agrupados por rangos (0-200).}
     \label{fig:accuracy_histogram}
 \end{figure}
 
-\noindent La siguiente columna analizada fue \texttt{identifier}, que representa el identificador único del dispositivo. Para esta columna, se realizó un análisis de los valores únicos para determinar si hay dispositivos que no aportan valor al análisis. El \textit{Código:} \ref{cod:unique_identifiers} muestra el código utilizado para obtener los valores únicos de la columna \texttt{identifier} y guardarlos en un archivo de texto.
+\noindent La siguiente columna analizada fue \texttt{identifier}, la cual representa el identificador único del dispositivo. El primer paso de este análisis es identificar la distribución de los valores únicos. Para ello, se utilizó un código que crea un gráfico que separa por intervalos el número de repeticiones, y pone la cantidad de valores único de forma logarítimica. 
 
+\begin{lstlisting}[
+    language=Python,
+    caption={identifier\_histogram.py, creación de un histograma de frecuencias de la columna 'identifier'.},
+    label={cod:identifier_histogram}
+    ]
+    import os
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    import numpy as np
+    from collections import Counter
+
+    archivo_csv = "Mobility_Data_Slim.csv"
+    columna = "identifier"  
+    chunksize = 1_000_000  
+    os.makedirs("img", exist_ok=True) 
+
+    counter = Counter()
+    for chunk in pd.read_csv(archivo_csv, usecols=[columna], chunksize=chunksize):
+        counter.update(chunk[columna].dropna().astype(str))
+
+    frecuencias = pd.Series(counter)
+
+    max_freq = frecuencias.max()
+    bins = [0] + [10**i for i in range(0, int(np.log10(max_freq)) + 2)]  # Ej: [0, 1, 10, 100, 1000, ...]
+    frecuencias_agrupadas = pd.cut(frecuencias, bins=bins, right=False).value_counts().sort_index()
+
+    plt.figure(figsize=(12, 7))
+    frecuencias_agrupadas.plot(kind='bar', logy=True, alpha=0.7, edgecolor='black')
+
+    plt.xticks(rotation=45, ha='right')  # Rotar etiquetas para mejor legibilidad
+    plt.title("Distribucion de Frecuencias Agrupadas en Bloques de 1000 Repeticiones")
+    plt.xlabel("Rango de repeticiones (ej: [0, 1000) significa 0-999 repeticiones)")
+    plt.ylabel("Cantidad de valores unicos (log)")
+    plt.grid(True, which="both", ls="--", axis='y')
+
+    output_path = os.path.join("img", "histograma_frecuencias_agrupadas_1000.png")
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{img/histograma_frecuencias_agrupadas_1000.png}
+    \caption{Distribución de frecuencias agrupadas en bloques de 1000 repeticiones.}
+    \label{fig:identifier_histogram}
+\end{figure}
+
+\noindent Gracias a la \textit{Figura:} \ref{fig:identifier_histogram} podemos observar la frecuencia de los valores únicos. Para poder obtener información más detallada, usaremos el \textit{Código:} \ref{cod:identifier_histogram_detailed}. Este código nos permite obtener un análisis más detallados, separando los valores en tres rangos: 1-100, 100-1000 y 1000-10000.  
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth-1em} % Restamos 1em para el espacio
+        \includegraphics[width=\linewidth]{img/histograma_1_100.png}
+        \caption{Histograma 1-100}
+        \label{fig:sub1}
+    \end{subfigure}
+    \hfill % Espacio flexible y automático
+    \begin{subfigure}[t]{0.48\textwidth-1em}
+        \includegraphics[width=\linewidth]{img/histograma_100_1000.png}
+        \caption{Histograma 100-1000}
+        \label{fig:sub2}
+    \end{subfigure}
+
+    \vspace{0.5cm} % Espacio entre las dos filas
+
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/histograma_1001_10000.png}
+        \caption{Histograma 1001-10000}
+        \label{fig:sub3}
+    \end{subfigure}
+
+    \caption{Comparación de histogramas}
+    \label{fig:histogramas}
+\end{figure}
+
+\noindent Además de los histogramas de la figura anterior el código también genera un resumen de las frecuencias de los valores únicos en cada rango. Este resumen se muestra a continuación:
+
+\begin{verbatim}
+        === Resumen de frecuencias ===
+        **Rango 1-100 repeticiones**:
+        - Total de valores unicos: 5,912,437
+
+        **Rango 100-1000 repeticiones**:
+        - Total de valores unicos: 108,519
+
+        **Rango 1000-10000 repeticiones**:
+        - Total de valores unicos: 1,816
+\end{verbatim}
+
+\noindent Gracias a esta información podemos observar que la mayoría de los identificadores únicos se encuentran en el rango de 1 a 100 repeticiones, dentro del cual la gran mayoría de ellos tienen entre una a diez repeticiones. Con base en podemos acotar los valores que serán considerados válidos para el análisis.
+
+\begin{lstlisting}[
+    language=Python,
+    caption={identifier\_histogram\_detailed.py, análisis de frecuencias de la columna 'identifier'.},
+    label={cod:identifier_histogram_detailed}
+    ]
+    import os
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    import numpy as np
+    from collections import Counter
+
+    archivo_csv = "Mobility_Data_Slim.csv"
+    columna = "identifier"  
+    chunksize = 1_000_000  
+    os.makedirs("img", exist_ok=True)
+
+    counter = Counter()
+    for chunk in pd.read_csv(archivo_csv, usecols=[columna], chunksize=chunksize):
+        counter.update(chunk[columna].dropna().astype(str))
+    frecuencias = pd.Series(counter)
+
+    frecuencias_bajas = frecuencias[(frecuencias >= 1) & (frecuencias <= 99)]
+    frecuencias_medias = frecuencias[(frecuencias >= 100) & (frecuencias <= 1000)]
+    frecuencias_altas = frecuencias[(frecuencias >= 1001) & (frecuencias <= 10000)]
+
+    bins_bajas = list(range(1, 100, 10))  # 1-99 en pasos de 10 
+    bins_medias = list(range(100, 1001, 100))  # 100-1000 en pasos de 100
+    bins_altas = list(range(1001, 10001, 1000))  # 1001-10000 en pasos de 1000
+
+    freciencias_bajas_agrupadas = pd.cut(frecuencias_bajas, bins=bins_bajas, right=False).value_counts().sort_index()
+    frecuencias_medias_agrupadas = pd.cut(frecuencias_medias, bins=bins_medias, right=False).value_counts().sort_index()
+    frecuencias_altas_agrupadas = pd.cut(frecuencias_altas, bins=bins_altas, right=False).value_counts().sort_index()
+
+    print("\n=== Resumen de frecuencias ===")
+    print(f"\n**Rango 1-100 repeticiones**:")
+    print(f" - Total de valores unicos: {len(frecuencias_bajas)}")
+    print(f"\n**Rango 100-1000 repeticiones**:")
+    print(f" - Total de valores unicos: {len(frecuencias_medias)}")
+    print(f"\n**Rango 1000-10000 repeticiones**:")
+    print(f" - Total de valores unicos: {len(frecuencias_altas)}")
+
+
+    plt.figure(figsize=(10, 6))
+    freciencias_bajas_agrupadas.plot(kind='bar', color='skyblue', edgecolor='black', alpha=0.7)
+    plt.title("Distribucion de Frecuencias (1-100 repeticiones)")
+    plt.xlabel("Rango de repeticiones")
+    plt.ylabel("Cantidad de valores unicos")
+    plt.xticks(rotation=45)
+    plt.grid(axis='y', linestyle='--')
+    plt.tight_layout()
+    plt.savefig(os.path.join("img", "histograma_1_100.png"), dpi=300)
+    plt.close()
+
+    plt.figure(figsize=(10, 6))
+    frecuencias_medias_agrupadas.plot(kind='bar', color='skyblue', edgecolor='black', alpha=0.7)
+    plt.title("Distribucion de Frecuencias (100-1000 repeticiones)")
+    plt.xlabel("Rango de repeticiones")
+    plt.ylabel("Cantidad de valores unicos")
+    plt.xticks(rotation=45)
+    plt.grid(axis='y', linestyle='--')
+    plt.tight_layout()
+    plt.savefig(os.path.join("img", "histograma_100_1000.png"), dpi=300)
+    plt.close()
+
+    plt.figure(figsize=(10, 6))
+    frecuencias_altas_agrupadas.plot(kind='bar', color='salmon', edgecolor='black', alpha=0.7)
+    plt.title("Distribucion de Frecuencias (1001-10,000 repeticiones)")
+    plt.xlabel("Rango de repeticiones")
+    plt.ylabel("Cantidad de valores unicos")
+    plt.xticks(rotation=45)
+    plt.grid(axis='y', linestyle='--')
+    plt.tight_layout()
+    plt.savefig(os.path.join("img", "histograma_1001_10000.png"), dpi=300)
+    plt.close()
+
+    print("Graficos guardados en /img/")
+    
+\end{lstlisting}
 
 \subsection{Identificar y manejar valores faltantes o nulos en el conjunto de datos}
 
-prueba de push
