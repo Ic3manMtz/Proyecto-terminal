@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.2)  15 JUN 2025 17:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.2)  2 JUL 2025 09:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/Joge/Documents/Proyecto-terminal/Documentacion/reporte.tex
-(c:/Users/Joge/Documents/Proyecto-terminal/Documentacion/reporte.tex
+**//192.168.2.4/Jorge/Proyecto-terminal/Documentacion/reporte.tex
+(//192.168.2.4/Jorge/Proyecto-terminal/Documentacion/reporte.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-29>
 (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
@@ -804,55 +804,55 @@ Package pdftex.def Info: img/histograma_frecuencias_accuracy.png  used on input 
 (pdftex.def)             Requested size: 398.33858pt x 226.88202pt.
 
 
-LaTeX Info: Redefining \. on input line 269.
-LaTeX Info: Redefining \% on input line 269.
+LaTeX Info: Redefining \. on input line 253.
+LaTeX Info: Redefining \% on input line 253.
 [9 <./img/histograma_frecuencias_accuracy.png>]
-<img/histograma_frecuencias_agrupadas_1000.png, id=270, 725.3499pt x 498.4221pt>
+<img/histograma_frecuencias_agrupadas_1000.png, id=253, 725.3499pt x 498.4221pt>
 File: img/histograma_frecuencias_agrupadas_1000.png Graphic file (type png)
 <use img/histograma_frecuencias_agrupadas_1000.png>
-Package pdftex.def Info: img/histograma_frecuencias_agrupadas_1000.png  used on input line 289.
+Package pdftex.def Info: img/histograma_frecuencias_agrupadas_1000.png  used on input line 299.
 (pdftex.def)             Requested size: 362.67406pt x 249.21043pt.
 
 
-LaTeX Info: Redefining \. on input line 295.
-LaTeX Info: Redefining \% on input line 295.
-[10 <./img/histograma_frecuencias_agrupadas_1000.png>]
-<img/histograma_1_100.png, id=296, 722.7pt x 433.62pt>
+LaTeX Info: Redefining \. on input line 303.
+LaTeX Info: Redefining \% on input line 303.
+[10]
+<img/histograma_1_100.png, id=294, 722.7pt x 433.62pt>
 File: img/histograma_1_100.png Graphic file (type png)
 <use img/histograma_1_100.png>
-Package pdftex.def Info: img/histograma_1_100.png  used on input line 299.
+Package pdftex.def Info: img/histograma_1_100.png  used on input line 309.
 (pdftex.def)             Requested size: 180.25078pt x 108.14668pt.
-<img/histograma_100_1000.png, id=297, 722.7pt x 433.62pt>
+<img/histograma_100_1000.png, id=295, 722.7pt x 433.62pt>
 File: img/histograma_100_1000.png Graphic file (type png)
 <use img/histograma_100_1000.png>
-Package pdftex.def Info: img/histograma_100_1000.png  used on input line 305.
+Package pdftex.def Info: img/histograma_100_1000.png  used on input line 315.
 (pdftex.def)             Requested size: 180.25078pt x 108.14668pt.
-<img/histograma_1001_10000.png, id=298, 722.7pt x 433.62pt>
+<img/histograma_1001_10000.png, id=296, 722.7pt x 433.62pt>
 File: img/histograma_1001_10000.png Graphic file (type png)
 <use img/histograma_1001_10000.png>
-Package pdftex.def Info: img/histograma_1001_10000.png  used on input line 314.
+Package pdftex.def Info: img/histograma_1001_10000.png  used on input line 324.
 (pdftex.def)             Requested size: 191.2008pt x 114.71687pt.
 
 
-LaTeX Info: Redefining \. on input line 346.
-LaTeX Info: Redefining \% on input line 346.
-[11 <./img/histograma_1_100.png> <./img/histograma_100_1000.png> <./img/histograma_1001_10000.png>]
+LaTeX Info: Redefining \. on input line 360.
+LaTeX Info: Redefining \% on input line 360.
+[11 <./img/histograma_frecuencias_agrupadas_1000.png>]
+Underfull \vbox (badness 6125) has occurred while \output is active []
+
+
+
+LaTeX Info: Redefining \. on input line 378.
+LaTeX Info: Redefining \% on input line 378.
+[12 <./img/histograma_1_100.png> <./img/histograma_100_1000.png> <./img/histograma_1001_10000.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-LaTeX Info: Redefining \. on input line 381.
-LaTeX Info: Redefining \% on input line 381.
-[12])
+LaTeX Info: Redefining \. on input line 413.
+LaTeX Info: Redefining \% on input line 413.
+[13])
 :<-
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-LaTeX Info: Redefining \. on input line 88.
-LaTeX Info: Redefining \% on input line 88.
-[13]
 
 LaTeX Info: Redefining \. on input line 88.
 LaTeX Info: Redefining \% on input line 88.
@@ -869,14 +869,14 @@ Package rerunfilecheck Info: File `reporte.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  29505 strings out of 469923
- 564915 string characters out of 5469655
- 1428548 words of memory out of 5000000
+ 564863 string characters out of 5469655
+ 1435549 words of memory out of 5000000
  55573 multiletter control sequences out of 15000+600000
  635189 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,8n,91p,600b,2054s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,8n,91p,596b,2058s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Joge\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on reporte.pdf (14 pages, 872126 bytes).
+Output written on reporte.pdf (14 pages, 873335 bytes).
 PDF statistics:
  494 PDF objects out of 1000 (max. 8388607)
  274 named destinations out of 1000 (max. 500000)

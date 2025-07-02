@@ -242,6 +242,16 @@
     \label{fig:accuracy_histogram}
 \end{figure}
 
+\noindent Para poder tomar una mejor decisión sobre los valores que serán considerados válidos para el análisis, se realizó un conteo de los valores respecto a los rangos de precisión del GPS. 
+
+\begin{itemize}
+    \item GPS puro, satelital (1-20 metros): 68.73\%.
+    \item A-GPS, asistido por red (5-50 metros): 16.56\%.
+    \item Triangulación por WiFi/redes móviles (20-500 metros): 14.69\%.
+\end{itemize}
+
+\newpage
+
 \noindent La siguiente columna analizada fue \texttt{identifier}, la cual representa el identificador único del dispositivo. El primer paso de este análisis es identificar la distribución de los valores únicos. Para ello, se utilizó un código que crea un gráfico que separa por intervalos el número de repeticiones, y pone la cantidad de valores único de forma logarítimica. 
 
 \begin{lstlisting}[

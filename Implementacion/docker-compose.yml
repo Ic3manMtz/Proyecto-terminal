@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  data-analysis:
+    image: python:3.13-bookworm
+    container_name: data-analysis
+    runtime: nvidia
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./:/app
+      - python-packages:/usr/local/lib/python3.13/site-packages
+    command: sh -c "pip install -r requirements.txt && python3 /app/src/main.py"
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app
+
+volumes:
+  python-packages:
+
+
+
