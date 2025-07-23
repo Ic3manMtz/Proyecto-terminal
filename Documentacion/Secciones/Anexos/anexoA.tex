@@ -1,0 +1,162 @@
+\label{anexo:docker}
+
+En la sección \ref{sec:requisitos-sistema} se establece como requisito el uso de Docker y Docker Compose para la ejecución del proyecto. A continuación, se detallan las instrucciones necesarias para su instalación, ya que ambas herramientas son fundamentales para la implementación. Además, se describe el archivo \texttt{docker-compose.yml}, el cual permite crear un contenedor que incluye todas las dependencias requeridas para el correcto funcionamiento del sistema.
+
+\section{¿Qué son Docker y Docker Compose?}
+Docker es una plataforma de virtualización ligera que permite desarrollar, empaquetar y ejecutar aplicaciones en contenedores aislados. Un contenedor incluye el código, las dependencias y configuraciones necesarias para que la aplicación se ejecute de manera consistente en cualquier entorno. Esto facilita la portabilidad, escalabilidad y despliegue de software.
+
+Docker Compose es una herramienta que permite definir y ejecutar aplicaciones multicontenedor mediante archivos de configuración YAML. A través de un solo archivo \texttt{docker-compose.yml}, es posible especificar los servicios, redes y volúmenes que componen una aplicación, simplificando así su orquestación.
+
+Estas herramientas son fundamentales en este proyecto para garantizar que el entorno de ejecución sea replicable y controlado, independientemente del sistema operativo o configuración local del usuario.
+
+\section{Instalación en Linux (Ubuntu/Debian)}
+
+Para instalar Docker y Docker Compose en un sistema Linux basado en Debian o Ubuntu, siga los siguientes pasos:
+
+\begin{enumerate}
+    \item Actualizar los paquetes del sistema:
+    \begin{lstlisting}[
+			language=bash,
+			caption={Actualizar el sistema.},
+			label={cod:update_system}
+		]
+sudo apt update
+sudo apt upgrade
+		\end{lstlisting}
+    
+    \item Instalar Docker:
+    \begin{lstlisting}[
+			language=bash,
+			caption={Instalar Docker.},
+			label={cod:install_docker}
+		]
+sudo apt install docker.io
+sudo systemctl enable docker
+sudo systemctl start docker
+    \end{lstlisting}
+    
+    \item Verificar que Docker está instalado correctamente:
+    \begin{lstlisting}[
+			language=bash,
+			caption={Verificar instalación de Docker.},
+			label={cod:check_docker}
+		]
+docker --version
+    \end{lstlisting}
+    
+    \item Instalar Docker Compose:
+    \begin{lstlisting}[
+			language=bash,
+			caption={Instalar Docker Compose.},
+			label={cod:install_docker_compose}
+		]
+sudo apt install docker-compose
+    \end{lstlisting}
+    
+    \item Verificar la instalación:
+    \begin{lstlisting}[
+			language=bash,
+			caption={Verificar instalación de Docker Compose.},
+			label={cod:check_docker_compose}
+		]
+docker-compose --version
+    \end{lstlisting}
+\end{enumerate}
+
+\section{Instalación en Windows}
+
+Para instalar Docker y Docker Compose en Windows, se recomienda utilizar Docker Desktop, que incluye ambas herramientas de forma integrada.
+
+\begin{enumerate}
+    \item Acceder al sitio oficial: \href{https://www.docker.com/products/docker-desktop/}{https://www.docker.com/products/docker-desktop/}
+    
+    \item Descargar el instalador correspondiente para Windows.
+
+    \item Ejecutar el instalador y seguir el asistente de instalación.
+
+    \item Reiniciar el sistema si es necesario.
+
+    \item Verificar que Docker y Docker Compose estén correctamente instalados desde la terminal de Windows (PowerShell o CMD):
+    \begin{lstlisting}[
+			language=bash,
+			caption={Iniciar contenedor del proyecto.},
+			label={cod:start_container}
+		]
+docker --version
+docker-compose --version
+    \end{lstlisting}
+\end{enumerate}
+
+\textbf{Nota:} Docker Desktop requiere que la virtualización esté habilitada en la BIOS del sistema. También es necesario contar con Windows 10 o superior.
+
+\section{Descripción del archivo \texttt{docker-compose.yml}}
+El archivo \texttt{docker-compose.yml} permite definir y configurar el entorno de ejecución del proyecto utilizando un contenedor de Docker. A continuación, se presenta su contenido y una explicación de cada uno de sus elementos:
+
+\vspace{3mm}
+\begin{lstlisting}[
+			language=bash,
+			caption={Archivo docker-compose.yml},
+			label={cod:docker_compose_file}
+		]
+version: "3.8"
+
+services:
+  data-analysis:
+    image: python:3.13-bookworm
+    container_name: data-analysis
+    runtime: nvidia
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./:/app
+      - python-packages:/usr/local/lib/python3.13/site-packages
+    command: sh -c "pip install -r requirements.txt && pip install -e . && python3 /app/src/main.py"
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app
+
+volumes:
+  python-packages:
+\end{lstlisting}
+
+A continuación se explica el propósito de cada sección:
+
+\begin{itemize}
+  \item \texttt{version: "3.8"}\\
+  Define la versión del esquema de Docker Compose utilizado. La versión 3.8 es compatible con la mayoría de las características modernas de Docker.
+
+  \item \texttt{services} → \texttt{data-analysis}\\
+  Se define un servicio llamado \texttt{data-analysis}, que representa el contenedor principal del proyecto.
+
+  \item \texttt{image: python:3.13-bookworm}\\
+  Utiliza una imagen oficial de Python 3.13 basada en Debian Bookworm como entorno base.
+
+  \item \texttt{container\_name: data-analysis}\\
+  Asigna un nombre personalizado al contenedor para facilitar su identificación.
+
+  \item \texttt{runtime: nvidia}\\
+  Indica que el contenedor utilizará el runtime de NVIDIA para permitir acceso a la GPU. Requiere tener instalado \texttt{nvidia-docker}.
+
+  \item \texttt{tty: true} y \texttt{stdin\_open: true}\\
+  Habilitan la interacción con el terminal del contenedor, lo que es útil para ejecutar comandos manuales si es necesario.
+
+  \item \texttt{volumes}\\
+  \begin{itemize}
+    \item \texttt{./:/app}: Monta el directorio actual del proyecto como \texttt{/app} dentro del contenedor.
+    \item \texttt{python-packages:/usr/local/lib/python3.13/site-packages}: Crea un volumen persistente para las bibliotecas de Python instaladas.
+  \end{itemize}
+
+  \item \texttt{command}\\
+  Ejecuta una serie de comandos cuando el contenedor inicia: instala las dependencias del archivo \texttt{requirements.txt}, instala el proyecto en modo editable (\texttt{pip install -e .}) y ejecuta el archivo \texttt{main.py}.
+
+  \item \texttt{working\_dir: /app}\\
+  Establece el directorio de trabajo dentro del contenedor como \texttt{/app}.
+
+  \item \texttt{environment}\\
+  Define la variable de entorno \texttt{PYTHONPATH} para que Python pueda encontrar correctamente los módulos dentro del proyecto.
+  
+  \item \texttt{volumes → python-packages}\\
+  Declara un volumen persistente llamado \texttt{python-packages}, que se utiliza para almacenar los paquetes instalados sin perderlos entre reinicios del contenedor.
+\end{itemize}
+
+Este archivo permite que el entorno de desarrollo sea fácilmente replicable y ejecutable, sin necesidad de instalar manualmente dependencias o configurar rutas en el sistema anfitrión.

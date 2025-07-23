@@ -23,13 +23,12 @@
 \usepackage{titlesec}
 \usepackage{etoolbox}
 
-
 \titleformat{\chapter}[display] 
 {\Large\raggedleft} 
 {}
 {0pt}
 {
-    \ifnum\value{chapter}>0
+    \ifnum\value{chapter}>0 
         \rule{\textwidth}{0.5pt}
         \vspace{1ex}
         {\Large\bfseries\chaptername\ \thechapter \\}
@@ -65,6 +64,19 @@
   \fancyhead[R]{\thepage}
   \fancyfoot{}
 }
+
+% --------------------------
+% CONFIGURACIÓN DE ANEXOS
+% --------------------------
+\newcommand{\appendixtitleformat}{
+  \titleformat{\chapter}[display]
+    {\Large\raggedleft}
+    {\appendixname\ \thechapter}
+    {1ex}
+    {\Large\bfseries}
+    [\vspace{1ex}\rule{\textwidth}{0.3pt}]
+}
+
 
 % ========================================
 % MATEMÁTICAS Y SÍMBOLOS
@@ -148,15 +160,6 @@
 \captionsetup[figure]{position=below, skip=0pt}
 
 % --------------------------
-% ENTORNOS MATEMÁTICOS
-% --------------------------
-\newtheorem{Theorem}{\quad Theorem}[section]
-\newtheorem{Definition}[Theorem]{\quad Definition}
-\newtheorem{Corollary}[Theorem]{\quad Corollary}
-\newtheorem{Lemma}[Theorem]{\quad Lemma}
-\newtheorem{Example}[Theorem]{\quad Example}
-
-% --------------------------
 % INICIO DEL DOCUMENTO
 % --------------------------
 \begin{document}
@@ -165,22 +168,29 @@
 % PORTADA
 % --------------------------
 \thispagestyle{empty}
-\centering
-{\bfseries Proyecto Terminal 1, Trimestre: 25-I, 2025}
 
-\vspace*{2cm}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.6]{img/logoUAM.png}
+\end{figure}
 
-{\Large\textsc{Caracterización de datos de trayectorias individuales}}
+\rule{\textwidth}{0.5pt}
+\begin{center}
+    {\LARGE\bfseries Caracterización de datos de trayectorias individuales}\\[1.5cm]
+    {\normalsize\itshape Presentado por:}\\
+    {\large Jorge Rafael Martínez Buenrostro}
+\end{center}
+\rule{\textwidth}{0.5pt}
 
-\vspace{1.5cm}
+\vspace{2cm}
+\begin{center}
+    {\large Asesora: Dra. Elizabeth Pérez Cortés}    
+\end{center}
 
-{\bfseries Martínez Buenrostro Jorge Rafael.}
-
-\vspace{1cm}
-
-{Universidad Aut\'onoma Metropolitana\\
-Unidad Iztapalapa, M\'exico\\
-\href{mailto:molap96@gmail.com}{molap96@gmail.com}}
+\vfill  
+\begin{center}
+    México, CDMX, a \today
+\end{center}
 
 \vspace{2cm}
 
@@ -191,7 +201,7 @@ Unidad Iztapalapa, M\'exico\\
 % RESUMEN (ABSTRACT)
 % --------------------------
 \chapter*{Resumen}
-Este documento describe el proyecto terminal 1 cuyo objetivo es caracterizar datos de trayectorias individuales utilizando un conjunto de herramientas y técnicas de programación. 
+Una trayectoria se define como la secuencia de desplazamientos realizada por un individuo en movimiento, compuesta por tres elementos principales: \texttt{puntos de recorrido}, \texttt{tiempos de pausa} y \texttt{longitudes de vuelo}. Los puntos de recorrido corresponden a las ubicaciones o pasos específicos por los que transita el individuo. Los tiempos de pausa representan los intervalos durante los cuales el individuo permanece detenenido en un mismo punto de recorrido. Por último, la longitud de vuelo se refiere a la distancia recorrida entre dos puntos de recorrido consecutivos. En el presente trabajo se describe el proceso de caraterización de datos de movilidad, es decir, el proceso de limpieza y depuración de la información, mediante el cual elimina aquellos campos y registros que no le aportan valor a la trayectoria individual. El objetivo es identificar la mayor cantidad de trayectorias individuales, para así poder crear un modelo que permita simular el movimiento de individuos.
 
 % --------------------------
 % ÍNDICE DE CONTENIDOS
@@ -224,7 +234,16 @@ Este documento describe el proyecto terminal 1 cuyo objetivo es caracterizar dat
 \chapter{Caracterización de datos de trayectorias individuales}
 \input{Secciones/caracterizacion}
 
-% Bibliografía
+\appendixtitleformat
+\appendix
+\chapter{Uso de Docker y Docker Compose}
+\input{Secciones/Anexos/anexoA.tex}
+
+\chapter{Scripts para la caracterización de datos}
+\input{Secciones/Anexos/anexoB.tex}
+
+% Referencias
+\renewcommand{\bibname}{Referencias} % Título de la bibliografía
 \begin{thebibliography}{9}
 \bibitem{ref1} Autor referencia 1
 \bibitem{ref2} Autor referencia 2

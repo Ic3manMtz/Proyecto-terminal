@@ -1,40 +1,34 @@
 	\section{Requisitos}
 	\label{sec:requisitos-sistema}
 
-	\begin{itemize}
-		\item Versión mínima de Python 3.13.3
-		\item Dependencias principales:
-		\begin{itemize}
-			\item dask
-			\item numpy
-		\end{itemize}
-	\end{itemize}
-
+	\begin{description}
+		\item[Docker:] version 28.2.2, build e6534b4
+		\item[Docker Compose:] version 1.29.2, build unknown
+	\end{description}
 
 	\subsection{Instrucciones de instalaci\'on}
 	\label{sec:instalacion}
 
 	\begin{enumerate}
 		\item Clonar el repositorio del proyecto desde \href{https://github.com/Ic3manMtz/Servicio-Social.git}{Github} el proyecto se encuentra dentro de la carpeta \texttt{Implementaci\'on}.
-		\item Usar el entorno virtual que ya está en el proyecto:
-		\begin{lstlisting}[language=bash]
-.venv/bin/activate  # Linux/Mac
-.\.venv\Scripts\activate.ps1   # Windows
-		\end{lstlisting}
 		
-		\marginpar{right}{Al ejecutar el comando anterior en windows es posible que aparezca un error de permisos, para solucionarlo se tiene que ejecutar el siguiente comando en la terminal de PowerShell: \texttt{Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process}}
+		\item Ejecutar los siguientes scripts para iniciar el contenedor del proyecto:\footnote{Para más detalles sobre el uso de Docker y Docker Compose, consulte el \hyperref[anexo:docker]{Anexo A}.}
+		\begin{lstlisting}[
+			language=bash,
+			caption={Iniciar contenedor del proyecto.},
+			label={cod:start_container}
+		]
+./start_container.sh	# Linux/Mac
+.\start_container.bat	# Windows
+		\end{lstlisting}
 
-		\item Instalar el proyecto del entorno virtual:
-		\begin{lstlisting}[language=python]
-pip install -e .
-		\end{lstlisting}
-		\item Configurar variable de entorno:
-		\begin{lstlisting}
-nano .env  # Editar valores de acuerdo a tu configuracion
-		\end{lstlisting}
-		\item Verificar instalaci\'on:
-		\begin{lstlisting}[language=python]
-python tests/check_requirements/
+		\item Para cerrar el contenedor del proyecto, ejecutar el siguiente script:
+		\begin{lstlisting}[
+			language=bash,
+			caption={Iniciar contenedor del proyecto.},
+			label={cod:start_container}
+		]
+./stop_container.sh  # Linux/Mac
+.\stop_container.bat   # Windows
 		\end{lstlisting}
 	\end{enumerate}
-

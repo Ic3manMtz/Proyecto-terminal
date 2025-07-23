@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.2)  22 JUL 2025 11:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.2)  23 JUL 2025 17:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -679,51 +679,56 @@ Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
 \verbatim@in@stream=\read4
 ) (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/base\makeidx.sty
 Package: makeidx 2021/10/04 v1.0m Standard LaTeX package
-)
-\c@Theorem=\count360
- (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
+) (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-04-14 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count361
+\l__color_backend_stack_int=\count360
 ) (reporte.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 Package babel Info: 'spanish' activates 'spanish' shorthands.
 (babel)             Reported  on input line 11.
+
+
+LaTeX Warning: Label `cod:start_container' multiply defined.
+
+
+LaTeX Warning: Label `cod:start_container' multiply defined.
+
 )
 \openout1 = `reporte.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Info: Redefining \. on input line 162.
-LaTeX Info: Redefining \% on input line 162.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 165.
+LaTeX Font Info:    ... okay on input line 165.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 165.
+LaTeX Font Info:    ... okay on input line 165.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 165.
+LaTeX Font Info:    ... okay on input line 165.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 165.
+LaTeX Font Info:    ... okay on input line 165.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 165.
+LaTeX Font Info:    ... okay on input line 165.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 165.
+LaTeX Font Info:    ... okay on input line 165.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 165.
+LaTeX Font Info:    ... okay on input line 165.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 165.
+LaTeX Font Info:    ... okay on input line 165.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 165.
+LaTeX Font Info:    ... okay on input line 165.
+LaTeX Info: Redefining \. on input line 165.
+LaTeX Info: Redefining \% on input line 165.
  (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count362
+\scratchcounter=\count361
 \scratchdimen=\dimen307
 \scratchbox=\box92
-\nofMPsegments=\count363
-\nofMParguments=\count364
+\nofMPsegments=\count362
+\nofMParguments=\count363
 \everyMPshowfont=\toks56
-\MPscratchCnt=\count365
+\MPscratchCnt=\count364
 \MPscratchDim=\dimen308
-\MPnumerator=\count366
-\makeMPintoPDFobject=\count367
+\MPnumerator=\count365
+\makeMPintoPDFobject=\count366
 \everyMPtoPDFconversion=\toks57
 ) (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -735,17 +740,27 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count368
-Package hyperref Info: Link coloring OFF on input line 162.
+\c@lstlisting=\count367
+Package hyperref Info: Link coloring OFF on input line 165.
  (reporte.out) (reporte.out)
 \@outlinefile=\write4
 \openout4 = `reporte.out'.
+
+<img/logoUAM.png, id=86, 456.7464pt x 134.4222pt>
+File: img/logoUAM.png Graphic file (type png)
+<use img/logoUAM.png>
+Package pdftex.def Info: img/logoUAM.png  used on input line 174.
+(pdftex.def)             Requested size: 274.04996pt x 80.65393pt.
+
+Overfull \hbox (17.0pt too wide) in paragraph at lines 177--178
+[][][] 
+ []
 
 
 
 [0
 
-{C:/Users/Joge/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+{C:/Users/Joge/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./img/logoUAM.png>]
 
 [1
 
@@ -780,9 +795,14 @@ LaTeX Info: Redefining \% on input line 1.
 
 ]
 Cap\'{\i }tulo 1.
-Package srcltx Info: Expanded filename `Secciones/introduccion' to `Secciones/introduccion.tex' on input line 219.
+Package srcltx Info: Expanded filename `Secciones/introduccion' to `Secciones/introduccion.tex' on input line 229.
 :<+ Secciones/introduccion.tex
-(Secciones/introduccion.tex)
+(Secciones/introduccion.tex
+Underfull \hbox (badness 10000) in paragraph at lines 10--14
+
+ []
+
+)
 :<-
 
 
@@ -790,11 +810,55 @@ Package srcltx Info: Expanded filename `Secciones/introduccion' to `Secciones/in
 
 
 ]
+Cap\'{\i }tulo 2.
+Package srcltx Info: Expanded filename `Secciones/requisitos' to `Secciones/requisitos.tex' on input line 232.
+:<+ Secciones/requisitos.tex
+(Secciones/requisitos.tex (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+) (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 20.
+)
+:<-
 
-LaTeX Info: Redefining \. on input line 221.
-LaTeX Info: Redefining \% on input line 221.
+
+[2
+
+]
+Cap\'{\i }tulo 3.
+Package srcltx Info: Expanded filename `Secciones/caracterizacion' to `Secciones/caracterizacion.tex' on input line 235.
+:<+ Secciones/caracterizacion.tex
+(Secciones/caracterizacion.tex (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 20.
+
+
+[3
+
+]
+Overfull \hbox (23.51166pt too wide) in paragraph at lines 42--46
+[][]\OT1/cmtt/m/n/10.95 identifier\OT1/cmr/m/n/10.95 : Iden-ti-fi-ca-dor ^^Suni-co del dis-po-si-ti-vo  \OT1/cmr/m/n/10 ['f2640430-7e39-41b7-80bb-3fddaa44779c',
+ []
+
+
+Overfull \hbox (13.93677pt too wide) in paragraph at lines 53--55
+[][]\OT1/cmtt/m/n/10 ip[]address\OT1/cmr/m/n/10 : Di-rec-ci^^Son IP del dis-po-si-ti-vo (en for-ma-to IPv6)['2806:103e:16::', '2806:103e:16::']. 
+ []
+
+
+Overfull \hbox (71.32094pt too wide) in paragraph at lines 58--59
+\OT1/cmr/m/n/10 la apli-ca-ci^^Son o del dis-po-si-ti-vo ['449d086de6d9c3d192345c992dfac54319b9d550a92bcd20c37f8368cb428344',
+ []
+
+
+
+LaTeX Info: Redefining \. on input line 69.
+LaTeX Info: Redefining \% on input line 69.
 Package babel Info: 'spanish' activates 'spanish' shorthands.
-(babel)             Reported  on input line 221.
+(babel)             Reported  on input line 69.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -802,58 +866,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[2]
-Cap\'{\i }tulo 2.
-Package srcltx Info: Expanded filename `Secciones/requisitos' to `Secciones/requisitos.tex' on input line 222.
-:<+ Secciones/requisitos.tex
-(Secciones/requisitos.tex (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-) (C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-)
-Overfull \hbox (10.97923pt too wide) in paragraph at lines 25--26
-\OT1/cmr/m/n/10.95 mi-nal de Po-werShell: \OT1/cmtt/m/n/10.95 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
- []
+[4]
 
-(C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-))
-:<-
-
-
-[3
-
-]
-Cap\'{\i }tulo 3.
-Package srcltx Info: Expanded filename `Secciones/caracterizacion' to `Secciones/caracterizacion.tex' on input line 225.
-:<+ Secciones/caracterizacion.tex
-(Secciones/caracterizacion.tex
-
-[4
-
-]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 25.
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 26.
-
-Overfull \hbox (23.51166pt too wide) in paragraph at lines 48--52
-[][]\OT1/cmtt/m/n/10.95 identifier\OT1/cmr/m/n/10.95 : Iden-ti-fi-ca-dor ^^Suni-co del dis-po-si-ti-vo  \OT1/cmr/m/n/10 ['f2640430-7e39-41b7-80bb-3fddaa44779c',
- []
-
-
-Overfull \hbox (13.93677pt too wide) in paragraph at lines 59--61
-[][]\OT1/cmtt/m/n/10 ip[]address\OT1/cmr/m/n/10 : Di-rec-ci^^Son IP del dis-po-si-ti-vo (en for-ma-to IPv6)['2806:103e:16::', '2806:103e:16::']. 
- []
-
-
-Overfull \hbox (71.32094pt too wide) in paragraph at lines 64--65
-\OT1/cmr/m/n/10 la apli-ca-ci^^Son o del dis-po-si-ti-vo ['449d086de6d9c3d192345c992dfac54319b9d550a92bcd20c37f8368cb428344',
- []
-
-
-
-LaTeX Info: Redefining \. on input line 70.
-LaTeX Info: Redefining \% on input line 70.
+LaTeX Info: Redefining \. on input line 112.
+LaTeX Info: Redefining \% on input line 112.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -863,8 +879,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [5]
 
-LaTeX Info: Redefining \. on input line 75.
-LaTeX Info: Redefining \% on input line 75.
+LaTeX Info: Redefining \. on input line 145.
+LaTeX Info: Redefining \% on input line 145.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -874,8 +890,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [6]
 
-LaTeX Info: Redefining \. on input line 118.
-LaTeX Info: Redefining \% on input line 118.
+LaTeX Info: Redefining \. on input line 190.
+LaTeX Info: Redefining \% on input line 190.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -885,8 +901,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [7]
 
-LaTeX Info: Redefining \. on input line 151.
-LaTeX Info: Redefining \% on input line 151.
+LaTeX Info: Redefining \. on input line 231.
+LaTeX Info: Redefining \% on input line 231.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -895,9 +911,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [8]
+<img/histograma_frecuencias_accuracy.png, id=321, 723.6636pt x 412.1799pt>
+File: img/histograma_frecuencias_accuracy.png Graphic file (type png)
+<use img/histograma_frecuencias_accuracy.png>
+Package pdftex.def Info: img/histograma_frecuencias_accuracy.png  used on input line 234.
+(pdftex.def)             Requested size: 398.33858pt x 226.88202pt.
 
-LaTeX Info: Redefining \. on input line 196.
-LaTeX Info: Redefining \% on input line 196.
+
+LaTeX Info: Redefining \. on input line 247.
+LaTeX Info: Redefining \% on input line 247.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -905,10 +927,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[9]
+[9 <./img/histograma_frecuencias_accuracy.png>]
+<img/histograma_frecuencias_agrupadas_1000.png, id=328, 725.3499pt x 498.4221pt>
+File: img/histograma_frecuencias_agrupadas_1000.png Graphic file (type png)
+<use img/histograma_frecuencias_agrupadas_1000.png>
+Package pdftex.def Info: img/histograma_frecuencias_agrupadas_1000.png  used on input line 293.
+(pdftex.def)             Requested size: 362.67406pt x 249.21043pt.
 
-LaTeX Info: Redefining \. on input line 237.
-LaTeX Info: Redefining \% on input line 237.
+
+LaTeX Info: Redefining \. on input line 297.
+LaTeX Info: Redefining \% on input line 297.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -917,59 +945,25 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [10]
-<img/histograma_frecuencias_accuracy.png, id=301, 723.6636pt x 412.1799pt>
-File: img/histograma_frecuencias_accuracy.png Graphic file (type png)
-<use img/histograma_frecuencias_accuracy.png>
-Package pdftex.def Info: img/histograma_frecuencias_accuracy.png  used on input line 240.
-(pdftex.def)             Requested size: 398.33858pt x 226.88202pt.
-
-
-LaTeX Info: Redefining \. on input line 253.
-LaTeX Info: Redefining \% on input line 253.
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[11 <./img/histograma_frecuencias_accuracy.png>]
-<img/histograma_frecuencias_agrupadas_1000.png, id=308, 725.3499pt x 498.4221pt>
-File: img/histograma_frecuencias_agrupadas_1000.png Graphic file (type png)
-<use img/histograma_frecuencias_agrupadas_1000.png>
-Package pdftex.def Info: img/histograma_frecuencias_agrupadas_1000.png  used on input line 299.
-(pdftex.def)             Requested size: 362.67406pt x 249.21043pt.
-
-
-LaTeX Info: Redefining \. on input line 303.
-LaTeX Info: Redefining \% on input line 303.
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[12]
-<img/histograma_1_100.png, id=349, 722.7pt x 433.62pt>
+<img/histograma_1_100.png, id=369, 722.7pt x 433.62pt>
 File: img/histograma_1_100.png Graphic file (type png)
 <use img/histograma_1_100.png>
-Package pdftex.def Info: img/histograma_1_100.png  used on input line 309.
+Package pdftex.def Info: img/histograma_1_100.png  used on input line 303.
 (pdftex.def)             Requested size: 180.25078pt x 108.14668pt.
-<img/histograma_100_1000.png, id=350, 722.7pt x 433.62pt>
+<img/histograma_100_1000.png, id=370, 722.7pt x 433.62pt>
 File: img/histograma_100_1000.png Graphic file (type png)
 <use img/histograma_100_1000.png>
-Package pdftex.def Info: img/histograma_100_1000.png  used on input line 315.
+Package pdftex.def Info: img/histograma_100_1000.png  used on input line 309.
 (pdftex.def)             Requested size: 180.25078pt x 108.14668pt.
-<img/histograma_1001_10000.png, id=351, 722.7pt x 433.62pt>
+<img/histograma_1001_10000.png, id=371, 722.7pt x 433.62pt>
 File: img/histograma_1001_10000.png Graphic file (type png)
 <use img/histograma_1001_10000.png>
-Package pdftex.def Info: img/histograma_1001_10000.png  used on input line 324.
+Package pdftex.def Info: img/histograma_1001_10000.png  used on input line 318.
 (pdftex.def)             Requested size: 191.2008pt x 114.71687pt.
 
 
-LaTeX Info: Redefining \. on input line 360.
-LaTeX Info: Redefining \% on input line 360.
+LaTeX Info: Redefining \. on input line 354.
+LaTeX Info: Redefining \% on input line 354.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -977,21 +971,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[13 <./img/histograma_frecuencias_agrupadas_1000.png>]
+[11 <./img/histograma_frecuencias_agrupadas_1000.png>]
 
-LaTeX Info: Redefining \. on input line 378.
-LaTeX Info: Redefining \% on input line 378.
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[14 <./img/histograma_1_100.png> <./img/histograma_100_1000.png> <./img/histograma_1001_10000.png>]
-
-LaTeX Info: Redefining \. on input line 413.
-LaTeX Info: Redefining \% on input line 413.
+LaTeX Info: Redefining \. on input line 372.
+LaTeX Info: Redefining \% on input line 372.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -999,12 +982,45 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[15])
+[12 <./img/histograma_1_100.png> <./img/histograma_100_1000.png> <./img/histograma_1001_10000.png>]
+
+LaTeX Info: Redefining \. on input line 407.
+LaTeX Info: Redefining \% on input line 407.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[13])
 :<-
 
 
-LaTeX Info: Redefining \. on input line 228.
-LaTeX Info: Redefining \% on input line 228.
+LaTeX Info: Redefining \. on input line 239.
+LaTeX Info: Redefining \% on input line 239.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[14]
+Ap\'{e}ndice A.
+Package srcltx Info: Expanded filename `Secciones/Anexos/anexoA.tex' to `Secciones/Anexos/anexoA.tex' on input line 240.
+:<+ Secciones/Anexos/anexoA.tex
+(Secciones/Anexos/anexoA.tex
+
+[15
+
+]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 92.
+
+
+LaTeX Info: Redefining \. on input line 100.
+LaTeX Info: Redefining \% on input line 100.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1013,8 +1029,47 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [16]
+Underfull \hbox (badness 10000) in paragraph at lines 143--145
 
-[17
+ []
+
+
+
+LaTeX Info: Redefining \. on input line 145.
+LaTeX Info: Redefining \% on input line 145.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[17])
+:<-
+
+
+LaTeX Info: Redefining \. on input line 242.
+LaTeX Info: Redefining \% on input line 242.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[18]
+Ap\'{e}ndice B.
+Package srcltx Info: Expanded filename `Secciones/Anexos/anexoB.tex' to `Secciones/Anexos/anexoB.tex' on input line 243.
+:<+ Secciones/Anexos/anexoB.tex
+(Secciones/Anexos/anexoB.tex)
+:<-
+
+
+[19
+
+]
+
+[20
 
 ] (reporte.aux
 LaTeX Info: Redefining \. on input line 11.
@@ -1024,21 +1079,25 @@ LaTeX Info: Redefining \% on input line 11.
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-29>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `reporte.out' has not changed.
-(rerunfilecheck)             Checksum: BA35257B6172F4CB81656D81A4D5D738;3803.
+(rerunfilecheck)             Checksum: C03C6E6D4528B5EFF46F2484B1C15351;5127.
  ) 
 Here is how much of TeX's memory you used:
- 30174 strings out of 469923
- 575570 string characters out of 5469655
- 1451271 words of memory out of 5000000
- 56214 multiletter control sequences out of 15000+600000
- 634486 words of font info for 69 fonts, out of 8000000 for 9000
+ 30298 strings out of 469923
+ 577949 string characters out of 5469655
+ 1453095 words of memory out of 5000000
+ 56271 multiletter control sequences out of 15000+600000
+ 637746 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,13n,91p,596b,2120s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Joge\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on reporte.pdf (21 pages, 877719 bytes).
+ 84i,13n,91p,1103b,2160s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Joge\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt1095.pk> <C:\Users\Joge\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on reporte.pdf (24 pages, 1050088 bytes).
 PDF statistics:
- 555 PDF objects out of 1000 (max. 8388607)
- 289 named destinations out of 1000 (max. 500000)
- 158 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 674 PDF objects out of 1000 (max. 8388607)
+ 339 named destinations out of 1000 (max. 500000)
+ 203 words of extra memory for PDF output out of 10000 (max. 10000000)
 

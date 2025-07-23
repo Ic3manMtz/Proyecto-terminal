@@ -19,7 +19,7 @@ def eliminar_duplicados(input_file, output_file):
     # Eliminar duplicados basados en las columnas especificadas
     # Mantenemos el primer registro de cada grupo de duplicados
     ddf_sin_duplicados = ddf.drop_duplicates(
-        subset=['identifier', 'device_lon', 'device_lat'],
+        subset=['timestamp', 'device_lon', 'device_lat'],
         keep='first'
     )
     
