@@ -6,24 +6,32 @@ from menus.menu import MainMenu
 
 class Handler:
     def __init__(self):
-        self.var
+        self.var = None
 
     def main_menu(self, choice):
         if choice == '1':
             self.data_glance()
         elif choice == '2':
-            print("\nNo se ha implementado esta opción aún.") 
+            self.count_registers()
         elif choice == '3':
-            print("\nNo se ha implementado esta opción aún.")
+            self.remove_columns()
         elif choice == '4':
-            print("\nNo se ha implementado esta opción aún.")
+            self.unique_values()
         elif choice == '5':
-            print("\nNo se ha implementado esta opción aún.")
+            self.accuracy_histrogram()
         elif choice == '6':
-            print("\nNo se ha implementado esta opción aún.")
+            self.identifier_histogram()
         elif choice == '7':
-            print("\nNo se ha implementado esta opción aún.")
+            self.identifier_analysis()
         elif choice == '8':
+            self.show_coordinates()
+        elif choice == '9':
+            self.unique_values_100()
+        elif choice == '10':
+            self.delete_duplicates()
+        elif choice == '0':
+            self.terminal()
+        elif choice == '11':
             print("Salir")
             sys.exit(1)
         else:
@@ -52,17 +60,57 @@ class Handler:
             "src/features/csv_count_registers.py",
             filename
         ])
-         
-        # Lista de tuplas que representan las opciones del menú principal.
-        # Cada tupla contiene:
-        #   - El número de la opción como cadena.
-        #   - La descripción de la opción que se mostrará al usuario.
-        #(
-        #  ("2", "Número de registros"),
-        #  ("3", "Eliminación de columnas"),
-        #  ("4", "Valores únicos de una columna"),
-        #  ("5", "Creación de histograma de frecuencias de la 'device_horizontal_accuracy'"),
-        #  ("6", "Creación de histograma de frecuencias de la 'identifier'"),
-        #  ("7", "Análisis de frecuencias de 'identifier'"),
-        #  ("8", "Salir")
-        #)
+
+    def remove_columns(self):
+        subprocess.run([
+            "python3",
+            "src/features/remove_columns.py"
+        ])
+
+    def unique_values(self):
+        subprocess.run([
+            "python3",
+            "src/features/unique_values.py"
+        ])
+
+    def accuracy_histrogram(self):
+        subprocess.run([
+            "python3",
+            "src/features/accuracy_histogram.py"
+        ])
+
+    def identifier_histogram(self):
+        subprocess.run([
+            "python3",
+            "src/features/identifier_histogram.py"
+        ])
+
+    def identifier_analysis(self):
+        subprocess.run([
+            "python3",
+            "src/features/identifier_histrogram_detailed.py"
+        ])
+
+    def show_coordinates(self):
+        subprocess.run([
+            "python3",
+            "src/features/show_coordenates.py"
+        ])
+
+    def terminal(self):
+        subprocess.run([ 
+            "python3",
+            "src/features/terminal.py"
+        ])
+
+    def unique_values_100(self):
+        subprocess.run([
+            "python3",
+            "src/features/unique_values_100.py"
+        ])
+
+    def delete_duplicates(self):
+        subprocess.run([
+            "python3",
+            "src/features/delete_duplicates.py"
+        ])

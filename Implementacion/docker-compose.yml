@@ -10,7 +10,7 @@ services:
     volumes:
       - ./:/app
       - python-packages:/usr/local/lib/python3.13/site-packages
-    command: sh -c "pip install -r requirements.txt && python3 /app/src/main.py"
+    command: sh -c "pip install -r requirements.txt && pip install -e . && python3 /app/src/main.py"
     working_dir: /app
     environment:
       - PYTHONPATH=/app

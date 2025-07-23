@@ -13,23 +13,16 @@ class MainMenu:
         ("5", "Creación de histograma de frecuencias de la 'device_horizontal_accuracy'"),
         ("6", "Creación de histograma de frecuencias de la 'identifier'"),
         ("7", "Análisis de frecuencias de 'identifier'"),
-        ("8", "Salir")
-    ]
-
-    PIPELINE_OPTIONS: List[Tuple[str, str]] = [
-        ("1", "Convertir videos a frames"),
-        ("2", "Detección de objetos y seguimiento"),
-        ("3", "Clusterización de imágenes"),
-        ("4", "Estadísticas de imágenes"),
-        ("5", "Visualización de resultados"),
-        ("6", "Visualización de videos con boxes"),
-        ("7", "Volver al menú principal")
+        ("8", "Mostrar coordenadas de un 'identifier'"),
+        ("9", "Obtener los identificadores con más de 100 repeticiones"),
+        ("10", "Eliminar duplicados"),
+        ("11", "Salir")
     ]
 
     @staticmethod
     def display_main_menu(converted_count: Optional[int] = None) -> str:
         print("\n" + "=" * 50)
-        print(" " * 10 + "CARACTERIZACIÓN DE TRAYECTORIAS".center(40))
+        print(" " * 5 + "CARACTERIZACIÓN DE TRAYECTORIAS".center(40))
         print("=" * 50 + "\n")
 
         print("\tA continuación se muestran los pasos \na seguir para la caracterización:\n\n")
@@ -43,7 +36,25 @@ class MainMenu:
     @staticmethod
     def display_ask_filename(request) -> str:
         print("\n" + "=" * 50)
-        print(" " * 10 + request.center(40))
+        print(" " * 5 + request.center(40))
         print("=" * 50 + "\n")
 
         return input(" ➤ Introduzca el nombre del archivo CSV: ")
+    
+    @staticmethod
+    def display_available_columns(available_columns: List[str]) -> int:
+        print("\n" + "=" * 50)
+        print(" " * 5 + "COLUMNA A ANALIZAR".center(40))
+        print("=" * 50 + "\n")
+
+        for idx, col in enumerate(available_columns):
+            print(f"{idx + 1}. {col}")
+
+        try:
+            selection = int(input("\n🔽 Ingresa el número de la columna que deseas analizar: ")) - 1
+            if selection < 0 or selection >= len(available_columns):
+                raise ValueError("Selección fuera de rango")
+            return selection
+        except ValueError as e:
+            print(f"❌ Error: {e}")
+            return -1

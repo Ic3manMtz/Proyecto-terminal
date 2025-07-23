@@ -1,89 +1,234 @@
 %%%%%%   TIPO DE DOCUMENTO: Artículo   %%%%%%
-\documentclass[letterpaper,11pt,twoside]{report}
+\documentclass[letterpaper,11pt,spanish]{report}
 
-\usepackage[spanish]{babel} %Idioma
-\usepackage{graphicx} %Imágenes
-\usepackage[utf8]{inputenc} %Acentos
-\usepackage{hyperref} %Links
-\usepackage{xspace}
+% ========================================
+% CONFIGURACIÓN BÁSICA DEL DOCUMENTO
+% ========================================
+\usepackage[utf8]{inputenc}        % Soporte para caracteres especiales y acentos
+\usepackage[spanish]{babel}        % Idioma español (traducciones y reglas tipográficas)
+\usepackage{xspace}                 % Manejo inteligente de espacios después de comandos
+\renewcommand{\baselinestretch}{1} % Interlineado simple
 
-\usepackage{listings} % Código fuente
-\usepackage{dirtree} % Árboles para mostrar directorios
-\usepackage[utf8]{inputenc} % Codificación UTF-8 para acentos sencillos
+% --------------------------
+% CONFIGURACIÓN DE TÍTULOS 
+% --------------------------
 
-\usepackage{tikz}
-\usetikzlibrary{shapes, arrows}
-\usetikzlibrary{arrows.meta}  % ¡Necesario para las flechas!
-\usetikzlibrary{positioning}  % Para mejor control de nodos
+%\titleformat{comando}{forma}
+%   {formato}
+%   {etiqueta}
+%   {separacion}
+%   {antes del titulo}
+%   [despues del titulo]
 
-\usepackage{enumitem} % Para listas personalizadas   
+\usepackage{titlesec}
+\usepackage{etoolbox}
 
-\usepackage{subcaption} % Importante para subfigure
-\usepackage{calc} % Para cálculos precisos de anchos
 
-\usepackage{verbatim}
-\usepackage{amsmath, amssymb}
-\usepackage{amsmath}
-\usepackage[active]{srcltx}
-\usepackage{amssymb}
-\usepackage{amscd}
-\usepackage{makeidx}
-\usepackage{amsthm}
-\usepackage{algpseudocode}
-\usepackage{algorithm}
-\usepackage{float}
-\usepackage{caption}
+\titleformat{\chapter}[display] 
+{\Large\raggedleft} 
+{}
+{0pt}
+{
+    \ifnum\value{chapter}>0
+        \rule{\textwidth}{0.5pt}
+        \vspace{1ex}
+        {\Large\bfseries\chaptername\ \thechapter \\}
+        \vspace{1ex}
+    \fi
+} 
+[
+    \rule{\textwidth}{0.3pt}
+] 
 
-\renewcommand{\baselinestretch}{1}
-\renewcommand{\thesection}{\arabic{section}}
 
-% Cambia "Listing" por "Código" en todos los lstlistings
-\renewcommand{\lstlistingname}{Código}
+\titleformat{\section}
+{\normalfont\bfseries\Large\raggedright}
+{\thesection}
+{1em}
+{}
 
-% Configuración básica de listings
-\lstset{
-    basicstyle=\ttfamily\small,
-    frame=single,
-    breaklines=true,
-    captionpos=b, % Coloca el caption debajo (bottom)
+\titleformat{\subsection}
+{\normalfont\bfseries\large\raggedright}
+{\thesubsection}
+{1em}
+{}
+
+% --------------------------
+% CONFIGURACIÓN DE ENCABEZADOS CON FANCYHDR
+% --------------------------
+\usepackage{fancyhdr}
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\fancypagestyle{mainstyle}{%
+  \fancyhf{}
+  \fancyhead[L]{\leftmark}
+  \fancyhead[R]{\thepage}
+  \fancyfoot{}
 }
 
-\setcounter{page}{1}
+% ========================================
+% MATEMÁTICAS Y SÍMBOLOS
+% ========================================
+\usepackage{amsmath}                % Entornos matemáticos avanzados
+\usepackage{amssymb}                % Símbolos matemáticos extendidos
+\usepackage{amscd}                  % Diagramas conmutativos
+\usepackage{amsthm}                 % Teoremas y entornos de demostración
+
+% ========================================
+% ALGORITMOS Y PSEUDOCÓDIGO
+% ========================================
+\usepackage{algorithm}              % Entornos para algoritmos
+\usepackage{algpseudocode}          % Estilo para pseudocódigo
+
+% ========================================
+% GRÁFICOS E IMÁGENES
+% ========================================
+\usepackage{graphicx}               % Inclusión y manipulación de imágenes
+\usepackage{subcaption}             % Subtítulos para subfiguras (subfigure)
+\usepackage{tikz}                   % Creación de gráficos vectoriales
+\usetikzlibrary{shapes, arrows}     % Formas y flechas para TikZ
+\usetikzlibrary{arrows.meta}        % Estilos avanzados de flechas
+\usetikzlibrary{positioning}        % Posicionamiento preciso de nodos
+
+% ========================================
+% CÓDIGO FUENTE Y LISTADOS
+% ========================================
+\usepackage{listings}               % Inclusión de código fuente
+\renewcommand{\lstlistingname}{Código} % Cambia "Listing" por "Código"
+\lstset{                            % Configuración básica de listados:
+    basicstyle=\ttfamily\small,     %   Fuente tipo máquina de escribir
+    frame=single,                   %   Marco alrededor del código
+    breaklines=true,                %   Ajuste automático de líneas largas
+    captionpos=b,                   %   Posición del título (bottom)
+}
+
+% ========================================
+% ESTRUCTURAS DE DIRECTORIOS
+% ========================================
+\usepackage{dirtree}                % Generación de árboles de directorios
+
+% ========================================
+% LISTAS Y ENUMERACIONES
+% ========================================
+\usepackage{enumitem}               % Personalización de listas (espaciados, etiquetas)
+\setlist{itemsep=0pt, topsep=5pt}   % Configuración de espacios en listas
+
+% ========================================
+% TABLAS Y ELEMENTOS FLOTANTES
+% ========================================
+\usepackage{float}                  % Control avanzado de posición de flotantes
+\usepackage{caption}                % Personalización de leyendas
+\usepackage{calc}                   % Cálculos precisos de dimensiones
+
+% ========================================
+% HIPERVÍNCULOS Y REFERENCIAS
+% ========================================
+\usepackage{hyperref}               % Hipervínculos en el documento
+\usepackage[active]{srcltx}         % Búsqueda inversa en editores (doble clic en PDF)
+
+% ========================================
+% OTROS UTILITARIOS
+% ========================================
+\usepackage{verbatim}               % Entornos para texto sin interpretación
+\usepackage{makeidx}                % Generación de índices
+
+% ========================================
+% CONFIGURACIONES ADICIONALES
+% ========================================
+\renewcommand{\thesection}{\thechapter.\arabic{section}} % Numeración arábiga para secciones
+\renewcommand{\thesubsection}{\thechapter.\arabic{section}.\arabic{subsection}}
+
+% --------------------------
+% CONFIGURACIÓN DE PÁGINA
+% --------------------------
 \setlength{\textheight}{21.6cm}
 \setlength{\textwidth}{14cm}
 \setlength{\oddsidemargin}{1cm}
 \setlength{\evensidemargin}{1cm}
-\pagestyle{myheadings}
 \captionsetup[figure]{position=below, skip=0pt}
-\thispagestyle{empty}
-\markboth{\small{Proyecto Terminal 1, Jorge Mart\'inez.}}{\small{.}}
-\date{}
 
+% --------------------------
+% ENTORNOS MATEMÁTICOS
+% --------------------------
+\newtheorem{Theorem}{\quad Theorem}[section]
+\newtheorem{Definition}[Theorem]{\quad Definition}
+\newtheorem{Corollary}[Theorem]{\quad Corollary}
+\newtheorem{Lemma}[Theorem]{\quad Lemma}
+\newtheorem{Example}[Theorem]{\quad Example}
+
+% --------------------------
+% INICIO DEL DOCUMENTO
+% --------------------------
 \begin{document}
-    \centerline{\bf Proyecto Terminal 1, Trimestre: 25-I, 2025}
-    \centerline{}
-    \centerline{}
-    \begin{center}
-    \Large{\textsc{Caracterización de datos de trayectorias individuales}}
-    \end{center}
-    \centerline{}
-    \centerline{\bf {Martínez Buenrostro Jorge Rafael.}}
-    \centerline{}
-    \centerline{Universidad Aut\'onoma Metropolitana}
-    \centerline{Unidad Iztapalapa, M\'exico}
-    \centerline{$molap96@gmail.com$}
-    \newtheorem{Theorem}{\quad Theorem}[section]
-    \newtheorem{Definition}[Theorem]{\quad Definition}
-    \newtheorem{Corollary}[Theorem]{\quad Corollary}
-    \newtheorem{Lemma}[Theorem]{\quad Lemma}
-    \newtheorem{Example}[Theorem]{\quad Example}
-    \bigskip
-    \textbf{Resumen:}  Este documento describe el proyecto terminal 1 cuyo objetivo es caracterizar datos de trayectorias individuales utilizando un conjunto de herramientas y técnicas de programación. 
-	\input{Secciones/introduccion.tex}
 
-	\input{Secciones/requisitos.tex}
+% --------------------------
+% PORTADA
+% --------------------------
+\thispagestyle{empty}
+\centering
+{\bfseries Proyecto Terminal 1, Trimestre: 25-I, 2025}
 
-    \newpage
-    \input{Secciones/caracterizacion.tex}
+\vspace*{2cm}
+
+{\Large\textsc{Caracterización de datos de trayectorias individuales}}
+
+\vspace{1.5cm}
+
+{\bfseries Martínez Buenrostro Jorge Rafael.}
+
+\vspace{1cm}
+
+{Universidad Aut\'onoma Metropolitana\\
+Unidad Iztapalapa, M\'exico\\
+\href{mailto:molap96@gmail.com}{molap96@gmail.com}}
+
+\vspace{2cm}
+
+\pagenumbering{roman}
+\setcounter{page}{0}
+\pagestyle{plain}
+% --------------------------
+% RESUMEN (ABSTRACT)
+% --------------------------
+\chapter*{Resumen}
+Este documento describe el proyecto terminal 1 cuyo objetivo es caracterizar datos de trayectorias individuales utilizando un conjunto de herramientas y técnicas de programación. 
+
+% --------------------------
+% ÍNDICE DE CONTENIDOS
+% --------------------------
+\newpage
+\renewcommand{\contentsname}{Contenido}
+\tableofcontents
+
+% --------------------------
+% LISTA DE FIGURAS
+% --------------------------
+\renewcommand{\listfigurename}{Lista de Figuras}
+\listoffigures
+
+% --------------------------
+% CUERPO PRINCIPAL
+% --------------------------
+\cleardoublepage
+\pagestyle{mainstyle} % Aplica el estilo de encabezado definido
+\pagenumbering{arabic}
+\setcounter{page}{1} % Reinicia numeración después de índices
+
+% Capítulos 
+\chapter{Introducción del Proyecto}
+\input{Secciones/introduccion}
+
+\chapter{Requisitos del sistema}
+\input{Secciones/requisitos}
+
+\chapter{Caracterización de datos de trayectorias individuales}
+\input{Secciones/caracterizacion}
+
+% Bibliografía
+\begin{thebibliography}{9}
+\bibitem{ref1} Autor referencia 1
+\bibitem{ref2} Autor referencia 2
+\bibitem{ref3} Autor referencia 3
+\end{thebibliography}
+
 \end{document}
-
