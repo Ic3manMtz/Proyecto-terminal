@@ -1,72 +1,79 @@
 \section{Caracterización de datos de trayectorias individuales}
-El primer paso en el proceso de análisis de datos es la caracterización de los datos. Este proceso implica examinar y comprender la estructura, el contenido y las características de los datos antes de realizar cualquier análisis más profundo. A continuación, se describen las tareas necesarias para caracterizar los datos de trayectorias individuales:
+\label{sec:caracterizacion}
+El análisis de datos comienza con una etapa fundamental: la caracterización del conjunto de datos. Esta fase tiene como objetivo examinar y comprender la estructura, el contenido y las principales propiedades de los datos antes de aplicar técnicas analíticas más complejas. 
+
+En el caso de los datos de trayectorias individuales, la caracterización permite identificar posibles inconsistencias, redundancias y elementos irrelevantes que puedan afectar la calidad del análisis. Las tareas principales llevadas a cabo en esta etapa son las siguientes:
 \begin{itemize}
     \item Explorar las primeras filas del conjunto de datos para obtener una visión general de su estructura.
-    \item Verificar el número total de registros y columnas en el conjunto de datos.
-    \item Identificar y eliminar columnas innecesarias que no aportan valor al análisis.
-    \item Identificar y eliminar las filas innecesarias que no aportan valor al análisis.
+    \item Verificar la cantidad total de registros y columnas disponibles.
+    \item Identificar y eliminar columnas que no aportan información relevante para el análisis o inconsistentes.
+    \item Identificar y eliminar las filas que no aportan información relevante para el análisis o inconsistentes.
 \end{itemize}
-A continuación, se detallan los pasos específicos realizados en el proceso de caracterización:
+A continuación, se describen en detalle las acciones específicas realizadas durante el proceso de caracterización.
 
-\subsection{Exploración inicial}
-Se exploraron las primeras 2 filas del conjunto de datos para obtener una visión general de su estructura. Esto incluye la identificación de las columnas presentes y un par de registros. Esto se logró gracias al siguiente código:
 
-    \begin{lstlisting}[
-        language=Python,
-        caption={csv\_glance.py, exploración inicial del conjunto de datos.},
-        label={cod:csv_glance}
-        ]
-        import dask.dataframe as dd
+\subsection{Exploración inicial del conjunto de datos}
+\label{subsec:exploracion_inicial}
 
-        ruta_archivo = "Mobility_Data.csv"  
+Como primer paso en la caracterización, se realizó una exploración preliminar del conjunto de datos con el fin de comprender su estructura general. Para ello, se inspeccionaron las primeras dos filas, lo cual permitió identificar las columnas presentes y observar ejemplos representativos de sus valores.
 
-        ddf = dd.read_csv(
-            ruta_archivo,
-            encoding="utf-8",  
-            sep=",",          
-            dtype="object",    luego)
-        )
+El código utilizado para realizar esta exploración se encuentra en el Apéndice \ref{cod:csv_glance}. A continuación, se presenta un resumen de las columnas detectadas junto con una muestra de sus respectivos valores:
 
-        columnas = ddf.columns.tolist()
-
-        print("Columnas y 2 ejemplos por cada una:\n")
-        for col in columnas:
-            ejemplos = ddf[col].head(2).values.tolist() 
-            print(f"- {col}: {ejemplos}")
-    \end{lstlisting}
-
-\noindent El resultado de la ejecución de este código es el siguiente:
 \begin{enumerate}[leftmargin=*, align=left, noitemsep]
-    \item \texttt{id}: Identificador numérico único para cada registro ['34284565','34284566'].
-    \item \texttt{identifier}: Identificador único del dispositivo 
+    \item \texttt{id}: Identificador numérico único para cada registro. Ejemplo: \texttt{['34284565','34284566']}.
+    \item \texttt{identifier}: Identificador único del dispositivo.  
     \begin{small}
-    ['f2640430-7e39-41b7-80bb-3fddaa44779c', 'f2640430-7e39-41b7-80bb-3fddaa44779c'].    
+    \texttt{['f2640430-7e39-41b7-80bb-3fddaa44779c', 'f2640430-7e39-41b7-80bb-3fddaa44779c']}.
     \end{small}
-    
-    \item \texttt{identifier\_type}: Tipo de identificador del dispositivo. En este caso, 'gaid' (Google Advertising ID para Android). Otros posibles: 'idfa' (Apple), 'imei' ['gaid', 'gaid'].
-    \item \texttt{timestamp}: Fecha y hora del registro de movilida ['2022-11-07 02:04:21', '2022-11-08 17:29:35']
-    \item \texttt{device\_lat/device\_lon}: Coordenadas geográficas (latitud y longitud) donde se detectó el dispositivo ['21.843149', '21.843149'], ['-102.196838', '-102.196838'].
-    
+
+    \item \texttt{identifier\_type}: Tipo de identificador del dispositivo; en este caso, \texttt{'gaid'} (Google Advertising ID para Android). Otros posibles valores incluyen \texttt{'idfa'} (Apple) o \texttt{'imei'}.  
+    Ejemplo: \texttt{['gaid', 'gaid']}.
+
+    \item \texttt{timestamp}: Fecha y hora del registro de movilidad.  
+    Ejemplo: \texttt{['2022-11-07 02:04:21', '2022-11-08 17:29:35']}.
+
+    \item \texttt{device\_lat/device\_lon}: Coordenadas geográficas (latitud y longitud) del dispositivo.  
+    Ejemplo: \texttt{['21.843149', '21.843149']}, \texttt{['-102.196838', '-102.196838']}.
+
     \begin{small}
-    \item \texttt{country\_short/province\_short}: Código del país (MX = México) y región (MX.01 = Aguascalientes, según estándar ISO) ['MX', 'MX'], ['MX.01', 'MX.01'].
-    \item \texttt{ip\_address}: Dirección IP del dispositivo (en formato IPv6)['2806:103e:16::', '2806:103e:16::'].    
+    \item \texttt{country\_short/province\_short}: Código del país (e.g., \texttt{MX}) y subdivisión administrativa (e.g., \texttt{MX.01} para Aguascalientes).  
+    Ejemplo: \texttt{['MX', 'MX']}, \texttt{['MX.01', 'MX.01']}.
+
+    \item \texttt{ip\_address}: Dirección IP del dispositivo en formato IPv6.  
+    Ejemplo: \texttt{['2806:103e:16::', '2806:103e:16::']}.
     \end{small}
-    \item \texttt{device\_horizontal\_accuracy}: Precisión del GPS en metro. Menor valor = mayor precisión ['8.0', '8.0'].
-    
+
+    \item \texttt{device\_horizontal\_accuracy}: Precisión estimada del GPS en metros (valores menores indican mayor precisión).  
+    Ejemplo: \texttt{['8.0', '8.0']}.
+
     \begin{small}
-    \item \texttt{source\_id}: Hash único que identifica la fuente de los datos. Puede ser un identificador de la aplicación o del dispositivo ['449d086de6d9c3d192345c992dfac54319b9d550a92bcd20c37f8368cb428344', '449d086de6d9c3d192345c992dfac54319b9d550a92bcd20c37f8368cb428344'].
-    \item \texttt{record\_id}: Identificador único del registro de movilidad (diferente al id) ['77d795df-6972-4f00-ac41-d10d1812bb2d', '8f8e1281-bc4d-4d2c-b00b-eb5c52d75bc1'].
-    \item \texttt{home\_country\_code}: País de residencia del usuario ['MX', 'MX'].
-    \item \texttt{home\_geog\_point/work\_geog\_point}: Coordenadas geográficas del hogar y del trabajo en formato WKT (Well-Known Text) ['POINT(-102.370380092263 22.2075340951743)', 'POINT(-102.370380092263 22.2075340951743)'].    
+    \item \texttt{source\_id}: Hash que representa la fuente de los datos, ya sea una aplicación o un dispositivo.  
+    Ejemplo: \texttt{['449d086d...344', '449d086d...344']}.
+
+    \item \texttt{record\_id}: Identificador único para cada registro de movilidad, diferente de \texttt{id}.  
+    Ejemplo: \texttt{['77d795df...', '8f8e1281...']}.
+
+    \item \texttt{home\_country\_code}: Código del país de residencia del usuario.  
+    Ejemplo: \texttt{['MX', 'MX']}.
+
+    \item \texttt{home\_geog\_point/work\_geog\_point}: Coordenadas geográficas del hogar y del lugar de trabajo en formato WKT (Well-Known Text).  
+    Ejemplo: \texttt{['POINT(-102.37038 22.20753)', 'POINT(-102.37038 22.20753)']}.
     \end{small}
-    
-    \item \texttt{home\_hex\_id/work\_hex\_id}: Identificador hexadecimal del hogar y del trabajo, representando una ubicación geográfica en un sistema de cuadrícula hexagonal ['85498853fffffff', '85498853fffffff'].
-    \item \texttt{data\_execute}: Fecha de procesamiento del registro de movilidad, no necesariamente la fecha de recolección ['2023-05-30', '2023-05-30'].
-    \item \texttt{time\_zone\_name}: Zona horaria del dispositivo ['America\textdollar/Mexico\_City', 'America/Mexico\_City'].
+
+    \item \texttt{home\_hex\_id/work\_hex\_id}: Identificadores hexagonales del hogar y del trabajo, en una cuadrícula geoespacial (p. ej., H3).  
+    Ejemplo: \texttt{['85498853fffffff', '85498853fffffff']}.
+
+    \item \texttt{data\_execute}: Fecha en que el registro fue procesado (puede diferir de la fecha de recolección).  
+    Ejemplo: \texttt{['2023-05-30', '2023-05-30']}.
+
+    \item \texttt{time\_zone\_name}: Zona horaria del dispositivo.  
+    Ejemplo: \texttt{['America/Mexico\_City', 'America/Mexico\_City']}.
 \end{enumerate}
 
+
 \newpage
-\subsection{Número de registros y columnas}
+\subsection{Dimensiones del conjunto de datos}
+\label{subsec:dimensiones}
 \noindent Se verificó el número total de registros y columnas en el conjunto de datos utilizando el siguiente código:
 
     \begin{lstlisting}[
@@ -95,7 +102,8 @@ Se exploraron las primeras 2 filas del conjunto de datos para obtener una visió
 
 \noindent El resultado de la ejecución de este código es que el conjunto de datos contiene un total de 69,980,000 registros y 19 campos. Esto indica que hay una cantidad significativa de datos disponibles para el análisis.
 
-\subsection{Identificar y eliminar campos innecesarios que no aportan valor al análisis}
+\subsection{Depuración de columnas}
+\label{subsec:depuracion_columnas}
 \noindent Ya que tenemmos un conjunto de datos con 19 campos, es importante identificar y eliminar aquellas que no aportan valor al análisis. Para ello, vamos a revisar los valores únicos de los siguiente campos, para determinar si son redundantes o no aportan información relevante. A continuación, se presentan los campos que se consideran innecesarios:
 \begin{itemize}
     \item \texttt{id}
@@ -142,7 +150,8 @@ Se exploraron las primeras 2 filas del conjunto de datos para obtener una visió
 \noindent El resultado de la ejecución de este código es un nuevo archivo CSV que se guarda en la misma carpeta el cual contiene únicamente las columnas seleccionadas, eliminando así las que no aportan valor al análisis. 
 
 \newpage
-\subsection{Identificar y eliminar las filas innecesarias que no aportan valor al análisis}
+\subsection{Depuración de filas}
+\label{subsec:depuracion_filas}
 \noindent Ahora que tenemos una base datos más ligera, es importante identificar y eliminar las filas que no aportan valor al análisis. Para ellos, vamos a realizar diagramas que nos permitan identificar la distribución de los datos y poder determinar si hay filas que no aportan valor al análisis. Las tablas seleccionadas para este análisis son las siguientes:
 \begin{itemize}
     \item \texttt{identifier}: Identificador único del dispositivo.

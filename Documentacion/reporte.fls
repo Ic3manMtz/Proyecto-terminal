@@ -340,6 +340,7 @@ INPUT .\reporte.toc
 INPUT .\reporte.toc
 INPUT reporte.toc
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
+INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx8.tfm
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr8.tfm
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr6.tfm
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi10.tfm
@@ -368,6 +369,10 @@ INPUT .\reporte.lof
 INPUT .\reporte.lof
 INPUT reporte.lof
 OUTPUT reporte.lof
+INPUT .\reporte.lol
+INPUT .\reporte.lol
+INPUT reporte.lol
+OUTPUT reporte.lol
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT .\Secciones\introduccion.tex
 INPUT .\Secciones\introduccion.tex
@@ -405,7 +410,6 @@ INPUT Secciones\caracterizacion.tex
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
-INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1095.tfm
 INPUT .\img\histograma_frecuencias_accuracy.png
 INPUT .\img\histograma_frecuencias_accuracy.png
 INPUT .\img\histograma_frecuencias_accuracy.png
@@ -445,6 +449,7 @@ INPUT .\Secciones\Anexos\anexoA.tex
 INPUT .\Secciones\Anexos\anexoA.tex
 INPUT Secciones\Anexos\anexoA.tex
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt12.tfm
+INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1095.tfm
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tctt1095.tfm
 INPUT .\Secciones\Anexos\anexoB.tex
 INPUT .\Secciones\Anexos\anexoB.tex
@@ -460,6 +465,8 @@ INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
+INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx8.pfb
+INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx8.pfb
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmcsc10.pfb
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmcsc10.pfb
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmitt10.pfb

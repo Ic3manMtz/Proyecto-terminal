@@ -1,1 +1,28 @@
 \label{anexo:scripts}
+
+En la sección \ref{sec:caracterizacion} se describen los pasos del proceso de caracterización de datos de trayectorias individuales. En este anexo se presentan los scripts utilizados para llevar a cabo dicho proceso.
+
+\begin{lstlisting}[
+  language=Python,
+  caption={csv\_glance.py, exploración inicial del conjunto de datos.},
+  label={cod:csv_glance}
+  ]
+
+  import dask.dataframe as dd
+
+  ruta_archivo = "Mobility_Data.csv"  
+
+  ddf = dd.read_csv(
+      ruta_archivo,
+      encoding="utf-8",  
+      sep=",",          
+      dtype="object",    luego
+    )
+
+  columnas = ddf.columns.tolist()
+
+  print("Columnas y 2 ejemplos por cada una:\n")
+  for col in columnas:            
+    ejemplos = ddf[col].head(2).values.tolist() 
+    print(f"- {col}: {ejemplos}")
+\end{lstlisting}

@@ -107,11 +107,13 @@
 % ========================================
 \usepackage{listings}               % Inclusión de código fuente
 \renewcommand{\lstlistingname}{Código} % Cambia "Listing" por "Código"
+\renewcommand{\lstlistlistingname}{Lista de Códigos} % Título de la lista de códigos
 \lstset{                            % Configuración básica de listados:
-    basicstyle=\ttfamily\small,     %   Fuente tipo máquina de escribir
-    frame=single,                   %   Marco alrededor del código
-    breaklines=true,                %   Ajuste automático de líneas largas
-    captionpos=b,                   %   Posición del título (bottom)
+    basicstyle=\ttfamily\small,     
+    numbers=left,
+    frame=shadowbox,
+    breaklines=true,               
+    captionpos=b,                   
 }
 
 % ========================================
@@ -174,13 +176,14 @@
     \includegraphics[scale=0.6]{img/logoUAM.png}
 \end{figure}
 
-\rule{\textwidth}{0.5pt}
 \begin{center}
-    {\LARGE\bfseries Caracterización de datos de trayectorias individuales}\\[1.5cm]
+    \rule{\textwidth}{0.5pt}
+
+    [1mm]\\{\LARGE\bfseries Caracterización de datos de trayectorias individuales}\\[1cm]
     {\normalsize\itshape Presentado por:}\\
     {\large Jorge Rafael Martínez Buenrostro}
+    \rule{\textwidth}{0.5pt}
 \end{center}
-\rule{\textwidth}{0.5pt}
 
 \vspace{2cm}
 \begin{center}
@@ -215,6 +218,13 @@ Una trayectoria se define como la secuencia de desplazamientos realizada por un 
 % --------------------------
 \renewcommand{\listfigurename}{Lista de Figuras}
 \listoffigures
+
+% --------------------------
+% LISTA DE CODIGOS FUENTE
+% --------------------------
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Lista de Códigos}
+\lstlistoflistings
 
 % --------------------------
 % CUERPO PRINCIPAL
