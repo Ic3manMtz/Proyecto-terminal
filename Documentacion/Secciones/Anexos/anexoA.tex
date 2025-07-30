@@ -2,6 +2,9 @@
 
 En la sección \ref{sec:requisitos-sistema} se establece como requisito el uso de Docker y Docker Compose para la ejecución del proyecto. A continuación, se detallan las instrucciones necesarias para su instalación, ya que ambas herramientas son fundamentales para la implementación. Además, se describe el archivo \texttt{docker-compose.yml}, el cual permite crear un contenedor que incluye todas las dependencias requeridas para el correcto funcionamiento del sistema.
 
+% --------------------------
+% Introducción
+% --------------------------
 \section{¿Qué son Docker y Docker Compose?}
 Docker es una plataforma de virtualización ligera que permite desarrollar, empaquetar y ejecutar aplicaciones en contenedores aislados. Un contenedor incluye el código, las dependencias y configuraciones necesarias para que la aplicación se ejecute de manera consistente en cualquier entorno. Esto facilita la portabilidad, escalabilidad y despliegue de software.
 
@@ -9,6 +12,9 @@ Docker Compose es una herramienta que permite definir y ejecutar aplicaciones mu
 
 Estas herramientas son fundamentales en este proyecto para garantizar que el entorno de ejecución sea replicable y controlado, independientemente del sistema operativo o configuración local del usuario.
 
+% --------------------------
+% Instalación de Docker y Docker Compose Linux
+% --------------------------
 \section{Instalación en Linux (Ubuntu/Debian)}
 
 Para instalar Docker y Docker Compose en un sistema Linux basado en Debian o Ubuntu, siga los siguientes pasos:
@@ -63,6 +69,9 @@ docker-compose --version
     \end{lstlisting}
 \end{enumerate}
 
+% --------------------------
+% Instalación de Docker y Docker Compose Windows
+% --------------------------
 \section{Instalación en Windows}
 
 Para instalar Docker y Docker Compose en Windows, se recomienda utilizar Docker Desktop, que incluye ambas herramientas de forma integrada.
@@ -79,8 +88,8 @@ Para instalar Docker y Docker Compose en Windows, se recomienda utilizar Docker 
     \item Verificar que Docker y Docker Compose estén correctamente instalados desde la terminal de Windows (PowerShell o CMD):
     \begin{lstlisting}[
 			language=bash,
-			caption={Iniciar contenedor del proyecto.},
-			label={cod:start_container}
+			caption={Verificar instalación de Docker y Docker Compose.},
+			label={cod:check_docker_windows}
 		]
 docker --version
 docker-compose --version
@@ -89,6 +98,9 @@ docker-compose --version
 
 \textbf{Nota:} Docker Desktop requiere que la virtualización esté habilitada en la BIOS del sistema. También es necesario contar con Windows 10 o superior.
 
+% --------------------------
+% Archivo docker-compose.yml
+% --------------------------
 \section{Descripción del archivo \texttt{docker-compose.yml}}
 El archivo \texttt{docker-compose.yml} permite definir y configurar el entorno de ejecución del proyecto utilizando un contenedor de Docker. A continuación, se presenta su contenido y una explicación de cada uno de sus elementos:
 
@@ -160,3 +172,111 @@ A continuación se explica el propósito de cada sección:
 \end{itemize}
 
 Este archivo permite que el entorno de desarrollo sea fácilmente replicable y ejecutable, sin necesidad de instalar manualmente dependencias o configurar rutas en el sistema anfitrión.
+\newpage
+
+% --------------------------
+% Scripts de control del contenedor
+% --------------------------
+\section{Scripts de control del contenedor}
+
+Para facilitar el manejo del contenedor durante el desarrollo del proyecto, se han creado tres scripts auxiliares en Bash que automatizan las operaciones más comunes: iniciar, reiniciar y detener el contenedor.
+
+\subsection{\texttt{start\_container.sh}}
+
+Este script verifica si el contenedor \texttt{data-analysis} ya se encuentra en ejecución. En caso de que no esté activo, lo inicia utilizando \texttt{docker-compose up -d}. Posteriormente, ejecuta el archivo \texttt{main.py} dentro del contenedor.
+
+\begin{lstlisting}[
+  language=bash,
+  caption={Script para iniciar el contenedor.},
+  label={cod:start_script}
+]
+#!/bin/bash
+
+# Verifica si el contenedor esta corriendo
+if ! docker ps --filter "name=^/data-analysis$" --filter "status=running" | grep -q data-analysis; then
+    echo "Contenedor no esta corriendo. Levantando con docker-compose..."
+    docker-compose up -d
+    sleep 2
+else
+    echo "Contenedor ya esta corriendo. Usando instancia existente."
+fi
+
+# Ejecuta el script dentro del contenedor
+docker exec -it data-analysis python3 /app/src/main.py
+\end{lstlisting}
+
+\subsection{\texttt{restart\_container.sh}}
+
+Este script reinicia completamente el contenedor (equivalente a detenerlo y volverlo a levantar), lo cual resulta útil cuando se han modificado archivos como \texttt{requirements.txt} o \texttt{setup.py}. Tras reiniciar, vuelve a ejecutar el archivo principal del proyecto.
+
+\begin{lstlisting}[
+  language=bash,
+  caption={Script para reiniciar el contenedor.},
+  label={cod:restart_script}
+]
+#!/bin/bash
+docker restart data-analysis
+sleep 2
+# Ejecuta el script dentro del contenedor
+docker exec -it data-analysis python3 /app/src/main.py
+\end{lstlisting}
+
+\subsection{\texttt{stop\_container.sh}}
+
+Este script detiene y elimina el contenedor junto con los volúmenes asociados. Debe utilizarse con precaución, ya que elimina todas las dependencias instaladas en el entorno del contenedor. Solo es necesario en casos donde se requiere limpiar completamente el entorno.
+
+\begin{lstlisting}[
+  language=bash,
+  caption={Script para detener y eliminar el contenedor y sus volúmenes.},
+  label={cod:stop_script}
+]
+#!/bin/bash
+docker-compose down -v
+\end{lstlisting}
+
+% --------------------------
+% Proceso de uso y desarrollo del contenedor
+% --------------------------
+\section{Proceso de uso y desarrollo del contenedor}
+
+A continuación se describe el flujo recomendado para desarrollar y ejecutar el sistema dentro del contenedor de Docker:
+
+\begin{enumerate}
+    \item Verifique que Docker y Docker Compose están instalados (Apéndice \ref{cod:check_docker_windows}).\\
+    {\footnotesize \textbf{Nota para usuarios de Windows:} Si se utiliza Windows como sistema operativo, se deben usar los archivos con extensión \texttt{.bat} en lugar de \texttt{.sh}, y deben ser ejecutados desde la terminal de Windows (por ejemplo, CMD o PowerShell).}
+
+    \item Asigne permisos de ejecución a los scripts:
+    \begin{lstlisting}[
+      language=bash,
+      caption={Dar permisos de ejecución a los scripts.},
+      label={cod:chmod_scripts}
+    ]
+chmod +x start_container.sh restart_container.sh stop_container.sh
+    \end{lstlisting}
+    \item Para iniciar el contenedor y ejecutar el proyecto con los cambios más recientes del código fuente:
+    \begin{lstlisting}[
+      language=bash,
+      caption={Iniciar contenedor y ejecutar el proyecto.},
+      label={cod:run_dev}
+    ]
+./start_container.sh
+    \end{lstlisting}
+    \item Si se realizan cambios en las dependencias o archivos de configuración del entorno (como \texttt{requirements.txt}), utilice:
+    \begin{lstlisting}[
+      language=bash,
+      caption={Reiniciar el contenedor completamente.},
+      label={cod:restart_dev}
+    ]
+./restart_container.sh
+    \end{lstlisting}
+    \item Para detener el contenedor y eliminar todos los volúmenes asociados:
+    \begin{lstlisting}[
+      language=bash,
+      caption={Eliminar el contenedor y limpiar el entorno.},
+      label={cod:stop_dev}
+    ]
+./stop_container.sh
+    \end{lstlisting}
+\end{enumerate}
+
+Este conjunto de scripts permite un desarrollo ágil dentro del contenedor, ya que los cambios realizados en el código fuente local se reflejan de inmediato gracias al uso de \texttt{volumes}. Además, se reduce la necesidad de ejecutar manualmente comandos repetitivos, facilitando el trabajo del usuario final y asegurando la correcta ejecución del proyecto.

@@ -10,9 +10,9 @@
 	\label{sec:instalacion}
 
 	\begin{enumerate}
-		\item Clonar el repositorio del proyecto desde \href{https://github.com/Ic3manMtz/Servicio-Social.git}{Github} el proyecto se encuentra dentro de la carpeta \texttt{Implementaci\'on}.
+		\item Clonar el repositorio del proyecto desde el siguiente \href{https://github.com/Ic3manMtz/Servicio-Social.git}{enlace} el proyecto se encuentra dentro de la carpeta \texttt{Implementaci\'on}.
 		
-		\item Ejecutar los siguientes scripts para iniciar el contenedor del proyecto:\footnote{Para más detalles sobre el uso de Docker y Docker Compose, consulte el \hyperref[anexo:docker]{Apéndice A}.}
+		\item Para levantar y acceder al contenedor, ejecutar el siguiente script:\footnote{Para más detalles sobre el uso de Docker y Docker Compose, consulte el \hyperref[anexo:docker]{Apéndice A}.}
 		\begin{lstlisting}[
 			language=bash,
 			caption={Iniciar contenedor del proyecto.},
@@ -30,5 +30,15 @@
 		]
 ./stop_container.sh  # Linux/Mac
 .\stop_container.bat   # Windows
+		\end{lstlisting}
+
+		\item Para ver reflejados los cambios realizados en el código, ejecuta el siguiente script:
+		\begin{lstlisting}[
+			language=bash,
+			caption={Reiniciar contenedor del proyecto.},
+			label={cod:restart_container}
+		]
+./restart_container.sh  # Linux/Mac
+.\restart_container.bat   # Windows
 		\end{lstlisting}
 	\end{enumerate}

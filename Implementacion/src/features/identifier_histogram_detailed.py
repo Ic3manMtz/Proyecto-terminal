@@ -5,7 +5,7 @@ import numpy as np
 from collections import Counter
 
 # Configuración
-archivo_csv = "Mobility_Data_Slim.csv"
+archivo_csv = "Mobility_Data_woDuplicates.csv"
 columna = "identifier"  
 chunksize = 1_000_000  
 os.makedirs("img", exist_ok=True)
@@ -51,7 +51,7 @@ plt.ylabel("Cantidad de valores únicos")
 plt.xticks(rotation=45)
 plt.grid(axis='y', linestyle='--')
 plt.tight_layout()
-plt.savefig(os.path.join("img", "histograma_1_100.png"), dpi=300)
+plt.savefig(os.path.join("img", "histograma_1_100_dup.png"), dpi=300)
 plt.close()
 
 # --- Gráfico 2: Frecuencias medias (100-1000) ---
@@ -63,7 +63,7 @@ plt.ylabel("Cantidad de valores únicos")
 plt.xticks(rotation=45)
 plt.grid(axis='y', linestyle='--')
 plt.tight_layout()
-plt.savefig(os.path.join("img", "histograma_100_1000.png"), dpi=300)
+plt.savefig(os.path.join("img", "histograma_100_1000.png_dup"), dpi=300)
 plt.close()
 
 # --- Gráfico 3: Frecuencias altas (1001-10000) ---
@@ -75,7 +75,7 @@ plt.ylabel("Cantidad de valores únicos")
 plt.xticks(rotation=45)
 plt.grid(axis='y', linestyle='--')
 plt.tight_layout()
-plt.savefig(os.path.join("img", "histograma_1001_10000.png"), dpi=300)
+plt.savefig(os.path.join("img", "histograma_1001_10000_dup.png"), dpi=300)
 plt.close()
 
 print("Gráficos guardados en /img/")

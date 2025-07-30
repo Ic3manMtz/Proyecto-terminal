@@ -6,10 +6,15 @@ from menus.menu import MainMenu
 
 class Handler:
     def __init__(self):
-        self.var = None
+        self.csv = "Mobility_Data_Slim.csv" 
+
+    def get_filename(self):
+        return self.csv if self.csv else "No se ha cargado ningún archivo CSV"
 
     def main_menu(self, choice):
-        if choice == '1':
+        if choice == '0':
+            self.ask_filename()
+        elif choice == '1':
             self.data_glance()
         elif choice == '2':
             self.count_registers()
@@ -29,7 +34,7 @@ class Handler:
             self.unique_values_100()
         elif choice == '10':
             self.delete_duplicates()
-        elif choice == '0':
+        elif choice == '99':
             self.terminal()
         elif choice == '11':
             print("Salir")
@@ -37,9 +42,18 @@ class Handler:
         else:
             print("\nOpcion invalida, intente de nuevo")
 
+    def ask_filename(self):
+        self.csv = MainMenu.display_ask_filename("Cargar archivo CSV")
+
     def data_glance(self):
-        filename = MainMenu.display_ask_filename("Exploración inicial de datos")
-        
+        print(f"¿Desea usar el archivo por defecto? ({self.csv}) [s/n]")
+        use_default = input(" ➤ ").strip().lower()
+
+        if use_default == "s":
+            filename = self.csv
+        else:
+            filename = MainMenu.display_ask_filename("Exploración inicial de datos")
+
         if not filename.endswith('.csv'):
             filename += '.csv'
 
@@ -49,17 +63,25 @@ class Handler:
             filename
         ])
 
+
     def count_registers(self):
-        filename = MainMenu.display_ask_filename("Número de registros")
+        print(f"¿Desea usar el archivo por defecto? ({self.csv}) [s/n]")
+        use_default = input(" ➤ ").strip().lower()
+
+        if use_default == "s":
+            filename = self.csv
+        else:
+            filename = MainMenu.display_ask_filename("Número de registros")
 
         if not filename.endswith('.csv'):
             filename += '.csv'
-        
+
         subprocess.run([
             "python3",
             "src/features/csv_count_registers.py",
             filename
         ])
+
 
     def remove_columns(self):
         subprocess.run([
@@ -68,9 +90,21 @@ class Handler:
         ])
 
     def unique_values(self):
+        print(f"¿Desea usar el archivo por defecto? ({self.csv}) [s/n]")
+        use_default = input(" ➤ ").strip().lower()
+
+        if use_default == "s":
+            filename = self.csv
+        else:
+            filename = MainMenu.display_ask_filename("Número de registros")
+
+        if not filename.endswith('.csv'):
+            filename += '.csv'
+
         subprocess.run([
             "python3",
-            "src/features/unique_values.py"
+            "src/features/unique_values.py",
+            filename
         ])
 
     def accuracy_histrogram(self):
@@ -88,7 +122,7 @@ class Handler:
     def identifier_analysis(self):
         subprocess.run([
             "python3",
-            "src/features/identifier_histrogram_detailed.py"
+            "src/features/identifier_histogram_detailed.py"
         ])
 
     def show_coordinates(self):

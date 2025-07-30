@@ -5,7 +5,7 @@ import numpy as np
 from collections import Counter
 
 # Configuración
-archivo_csv = "Mobility_Data_Slim.csv"
+archivo_csv = "Mobility_Data_woDuplicates.csv"
 columna = "identifier"  
 chunksize = 1_000_000  # Procesar por bloques
 os.makedirs("img", exist_ok=True)  # Asegurarse de que el directorio exista
@@ -35,6 +35,6 @@ plt.ylabel("Cantidad de valores únicos (log)")
 plt.grid(True, which="both", ls="--", axis='y')
 
 # Paso 3: Guardar
-output_path = os.path.join("img", "histograma_frecuencias_agrupadas_1000.png")
+output_path = os.path.join("img", "histograma_frecuencias_agrupadas_1000_dup.png")
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
 plt.close()
