@@ -111,6 +111,7 @@ En la sección \ref{sec:caracterizacion} se describen los pasos del proceso de c
   df.to_csv('Mobility_Data_Slim.csv', index=False, single_file=True, encoding='utf-8-sig')
 \end{lstlisting}
 \vfill
+
 % --------------------------
 % Obtención de valores únicos
 % --------------------------
@@ -203,41 +204,130 @@ En la sección \ref{sec:caracterizacion} se describen los pasos del proceso de c
 \end{lstlisting}
 \vfill
 
+% --------------------------
+% Histograma 'device\_horizontal\_accuracy'
+% --------------------------
 \begin{lstlisting}[
   language=Python,
   caption={accuracy\_histogram.py, creación de un histograma de frecuencias de la columna 'device\_horizontal\_accuracy'.},
   label={cod:accuracy_histogram}
   ]
-  import os
-  import pandas as pd
-  import matplotlib.pyplot as plt
-  import numpy as np
+    import os
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import sys
+    from tqdm import tqdm
 
-  archivo_csv = "Mobility_Data_Slim.csv"
-  columna = "device_horizontal_accuracy"  
-  bins = 100 
-  os.makedirs("img", exist_ok=True) 
+    def classify_tech(valor):
+        if 1 <= valor <= 20:
+            return 'GPS Satelital'
+        elif 5 <= valor <= 50:
+            return 'A-GPS (Asistido por red)'
+        elif 20 <= valor <= 500:
+            return 'Triangulacion WiFi/Redes Moviles'
+        else:
+            return 'Fuera de rango'
 
-  frecuencias = pd.Series(dtype=float)
-  for chunk in pd.read_csv(archivo_csv, usecols=[columna], chunksize=1_000_000):
-    frecuencias = pd.concat([frecuencias, chunk[columna].value_counts()])
+    def format_count(count):
+        if count >= 1_000_000:
+            return f"{count/1_000_000:.1f}M"
+        elif count >= 1_000:
+            return f"{count/1_000:.1f}K"
+        return str(count)
 
-  counts, edges = np.histogram(frecuencias.index, bins=bins, weights=frecuencias.values)
+    def main():
+        if len(sys.argv) < 2:
+            print("Error: Debe especificar un archivo CSV como argumento")
+            sys.exit(1)
 
-  plt.figure(figsize=(12, 6))
-  plt.bar(edges[:-1], counts, width=np.diff(edges), align='edge', edgecolor='black', alpha=0.7)
-  plt.title("Frecuencias de Valores Agrupados por Rangos (0-200)")
-  plt.xlabel("Rango de Valores")
-  plt.ylabel("Frecuencia Total (Millones)")
-  plt.xticks(edges[::5], rotation=45) 
-  plt.grid(axis='y', linestyle='--')
+        csv_file = sys.argv[1]
+        filename = os.path.splitext(os.path.basename(csv_file))[0]
+        column = "device_horizontal_accuracy"  
+        bins = 100
+        
+        print(f"\nIniciando procesamiento del archivo: {csv_file}")
+        print(f"Columna analizada: {column}")
+        
+        os.makedirs("img", exist_ok=True)
+        print("Directorio 'img' verificado/creado")
 
-  output_path = "img/histograma_frecuencias_rangos.png"
-  plt.savefig(output_path, dpi=300, bbox_inches='tight')
-  plt.close()
+        print("\nProcesando datos y clasificando tecnologias...")
+        frequency = pd.Series(dtype=float)
+        tech_counts = {
+            'GPS Satelital': 0,
+            'A-GPS (Asistido por red)': 0,
+            'Triangulacion WiFi/Redes Moviles': 0,
+            'Fuera de rango': 0
+        }
+
+        total_row = sum(1 for _ in pd.read_csv(csv_file, usecols=[column], chunksize=1_000_000))
+        
+        with tqdm(total=total_row, unit='M rows') as pbar:
+            for chunk in pd.read_csv(csv_file, usecols=[column], chunksize=1_000_000):
+                chunk_clean = chunk[column].dropna()
+                
+                for valor in chunk_clean:
+                    tech = classify_tech(valor)
+                    tech_counts[tech] += 1
+                
+                counts = chunk_clean.value_counts()
+                if not frequency.empty or not counts.empty:
+                    frequency = pd.concat([frequency, counts], axis=0).groupby(level=0).sum()
+                pbar.update(1)
+
+        total = sum(tech_counts.values())
+        percentage = {k: (v/total)*100 for k, v in tech_counts.items()}
+
+        print("\nGenerando histograma con estadIsticas...")
+        counts, edges = np.histogram(frequency.index, bins=bins, weights=frequency.values)
+
+        plt.figure(figsize=(14, 8))
+        plt.bar(edges[:-1], counts, width=np.diff(edges), align='edge', edgecolor='black', alpha=0.7)
+        
+        plt.axvline(x=20, color='r', linestyle='--', alpha=0.5)
+        plt.axvline(x=50, color='g', linestyle='--', alpha=0.5)
+        plt.axvline(x=200, color='b', linestyle='--', alpha=0.5)
+        
+        gps_str = f"GPS Satelital: {percentage['GPS Satelital']:.2f}%\n({format_count(tech_counts['GPS Satelital'])} reg)"
+        agps_str = f"A-GPS: {percentage['A-GPS (Asistido por red)']:.2f}%\n({format_count(tech_counts['A-GPS (Asistido por red)'])} reg)"
+        wifi_str = f"WiFi/Redes: {percentage['Triangulacion WiFi/Redes Moviles']:.2f}%\n({format_count(tech_counts['Triangulacion WiFi/Redes Moviles'])} reg)"
+        
+        plt.text(10, max(counts)*0.9, gps_str, ha='center', color='r', fontsize=10, 
+                bbox=dict(facecolor='white', alpha=0.8, edgecolor='r'))
+        plt.text(40, max(counts)*0.8, agps_str, ha='center', color='g', fontsize=10, 
+                bbox=dict(facecolor='white', alpha=0.8, edgecolor='g'))
+        plt.text(190, max(counts)*0.7, wifi_str, ha='center', color='b', fontsize=10, 
+                bbox=dict(facecolor='white', alpha=0.8, edgecolor='b'))
+
+        
+        plt.title(f"DistribuciOn de precisiones de {column}\nArchivo: {filename}", fontsize=14)
+        plt.xlabel(f"Valores de {column} (metros)", fontsize=12)
+        plt.ylabel("Frecuencia (Millones)", fontsize=12)
+        plt.xticks(edges[::5], rotation=45)
+        plt.grid(axis='y', linestyle='--')
+        plt.tight_layout()
+
+        output_path = os.path.join("img", f"histograma_{column}_{filename}.png")
+        plt.savefig(output_path, dpi=300, bbox_inches='tight')
+        plt.close()
+        
+        print("\n=== DISTRIBUCION DE TECNOLOGIAS DE GEOLOCALIZACION ===")
+        for tech, count in tech_counts.items():
+            print(f"{tech}: {count:,} registros ({percentage[tech]:.2f}%)")
+        
+        print(f"\nHistograma generado exitosamente")
+        print(f"Archivo guardado en: {output_path}")
+        print(f"Total registros analizados: {total:,}\n")
+
+        if __name__ == "__main__":
+        main()
 \end{lstlisting}
 \vfill
 
+% --------------------------
+% Histograma de frecuencias de la columna 'identifier'
+% --------------------------
 \begin{lstlisting}[
     language=Python,
     caption={identifier\_histogram.py, creación de un histograma de frecuencias de la columna 'identifier'.},
@@ -248,112 +338,280 @@ En la sección \ref{sec:caracterizacion} se describen los pasos del proceso de c
     import matplotlib.pyplot as plt
     import numpy as np
     from collections import Counter
+    import sys
+    from tqdm import tqdm
+    import math
 
-    archivo_csv = "Mobility_Data_Slim.csv"
-    columna = "identifier"  
-    chunksize = 1_000_000  
-    os.makedirs("img", exist_ok=True) 
+    def format_count(count):
+        if count >= 1_000_000:
+            return f"{count/1_000_000:.1f}M"
+        elif count >= 1_000:
+            return f"{count/1_000:.1f}K"
+        return str(count)
 
-    counter = Counter()
-    for chunk in pd.read_csv(archivo_csv, usecols=[columna], chunksize=chunksize):
-        counter.update(chunk[columna].dropna().astype(str))
+    def main():
+        if len(sys.argv) < 2:
+            print("Error: Debe especificar un archivo CSV como argumento")
+            sys.exit(1)
 
-    frecuencias = pd.Series(counter)
+        csv_file = sys.argv[1]
+        filename = os.path.splitext(os.path.basename(csv_file))[0]
+        column = "identifier"  
+        chunksize = 1_000_000
+        
+        print(f"\nIniciando procesamiento del archivo: {csv_file}")
+        print(f"Columna analizada: {column}")
+        os.makedirs("img", exist_ok=True)
+        print("Directorio 'img' verificado/creado")
 
-    max_freq = frecuencias.max()
-    bins = [0] + [10**i for i in range(0, int(np.log10(max_freq)) + 2)]  # Ej: [0, 1, 10, 100, 1000, ...]
-    frecuencias_agrupadas = pd.cut(frecuencias, bins=bins, right=False).value_counts().sort_index()
+        print("\nProcesando datos y contando frecuencias...")
+        counter = Counter()
+        
+        total_chunks = sum(1 for _ in pd.read_csv(csv_file, usecols=[column], chunksize=chunksize))
+        
+        with tqdm(total=total_chunks, unit=' chunk') as pbar:
+            for chunk in pd.read_csv(csv_file, usecols=[column], chunksize=chunksize):
+                counter.update(chunk[column].dropna().astype(str))
+                pbar.update(1)
 
-    plt.figure(figsize=(12, 7))
-    frecuencias_agrupadas.plot(kind='bar', logy=True, alpha=0.7, edgecolor='black')
+        frecuency = pd.Series(counter)
+        total_unique_values = len(frecuency)
+        max_freq = frecuency.max()
+        
+        print(f"Datos procesados correctamente")
+        print(f"Total de valores Unicos: {total_unique_values:,}")
+        print(f"Frecuencia maxima: {max_freq:,}")
 
-    plt.xticks(rotation=45, ha='right')  # Rotar etiquetas para mejor legibilidad
-    plt.title("Distribucion de Frecuencias Agrupadas en Bloques de 1000 Repeticiones")
-    plt.xlabel("Rango de repeticiones (ej: [0, 1000) significa 0-999 repeticiones)")
-    plt.ylabel("Cantidad de valores unicos (log)")
-    plt.grid(True, which="both", ls="--", axis='y')
+        bins = [0] + [10**i for i in range(0, int(np.log10(max_freq)) + 2)]  
+        group_freq = pd.cut(frecuency, bins=bins, right=False).value_counts().sort_index()
 
-    output_path = os.path.join("img", "histograma_frecuencias_agrupadas_1000.png")
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    plt.close()
+        total_ocurrence = frecuency.sum()
+        percentage_per_range = (group_freq / total_unique_values * 100).round(2)
+        
+        print("\nGenerando histograma con estadisticas...")
+        plt.figure(figsize=(16, 9)) 
+        ax = group_freq.plot(kind='bar', logy=True, alpha=0.7, edgecolor='black')
+        
+        formatted_labels = []
+        for interval in group_freq.index.categories:
+            left = int(interval.left)
+            right = int(interval.right - 1)
+            formatted_labels.append(f"{left}-{right}" if left != right else f"{left}")
+        
+        plt.xticks(range(len(formatted_labels)), formatted_labels, rotation=45, ha='right')
+        
+        plt.title(f"Histograma de Frecuencias de Identificadores\nArchivo: {filename}", fontsize=16, pad=20)
+        plt.xlabel("Rango de Frecuencia", fontsize=14)
+        plt.ylabel("Cantidad de Valores Unicos (log)", fontsize=14)
+        plt.grid(True, which="both", ls="--", axis='y')
+        
+        stats_text = (
+            f"Total valores unicos: {format_count(total_unique_values)}\n"
+            f"Total ocurrencias: {format_count(total_ocurrence)}\n"
+            f"Frecuencia maxima: {format_count(max_freq)}"
+        )
+        plt.annotate(stats_text, 
+                    xy=(0.95, 0.95), 
+                    xycoords='axes fraction', 
+                    fontsize=15,
+                    ha='right', 
+                    va='top',
+                    bbox=dict(boxstyle='round', facecolor='white', alpha=0.9))
+        
+        max_val = group_freq.max()
+        min_y = 0.9  
+        
+        for i, (count, porcent) in enumerate(zip(group_freq.values, percentage_per_range.values)):
+            if count > 0:
+                y_pos = count * 1.1 if count * 1.1 > min_y else min_y * 1.2
+                
+                text = f"{porcent}%\n({format_count(count)})"
+                
+                ax.text(
+                    i, y_pos, text, 
+                    ha='center', va='bottom', 
+                    fontsize=15, 
+                    fontweight='bold',
+                    bbox=dict(
+                        facecolor='white', 
+                        alpha=0.85, 
+                        edgecolor='lightgray', 
+                        boxstyle='round,pad=0.3'
+                    )
+                )
+
+        output_path = os.path.join("img", f"histograma_{column}_{filename}.png")
+        plt.tight_layout()
+        plt.savefig(output_path, dpi=300, bbox_inches='tight')
+        plt.close()
+        
+        print("\n=== DISTRIBUCION DE FRECUENCIAS ===")
+        for i, (intervalo, count) in enumerate(group_freq.items()):
+            print(f"Rango {formatted_labels[i]}: {count:,}")
+        
+        print(f"\nHistograma generado exitosamente")
+        print(f"Archivo guardado en: {output_path}")
+        print(f"Total ocurrencias analizadas: {total_ocurrence:,}\n")
+
+    if __name__ == "__main__":
+        main()
 \end{lstlisting}
 \vfill
 
+% --------------------------
+% Histograma detallado de frecuencias de la columna 'identifier'
+% --------------------------
 \begin{lstlisting}[
     language=Python,
     caption={identifier\_histogram\_detailed.py, análisis de frecuencias de la columna 'identifier'.},
     label={cod:identifier_histogram_detailed}
     ]
-    import os
+   import os
     import pandas as pd
     import matplotlib.pyplot as plt
     import numpy as np
     from collections import Counter
+    import sys
+    from tqdm import tqdm
 
-    archivo_csv = "Mobility_Data_Slim.csv"
-    columna = "identifier"  
-    chunksize = 1_000_000  
-    os.makedirs("img", exist_ok=True)
+    def format_count(count):
+        if count >= 1_000_000:
+            return f"{count/1_000_000:.1f}M"
+        elif count >= 1_000:
+            return f"{count/1_000:.1f}K"
+        return str(count)
 
-    counter = Counter()
-    for chunk in pd.read_csv(archivo_csv, usecols=[columna], chunksize=chunksize):
-        counter.update(chunk[columna].dropna().astype(str))
-    frecuencias = pd.Series(counter)
+    def create_histogram(data, bins, title, filename, color='skyblue', log_scale=False):
+        grouped = pd.cut(data, bins=bins, right=False).value_counts().sort_index()
+        total_values = len(data)
+        max_count = grouped.max()
+        
+        plt.figure(figsize=(14, 8))
+        ax = grouped.plot(kind='bar', color=color, edgecolor='black', alpha=0.7, logy=log_scale)
+        
+        bin_labels = []
+        for interval in grouped.index.categories:
+            left = int(interval.left)
+            right = int(interval.right)
+            bin_labels.append(f"{left}-{right-1}" if right-left > 1 else str(left))
+        
+        plt.xticks(range(len(bin_labels)), bin_labels, rotation=45, ha='right')
+        plt.title(f"{title}\nTotal valores unicos: {format_count(total_values)}", fontsize=14, pad=20)
+        plt.xlabel("Rango de repeticiones", fontsize=12)
+        plt.ylabel("Cantidad de valores unicos" + (" (log)" if log_scale else ""), fontsize=12)
+        plt.grid(True, which="both", ls="--", axis='y')
+        
+        min_y = 0.9
+        for i, (count, interval) in enumerate(zip(grouped.values, grouped.index)):
+            if count > 0:
+                percentage = (count / total_values) * 100
+                y_pos = count * 1.1 if count * 1.1 > min_y else min_y * 1.2
+                text = f"{percentage:.2f}%\n({format_count(count)})"
+                
+                ax.text(i, y_pos, text, 
+                    ha='center', va='bottom', 
+                    fontsize=15, fontweight='bold',
+                    bbox=dict(facecolor='white', alpha=0.8, edgecolor='lightgray', boxstyle='round,pad=0.2'))
+        
+        output_path = os.path.join("img", filename)
+        plt.tight_layout()
+        plt.savefig(output_path, dpi=300, bbox_inches='tight')
+        plt.close()
+        return output_path
 
-    frecuencias_bajas = frecuencias[(frecuencias >= 1) & (frecuencias <= 99)]
-    frecuencias_medias = frecuencias[(frecuencias >= 100) & (frecuencias <= 1000)]
-    frecuencias_altas = frecuencias[(frecuencias >= 1001) & (frecuencias <= 10000)]
+    def main():
+        if len(sys.argv) < 2:
+            print("Error: Debe especificar un archivo CSV")
+            sys.exit(1)
 
-    bins_bajas = list(range(1, 100, 10))  # 1-99 en pasos de 10 
-    bins_medias = list(range(100, 1001, 100))  # 100-1000 en pasos de 100
-    bins_altas = list(range(1001, 10001, 1000))  # 1001-10000 en pasos de 1000
+        csv_file = sys.argv[1]
+        filename_base = os.path.splitext(os.path.basename(csv_file))[0]
+        column = "identifier"  
+        chunksize = 1_000_000  
+        os.makedirs("img", exist_ok=True)
 
-    freciencias_bajas_agrupadas = pd.cut(frecuencias_bajas, bins=bins_bajas, right=False).value_counts().sort_index()
-    frecuencias_medias_agrupadas = pd.cut(frecuencias_medias, bins=bins_medias, right=False).value_counts().sort_index()
-    frecuencias_altas_agrupadas = pd.cut(frecuencias_altas, bins=bins_altas, right=False).value_counts().sort_index()
+        print(f"\nIniciando analisis de: {csv_file}")
+        print(f"Columna analizada: {column}")
+        
+        print("\nContando frecuencias...")
+        counter = Counter()
+        
+        with tqdm(desc="  Contando filas totales", unit=' filas') as pbar:
+            total_rows = 0
+            for chunk in pd.read_csv(csv_file, usecols=[column], chunksize=chunksize):
+                total_rows += len(chunk)
+                pbar.update(len(chunk))
+        
+        with tqdm(total=total_rows, desc="  Procesando datos", unit=' filas') as pbar:
+            for chunk in pd.read_csv(csv_file, usecols=[column], chunksize=chunksize):
+                counter.update(chunk[column].dropna().astype(str))
+                pbar.update(len(chunk))
 
-    print("\n=== Resumen de frecuencias ===")
-    print(f"\n**Rango 1-100 repeticiones**:")
-    print(f" - Total de valores unicos: {len(frecuencias_bajas)}")
-    print(f"\n**Rango 100-1000 repeticiones**:")
-    print(f" - Total de valores unicos: {len(frecuencias_medias)}")
-    print(f"\n**Rango 1000-10000 repeticiones**:")
-    print(f" - Total de valores unicos: {len(frecuencias_altas)}")
+        frequencies = pd.Series(counter)
+        total_unique = len(frequencies)
+        print(f"\nDatos procesados - Total valores unicos: {format_count(total_unique)}")
 
+        print("\nClasificando frecuencias...")
+        with tqdm(total=4, desc="  Progreso") as pbar:
+            low_freq = frequencies[(frequencies >= 1) & (frequencies <= 99)]
+            pbar.update(1)
+            mid_freq = frequencies[(frequencies >= 100) & (frequencies <= 1000)]
+            pbar.update(1)
+            high_freq = frequencies[(frequencies >= 1001) & (frequencies <= 10000)]
+            pbar.update(1)
 
-    plt.figure(figsize=(10, 6))
-    freciencias_bajas_agrupadas.plot(kind='bar', color='skyblue', edgecolor='black', alpha=0.7)
-    plt.title("Distribucion de Frecuencias (1-100 repeticiones)")
-    plt.xlabel("Rango de repeticiones")
-    plt.ylabel("Cantidad de valores unicos")
-    plt.xticks(rotation=45)
-    plt.grid(axis='y', linestyle='--')
-    plt.tight_layout()
-    plt.savefig(os.path.join("img", "histograma_1_100.png"), dpi=300)
-    plt.close()
+        low_bin = list(range(1, 100, 10)) + [100]
+        mid_bin = list(range(100, 1001, 100)) + [1001]
+        high_bin = list(range(1001, 10001, 1000)) + [10001]
 
-    plt.figure(figsize=(10, 6))
-    frecuencias_medias_agrupadas.plot(kind='bar', color='skyblue', edgecolor='black', alpha=0.7)
-    plt.title("Distribucion de Frecuencias (100-1000 repeticiones)")
-    plt.xlabel("Rango de repeticiones")
-    plt.ylabel("Cantidad de valores unicos")
-    plt.xticks(rotation=45)
-    plt.grid(axis='y', linestyle='--')
-    plt.tight_layout()
-    plt.savefig(os.path.join("img", "histograma_100_1000.png"), dpi=300)
-    plt.close()
+        print("\n===Resumen de frecuencias ===")
+        print(f"\nRango 1-99 repeticiones:")
+        print(f"   - Valores unicos: {format_count(len(low_freq))} ({len(low_freq)/total_unique:.1%})")
+        
+        print(f"\nRango 100-1000 repeticiones:")
+        print(f"   - Valores unicos: {format_count(len(mid_freq))} ({len(mid_freq)/total_unique:.1%})")
+        
+        print(f"\nRango 1001-10000 repeticiones:")
+        print(f"   - Valores unicos: {format_count(len(high_freq))} ({len(high_freq)/total_unique:.1%})")
+    
 
-    plt.figure(figsize=(10, 6))
-    frecuencias_altas_agrupadas.plot(kind='bar', color='salmon', edgecolor='black', alpha=0.7)
-    plt.title("Distribucion de Frecuencias (1001-10,000 repeticiones)")
-    plt.xlabel("Rango de repeticiones")
-    plt.ylabel("Cantidad de valores unicos")
-    plt.xticks(rotation=45)
-    plt.grid(axis='y', linestyle='--')
-    plt.tight_layout()
-    plt.savefig(os.path.join("img", "histograma_1001_10000.png"), dpi=300)
-    plt.close()
+        print("\nGenerando graficos...")
+        with tqdm(total=3, desc="  Progreso") as pbar:
+            low_path = create_histogram(
+                low_freq, 
+                bins=low_bin,
+                title="Distribucion de Frecuencias (1-99 repeticiones)",
+                filename=f"histograma_1-99_{column}_{filename_base}.png",
+                color='#4C72B0'
+            )
+            pbar.update(1)
+            
+            mid_path = create_histogram(
+                mid_freq,
+                bins=mid_bin,
+                title="Distribucion de Frecuencias (100-1000 repeticiones)",
+                filename=f"histograma_100-1k_{column}_{filename_base}.png",
+                color='#55A868',
+                log_scale=True
+            )
+            pbar.update(1)
+            
+            high_path = create_histogram(
+                high_freq,
+                bins=high_bin,
+                title="Distribucion de Frecuencias (1001-10,000 repeticiones)",
+                filename=f"histograma_1k-10k_{column}_{filename_base}.png",
+                color='#C44E52',
+                log_scale=True
+            )
+            pbar.update(1)
+        
+        print("\nGraficos generados exitosamente:")
+        print(f"{low_path}")
+        print(f"{mid_path}")
+        print(f"{high_path}")
 
-    print("Graficos guardados en /img/")
+    if __name__ == "__main__":
+        main()
 \end{lstlisting}
 \vfill

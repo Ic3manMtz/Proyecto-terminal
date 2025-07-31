@@ -108,21 +108,57 @@ class Handler:
         ])
 
     def accuracy_histrogram(self):
+        print(f"¿Desea usar el archivo por defecto? ({self.csv}) [s/n]")
+        use_default = input(" ➤ ").strip().lower()
+
+        if use_default == "s":
+            filename = self.csv
+        else:
+            filename = MainMenu.display_ask_filename("Número de registros")
+
+        if not filename.endswith('.csv'):
+            filename += '.csv'
+
         subprocess.run([
             "python3",
-            "src/features/accuracy_histogram.py"
+            "src/features/accuracy_histogram.py",
+            filename
         ])
 
     def identifier_histogram(self):
+        print(f"¿Desea usar el archivo por defecto? ({self.csv}) [s/n]")
+        use_default = input(" ➤ ").strip().lower()
+
+        if use_default == "s":
+            filename = self.csv
+        else:
+            filename = MainMenu.display_ask_filename("Número de registros")
+
+        if not filename.endswith('.csv'):
+            filename += '.csv'
+
         subprocess.run([
             "python3",
-            "src/features/identifier_histogram.py"
+            "src/features/identifier_histogram.py",
+            filename
         ])
 
     def identifier_analysis(self):
+        print(f"¿Desea usar el archivo por defecto? ({self.csv}) [s/n]")
+        use_default = input(" ➤ ").strip().lower()
+
+        if use_default == "s":
+            filename = self.csv
+        else:
+            filename = MainMenu.display_ask_filename("Número de registros")
+
+        if not filename.endswith('.csv'):
+            filename += '.csv'
+
         subprocess.run([
             "python3",
-            "src/features/identifier_histogram_detailed.py"
+            "src/features/identifier_histogram_detailed.py",
+            filename
         ])
 
     def show_coordinates(self):

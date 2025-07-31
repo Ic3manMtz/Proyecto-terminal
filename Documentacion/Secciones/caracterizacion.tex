@@ -148,48 +148,38 @@ La primera columna a analizar será \texttt{device\_horizontal\_accuracy}, que r
     \item Geolocalización por IP: 1000–5000 metros.
 \end{itemize}
 
-Con base en esta escala,  primero hay que identificar el rango de valores presentes en la columna. Para ello se utilizó el código mostrado en el Apéndice \ref{cod:unique_values}, el cual extrae los valores únicos de \texttt{device\_horizontal\_accuracy} y los guarda en un archivo de texto. El resultado indicó que los valores oscilan entre 0.916 y 199.9, lo que permitió construir un histograma (Apéndice \ref{cod:accuracy_histogram}) para analizar la frecuencia de cada valor y así evaluar su relevancia para el análisis.
-
-El resultado se muestra en la siguiente figura:
+Con base en esta escala,  primero hay que identificar el rango de valores presentes en la columna. Para ello se utilizó el código mostrado en el Apéndice \ref{cod:unique_values}, el cual extrae los valores únicos de \texttt{device\_horizontal\_accuracy} y los guarda en un archivo de texto. El resultado indicó que los valores oscilan entre 0.916 y 199.9, lo que permitió construir un histograma (Apéndice \ref{cod:accuracy_histogram}) para analizar la frecuencia de cada valor y así evaluar su relevancia para el análisis. El resultado se muestra en la siguiente figura:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{img/histograma_frecuencias_accuracy.png}
-    \caption{Frecuencias de valores agrupados por rangos (0–200 metros).}
+    \includegraphics[width=\textwidth]{img/histograma_device_horizontal_accuracy_Mobility_Data_Slim.png}
+    \caption{Frecuencia de aparación de los valores de 'device\_horizontal\_accuracy'.}
     \label{fig:accuracy_histogram}
 \end{figure}
 
-Como se observa en la Figura \ref{fig:accuracy_histogram}, la mayoría de los valores se concentran en el rango de 0 a 20 metros, lo cual es consistente con la precisión obtenida mediante GPS puro. Para reforzar esta observación, se realizó un conteo porcentual por tipo de tecnología de geolocalización:
-
-\begin{itemize}
-    \item GPS puro (1–20 metros): 68.73\%.
-    \item A-GPS (5–50 metros): 16.56\%.
-    \item WiFi/red móvil (20–500 metros): 14.69\%.
-\end{itemize}
-
-\newpage
-
+Para el objetivo de este proyecto, se busca que la configuración del GPS sea lo más precisa posible, por lo que aquellos que estén dentro del rango del GPS puro (1-20 metros) son los más relevantes. Como se puede ver en la Figura \ref{fig:accuracy_histogram}, el \textbf{68.73\%} de los valores se encuentran dentro de este rango. Sin embargo, el \textbf{31.27\%} de registros con están por encima de este rango, precisión A-GPS (5-50 metros) y triangulación por WiFi/red móvil (20-500 metros).\\
+\\
 La siguiente columna evaluada fue \texttt{identifier}, correspondiente al identificador único de cada dispositivo. Se analiza la frecuencia de aparición de estos valores, para lo cual se empleó un script que agrupa las repeticiones por rangos y grafica la cantidad de valores únicos usando escala logarítmica (ver Apéndice \ref{cod:identifier_histogram}).
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{img/histograma_frecuencias_agrupadas_1000.png}
-    \caption{Distribución de frecuencias agrupadas en bloques de 1000 repeticiones.}
+    \includegraphics[width=0.8\textwidth]{img/histograma_identifier_Mobility_Data_Slim.png}
+    \caption{Frecuencia de aparición de los identificadores únicos.}
     \label{fig:identifier_histogram}
 \end{figure}
 
-La Figura \ref{fig:identifier_histogram} muestra que la mayoría de los identificadores tienen una baja frecuencia. Para un análisis más detallado, se usó el código del Apéndice \ref{cod:identifier_histogram_detailed}, el cual segmenta los datos en tres rangos: 1–100, 100–1000 y 1000–10000 repeticiones.
+De la Figura \ref{fig:identifier_histogram} sabemos que el total de individuos es de \textbf{6,022,772} de los cuales el \textbf{79.19\%} tienen una frecuencia de aparición de una a nueve veces, esto es \textbf{4,769,317} de individuos. Para un análisis más detallado, se usó el código del Apéndice \ref{cod:identifier_histogram_detailed}, el cual segmenta los datos en tres rangos: 1–100, 100–1000 y 1000–10000 repeticiones.
 
 \begin{figure}[htbp]
     \centering
     \begin{subfigure}[t]{0.48\textwidth-1em}
-        \includegraphics[width=\linewidth]{img/histograma_1_100.png}
-        \caption{Histograma 1–100 repeticiones}
+        \includegraphics[width=\linewidth]{img/histograma_1-99_identifier_Mobility_Data_Slim.png}
+        \caption{Histograma 1-99 repeticiones}
         \label{fig:sub1}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.48\textwidth-1em}
-        \includegraphics[width=\linewidth]{img/histograma_100_1000.png}
+        \includegraphics[width=\linewidth]{img/histograma_100-1k_identifier_Mobility_Data_Slim.png}
         \caption{Histograma 100–1000 repeticiones}
         \label{fig:sub2}
     \end{subfigure}
@@ -198,7 +188,7 @@ La Figura \ref{fig:identifier_histogram} muestra que la mayoría de los identifi
 
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{img/histograma_1001_10000.png}
+        \includegraphics[width=\linewidth]{img/histograma_1k-10k_identifier_Mobility_Data_Slim.png}
         \caption{Histograma 1001–10000 repeticiones}
         \label{fig:sub3}
     \end{subfigure}
@@ -228,8 +218,8 @@ Con base en esta información es necesario hacer un análisis más detallado de 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{img/histograma_frecuencias_agrupadas_1000_dup.png}
+    \includegraphics[width=\textwidth]{img/histograma_identifier_Mobility_Data_Slim.png}
     \caption{Frecuencias de valores agrupados por rangos (0–200 metros).}
-    \label{fig:accuracy_histogram}
+    \label{fig:identifier_histogram_dup}
 \end{figure}
 

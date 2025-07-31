@@ -192,16 +192,19 @@ Este script verifica si el contenedor \texttt{data-analysis} ya se encuentra en 
 ]
 #!/bin/bash
 
-# Verifica si el contenedor esta corriendo
 if ! docker ps --filter "name=^/data-analysis$" --filter "status=running" | grep -q data-analysis; then
     echo "Contenedor no esta corriendo. Levantando con docker-compose..."
     docker-compose up -d
-    sleep 2
+    echo "Esperando que se instalen las dependencias..."
+    while ! docker exec data-analysis pip show colorama &> /dev/null; do
+        sleep 2
+    done
+    echo "Dependencias instaladas correctamente."
 else
     echo "Contenedor ya esta corriendo. Usando instancia existente."
 fi
 
-# Ejecuta el script dentro del contenedor
+echo "Ejecutando script..."
 docker exec -it data-analysis python3 /app/src/main.py
 \end{lstlisting}
 
@@ -217,7 +220,6 @@ Este script reinicia completamente el contenedor (equivalente a detenerlo y volv
 #!/bin/bash
 docker restart data-analysis
 sleep 2
-# Ejecuta el script dentro del contenedor
 docker exec -it data-analysis python3 /app/src/main.py
 \end{lstlisting}
 
@@ -231,7 +233,7 @@ Este script detiene y elimina el contenedor junto con los volúmenes asociados. 
   label={cod:stop_script}
 ]
 #!/bin/bash
-docker-compose down -v
+docker-compose down --volumes
 \end{lstlisting}
 
 % --------------------------

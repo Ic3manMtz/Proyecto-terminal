@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.2)  30 JUL 2025 09:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.2)  31 JUL 2025 12:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -691,9 +691,6 @@ Package babel Info: 'spanish' activates 'spanish' shorthands.
 
 LaTeX Warning: Label `cod:start_container' multiply defined.
 
-
-LaTeX Warning: Label `fig:accuracy_histogram' multiply defined.
-
 )
 \openout1 = `reporte.aux'.
 
@@ -871,15 +868,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [5]
-<img/histograma_frecuencias_accuracy.png, id=288, 723.6636pt x 412.1799pt>
-File: img/histograma_frecuencias_accuracy.png Graphic file (type png)
-<use img/histograma_frecuencias_accuracy.png>
-Package pdftex.def Info: img/histograma_frecuencias_accuracy.png  used on input line 157.
-(pdftex.def)             Requested size: 398.33858pt x 226.88202pt.
+<img/histograma_device_horizontal_accuracy_Mobility_Data_Slim.png, id=288, 1003.1076pt x 569.2467pt>
+File: img/histograma_device_horizontal_accuracy_Mobility_Data_Slim.png Graphic file (type png)
+<use img/histograma_device_horizontal_accuracy_Mobility_Data_Slim.png>
+Package pdftex.def Info: img/histograma_device_horizontal_accuracy_Mobility_Data_Slim.png  used on input line 155.
+(pdftex.def)             Requested size: 398.33858pt x 226.053pt.
 
 
-LaTeX Info: Redefining \. on input line 161.
-LaTeX Info: Redefining \% on input line 161.
+LaTeX Info: Redefining \. on input line 159.
+LaTeX Info: Redefining \% on input line 159.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -888,41 +885,19 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [6]
+Underfull \hbox (badness 10000) in paragraph at lines 160--163
 
-LaTeX Info: Redefining \. on input line 170.
-LaTeX Info: Redefining \% on input line 170.
+ []
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[7 <./img/histograma_frecuencias_accuracy.png>]
-<img/histograma_frecuencias_agrupadas_1000.png, id=300, 725.3499pt x 498.4221pt>
-File: img/histograma_frecuencias_agrupadas_1000.png Graphic file (type png)
-<use img/histograma_frecuencias_agrupadas_1000.png>
-Package pdftex.def Info: img/histograma_frecuencias_agrupadas_1000.png  used on input line 176.
-(pdftex.def)             Requested size: 362.67406pt x 249.21043pt.
-<img/histograma_1_100.png, id=303, 722.7pt x 433.62pt>
-File: img/histograma_1_100.png Graphic file (type png)
-<use img/histograma_1_100.png>
-Package pdftex.def Info: img/histograma_1_100.png  used on input line 186.
-(pdftex.def)             Requested size: 180.25078pt x 108.14668pt.
-<img/histograma_100_1000.png, id=304, 722.7pt x 433.62pt>
-File: img/histograma_100_1000.png Graphic file (type png)
-<use img/histograma_100_1000.png>
-Package pdftex.def Info: img/histograma_100_1000.png  used on input line 192.
-(pdftex.def)             Requested size: 180.25078pt x 108.14668pt.
-<img/histograma_1001_10000.png, id=305, 722.7pt x 433.62pt>
-File: img/histograma_1001_10000.png Graphic file (type png)
-<use img/histograma_1001_10000.png>
-Package pdftex.def Info: img/histograma_1001_10000.png  used on input line 201.
-(pdftex.def)             Requested size: 191.2008pt x 114.71687pt.
+<img/histograma_identifier_Mobility_Data_Slim.png, id=295, 1147.8885pt x 645.612pt>
+File: img/histograma_identifier_Mobility_Data_Slim.png Graphic file (type png)
+<use img/histograma_identifier_Mobility_Data_Slim.png>
+Package pdftex.def Info: img/histograma_identifier_Mobility_Data_Slim.png  used on input line 166.
+(pdftex.def)             Requested size: 318.67207pt x 179.23334pt.
 
 
-LaTeX Info: Redefining \. on input line 226.
-LaTeX Info: Redefining \% on input line 226.
+LaTeX Info: Redefining \. on input line 172.
+LaTeX Info: Redefining \% on input line 172.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -930,16 +905,26 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[8 <./img/histograma_frecuencias_agrupadas_1000.png>]
-<img/histograma_frecuencias_agrupadas_1000_dup.png, id=312, 725.3499pt x 498.4221pt>
-File: img/histograma_frecuencias_agrupadas_1000_dup.png Graphic file (type png)
-<use img/histograma_frecuencias_agrupadas_1000_dup.png>
-Package pdftex.def Info: img/histograma_frecuencias_agrupadas_1000_dup.png  used on input line 231.
-(pdftex.def)             Requested size: 398.33858pt x 273.7147pt.
+[7 <./img/histograma_device_horizontal_accuracy_Mobility_Data_Slim.png> <./img/histograma_identifier_Mobility_Data_Slim.png>]
+<img/histograma_1-99_identifier_Mobility_Data_Slim.png, id=304, 1003.1076pt x 569.7285pt>
+File: img/histograma_1-99_identifier_Mobility_Data_Slim.png Graphic file (type png)
+<use img/histograma_1-99_identifier_Mobility_Data_Slim.png>
+Package pdftex.def Info: img/histograma_1-99_identifier_Mobility_Data_Slim.png  used on input line 176.
+(pdftex.def)             Requested size: 180.25078pt x 102.37283pt.
+<img/histograma_100-1k_identifier_Mobility_Data_Slim.png, id=305, 1002.144pt x 569.2467pt>
+File: img/histograma_100-1k_identifier_Mobility_Data_Slim.png Graphic file (type png)
+<use img/histograma_100-1k_identifier_Mobility_Data_Slim.png>
+Package pdftex.def Info: img/histograma_100-1k_identifier_Mobility_Data_Slim.png  used on input line 182.
+(pdftex.def)             Requested size: 180.25078pt x 102.3818pt.
+<img/histograma_1k-10k_identifier_Mobility_Data_Slim.png, id=306, 1002.144pt x 569.2467pt>
+File: img/histograma_1k-10k_identifier_Mobility_Data_Slim.png Graphic file (type png)
+<use img/histograma_1k-10k_identifier_Mobility_Data_Slim.png>
+Package pdftex.def Info: img/histograma_1k-10k_identifier_Mobility_Data_Slim.png  used on input line 191.
+(pdftex.def)             Requested size: 191.2008pt x 108.60098pt.
 
 
-LaTeX Info: Redefining \. on input line 235.
-LaTeX Info: Redefining \% on input line 235.
+LaTeX Info: Redefining \. on input line 216.
+LaTeX Info: Redefining \% on input line 216.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -947,7 +932,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[9 <./img/histograma_1_100.png> <./img/histograma_100_1000.png> <./img/histograma_1001_10000.png>])
+[8 <./img/histograma_1-99_identifier_Mobility_Data_Slim.png> <./img/histograma_100-1k_identifier_Mobility_Data_Slim.png> <./img/histograma_1k-10k_identifier_Mobility_Data_Slim.png>]
+File: img/histograma_identifier_Mobility_Data_Slim.png Graphic file (type png)
+<use img/histograma_identifier_Mobility_Data_Slim.png>
+Package pdftex.def Info: img/histograma_identifier_Mobility_Data_Slim.png  used on input line 221.
+(pdftex.def)             Requested size: 398.33858pt x 224.03674pt.
+)
 :<-
 
 
@@ -960,13 +950,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[10 <./img/histograma_frecuencias_agrupadas_1000_dup.png>]
+[9]
 Ap\'{e}ndice A.
 Package srcltx Info: Expanded filename `Secciones/Anexos/anexoA.tex' to `Secciones/Anexos/anexoA.tex' on input line 250.
 :<+ Secciones/Anexos/anexoA.tex
 (Secciones/Anexos/anexoA.tex
 
-[11
+[10
 
 ]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
@@ -984,7 +974,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[12]
+[11]
 
 LaTeX Info: Redefining \. on input line 155.
 LaTeX Info: Redefining \% on input line 155.
@@ -995,7 +985,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[13]
+[12]
 Underfull \hbox (badness 10000) in paragraph at lines 155--157
 
  []
@@ -1011,13 +1001,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[14]
+[13]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 184.
 
 
-LaTeX Info: Redefining \. on input line 227.
-LaTeX Info: Redefining \% on input line 227.
+LaTeX Info: Redefining \. on input line 229.
+LaTeX Info: Redefining \% on input line 229.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1025,9 +1015,20 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[15])
+[14])
 :<-
 
+
+LaTeX Info: Redefining \. on input line 251.
+LaTeX Info: Redefining \% on input line 251.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[15]
 
 LaTeX Info: Redefining \. on input line 252.
 LaTeX Info: Redefining \% on input line 252.
@@ -1061,8 +1062,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [18]
 
-LaTeX Info: Redefining \. on input line 152.
-LaTeX Info: Redefining \% on input line 152.
+LaTeX Info: Redefining \. on input line 153.
+LaTeX Info: Redefining \% on input line 153.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1072,8 +1073,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [19]
 
-LaTeX Info: Redefining \. on input line 169.
-LaTeX Info: Redefining \% on input line 169.
+LaTeX Info: Redefining \. on input line 170.
+LaTeX Info: Redefining \% on input line 170.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1083,8 +1084,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [20]
 
-LaTeX Info: Redefining \. on input line 219.
-LaTeX Info: Redefining \% on input line 219.
+LaTeX Info: Redefining \. on input line 223.
+LaTeX Info: Redefining \% on input line 223.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1094,8 +1095,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [21]
 
-LaTeX Info: Redefining \. on input line 261.
-LaTeX Info: Redefining \% on input line 261.
+LaTeX Info: Redefining \. on input line 262.
+LaTeX Info: Redefining \% on input line 262.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1105,8 +1106,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [22]
 
-LaTeX Info: Redefining \. on input line 293.
-LaTeX Info: Redefining \% on input line 293.
+LaTeX Info: Redefining \. on input line 298.
+LaTeX Info: Redefining \% on input line 298.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1116,8 +1117,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [23]
 
-LaTeX Info: Redefining \. on input line 324.
-LaTeX Info: Redefining \% on input line 324.
+LaTeX Info: Redefining \. on input line 346.
+LaTeX Info: Redefining \% on input line 346.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1125,7 +1126,73 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[24])
+[24]
+
+LaTeX Info: Redefining \. on input line 381.
+LaTeX Info: Redefining \% on input line 381.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[25]
+
+LaTeX Info: Redefining \. on input line 421.
+LaTeX Info: Redefining \% on input line 421.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[26]
+
+LaTeX Info: Redefining \. on input line 472.
+LaTeX Info: Redefining \% on input line 472.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[27]
+
+LaTeX Info: Redefining \. on input line 511.
+LaTeX Info: Redefining \% on input line 511.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[28]
+
+LaTeX Info: Redefining \. on input line 554.
+LaTeX Info: Redefining \% on input line 554.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[29]
+
+LaTeX Info: Redefining \. on input line 594.
+LaTeX Info: Redefining \% on input line 594.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[30])
 :<-
 
 
@@ -1138,9 +1205,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[25]
+[31]
 
-[26
+[32
 
 ] (reporte.aux
 LaTeX Info: Redefining \. on input line 11.
@@ -1161,17 +1228,17 @@ Package rerunfilecheck Info: File `reporte.out' has not changed.
 (rerunfilecheck)             Checksum: B8ECCD0EC6AB8AC6203B5139C78450FD;5361.
  ) 
 Here is how much of TeX's memory you used:
- 30518 strings out of 469923
- 582801 string characters out of 5469655
- 1458318 words of memory out of 5000000
- 56348 multiletter control sequences out of 15000+600000
- 638996 words of font info for 87 fonts, out of 8000000 for 9000
+ 30842 strings out of 469923
+ 589166 string characters out of 5469655
+ 1496399 words of memory out of 5000000
+ 56416 multiletter control sequences out of 15000+600000
+ 640050 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,13n,91p,1103b,2118s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,13n,91p,1103b,2116s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Joge\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt1000.pk> <C:\Users\Joge\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt1095.pk> <C:\Users\Joge\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Users/Joge/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on reporte.pdf (31 pages, 1294245 bytes).
+Output written on reporte.pdf (37 pages, 1907291 bytes).
 PDF statistics:
- 936 PDF objects out of 1000 (max. 8388607)
- 475 named destinations out of 1000 (max. 500000)
- 248 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1261 PDF objects out of 1440 (max. 8388607)
+ 731 named destinations out of 1000 (max. 500000)
+ 243 words of extra memory for PDF output out of 10000 (max. 10000000)
 
