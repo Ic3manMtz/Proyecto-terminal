@@ -615,3 +615,50 @@ En la sección \ref{sec:caracterizacion} se describen los pasos del proceso de c
         main()
 \end{lstlisting}
 \vfill
+
+% --------------------------
+% Eliminación de duplicados
+% (basado en timestamp, device_lon, device_lat)
+% --------------------------
+\begin{lstlisting}[
+    language=Python,
+    caption={csv\_deduplicate.py, eliminación de duplicados en el conjunto de datos.},
+    label={cod:csv_deduplicate}
+    ]
+    import dask.dataframe as dd
+    import sys
+    import os
+
+    def delete_duplicates(input_file, output_file):
+    
+        ddf = dd.read_csv(input_file)
+        
+        print(f"\nProcesando archivo: {input_file}")
+        print(f"Numero inicial de registros: {len(ddf):,}")
+        
+        ddf_deduplicate = ddf.drop_duplicates(
+            subset=['timestamp', 'device_lon', 'device_lat'],
+            keep='first'
+        )
+        
+        print(f"Numero de registros despues de eliminar duplicados: {len(ddf_deduplicate):,}")
+        
+        ddf_deduplicate.to_csv(
+            output_file,
+            index=False,
+            single_file=True
+        )
+        
+        print(f"\nArchivo sin duplicados guardado en: {output_file}")
+
+    if __name__ == "__main__":
+        if len(sys.argv) < 2:
+            print("Error: Debe especificar un archivo CSV como argumento")
+            sys.exit(1)
+
+        input_csv = sys.argv[1]
+        base_name = os.path.splitext(input_csv)[0]
+        output_csv = f"{base_name}_DeDuplicate.csv" 
+        
+        delete_duplicates(input_csv, output_csv)
+\end{lstlisting}

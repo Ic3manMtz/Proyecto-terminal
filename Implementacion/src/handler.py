@@ -9,7 +9,7 @@ class Handler:
         self.csv = "Mobility_Data_Slim.csv" 
 
     def get_filename(self):
-        return self.csv if self.csv else "No se ha cargado ningún archivo CSV"
+        return self.csv
 
     def main_menu(self, choice):
         if choice == '0':
@@ -29,14 +29,8 @@ class Handler:
         elif choice == '7':
             self.identifier_analysis()
         elif choice == '8':
-            self.show_coordinates()
-        elif choice == '9':
-            self.unique_values_100()
-        elif choice == '10':
             self.delete_duplicates()
-        elif choice == '99':
-            self.terminal()
-        elif choice == '11':
+        elif choice == '9':
             print("Salir")
             sys.exit(1)
         else:
@@ -161,26 +155,21 @@ class Handler:
             filename
         ])
 
-    def show_coordinates(self):
-        subprocess.run([
-            "python3",
-            "src/features/show_coordenates.py"
-        ])
-
-    def terminal(self):
-        subprocess.run([ 
-            "python3",
-            "src/features/terminal.py"
-        ])
-
-    def unique_values_100(self):
-        subprocess.run([
-            "python3",
-            "src/features/unique_values_100.py"
-        ])
 
     def delete_duplicates(self):
+        print(f"¿Desea usar el archivo por defecto? ({self.csv}) [s/n]")
+        use_default = input(" ➤ ").strip().lower()
+
+        if use_default == "s":
+            filename = self.csv
+        else:
+            filename = MainMenu.display_ask_filename("Número de registros")
+
+        if not filename.endswith('.csv'):
+            filename += '.csv'
+
         subprocess.run([
             "python3",
-            "src/features/delete_duplicates.py"
+            "src/features/delete_duplicates.py",
+            filename
         ])

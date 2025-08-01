@@ -159,7 +159,7 @@ Con base en esta escala,  primero hay que identificar el rango de valores presen
 
 Para el objetivo de este proyecto, se busca que la configuración del GPS sea lo más precisa posible, por lo que aquellos que estén dentro del rango del GPS puro (1-20 metros) son los más relevantes. Como se puede ver en la Figura \ref{fig:accuracy_histogram}, el \textbf{68.73\%} de los valores se encuentran dentro de este rango. Sin embargo, el \textbf{31.27\%} de registros con están por encima de este rango, precisión A-GPS (5-50 metros) y triangulación por WiFi/red móvil (20-500 metros).\\
 \\
-La siguiente columna evaluada fue \texttt{identifier}, correspondiente al identificador único de cada dispositivo. Se analiza la frecuencia de aparición de estos valores, para lo cual se empleó un script que agrupa las repeticiones por rangos y grafica la cantidad de valores únicos usando escala logarítmica (ver Apéndice \ref{cod:identifier_histogram}).
+La siguiente columna a evaluar es \texttt{identifier}, corresponde al identificador único de cada dispositivo.  Para analizar la frecuencia de aparición de estos valores se empleó un script que agrupa las repeticiones por rangos y grafica la cantidad de valores únicos usando escala logarítmica (ver Apéndice \ref{cod:identifier_histogram}).
 
 \begin{figure}[H]
     \centering
@@ -168,7 +168,7 @@ La siguiente columna evaluada fue \texttt{identifier}, correspondiente al identi
     \label{fig:identifier_histogram}
 \end{figure}
 
-De la Figura \ref{fig:identifier_histogram} sabemos que el total de individuos es de \textbf{6,022,772} de los cuales el \textbf{79.19\%} tienen una frecuencia de aparición de una a nueve veces, esto es \textbf{4,769,317} de individuos. Para un análisis más detallado, se usó el código del Apéndice \ref{cod:identifier_histogram_detailed}, el cual segmenta los datos en tres rangos: 1–100, 100–1000 y 1000–10000 repeticiones.
+ De este script sabemos que el total de individuos es de \textbf{6,022,772} de los cuales el \textbf{79.19\%} tienen una frecuencia de aparición de una a nueve veces, esto es \textbf{4,769,317} de individuos. Así mismo de la Figura \ref{fig:identifier_histogram} podemos observar que hay poco más de un \textbf{20\%} de individuos con más de 99 repeticiones. Por lo que se necesita hacer un análisis más detallado, para ello se ejecuta el código del Apéndice \ref{cod:identifier_histogram_detailed}, el cual segmenta los datos en tres rangos: 1-99, 100-1000 y 1001-10000 repeticiones.
 
 \begin{figure}[htbp]
     \centering
@@ -197,29 +197,8 @@ De la Figura \ref{fig:identifier_histogram} sabemos que el total de individuos e
     \label{fig:histogramas}
 \end{figure}
 
-Además de los histogramas, el script genera un resumen con el número total de valores únicos por rango:
-
-\begin{verbatim}
-        === Resumen de frecuencias ===
-        **Rango 1 - 100 repeticiones**:
-        - Total de valores únicos: 5,912,437
-
-        **Rango 100 - 1000 repeticiones**:
-        - Total de valores únicos: 108,519
-
-        **Rango 1000 - 10000 repeticiones**:
-        - Total de valores únicos: 1,816
-\end{verbatim}
-
-Esta información evidencia que la mayoría de los identificadores aparecen entre 1 y 100 veces, siendo predominante el subconjunto de 1 a 10 repeticiones. 
+Con la información obtenida de los histogramas de la figura anterior, se puede observar que el \textbf{98.17\%} de los identificadores únicos tienen entre 1 y 99 repeticiones, lo que equivale a \textbf{5,912,437} individuos. Por otro lado, el \textbf{1.83\%} restante tiene entre 100 y 10,000 repeticiones, lo que equivale a \textbf{110,335} individuos. Con base en esta información aún no se puede determinar que registros eliminar. Por lo que ahora se eliminarán aquellos registros que sean duplicados, es decir, aquellos que tengan el mismo \texttt{timestamp}, \texttt{device\_lat} y \texttt{device\_lon}. Para ello se utilizó el código del Apéndice \ref{cod:csv_deduplicate}, que elimina los duplicados y genera un nuevo archivo CSV con los registros de individuos. 
 
 \newpage
-Con base en esta información es necesario hacer un análisis más detallado de los identificadores. Para ello, se eliminan los registros que tienen duplicados, es decir, aquellos que tienen la misma información en las columnas \texttt{timestamp}, \texttt{device\_lat}, \texttt{device\_lon}. Después de aplicar este filtro se obtiene un total de \textbf{50,753,197}. 
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{img/histograma_identifier_Mobility_Data_Slim.png}
-    \caption{Frecuencias de valores agrupados por rangos (0–200 metros).}
-    \label{fig:identifier_histogram_dup}
-\end{figure}
 

@@ -13,7 +13,7 @@ def format_count(count):
         return f"{count/1_000:.1f}K"
     return str(count)
 
-def create_histogram(data, bins, title, filename, color='skyblue', log_scale=False):
+def create_histogram(data, bins, frequencies, title, filename, color='skyblue', log_scale=False):
     # Agrupar los datos
     grouped = pd.cut(data, bins=bins, right=False).value_counts().sort_index()
     total_values = len(data)
@@ -32,7 +32,11 @@ def create_histogram(data, bins, title, filename, color='skyblue', log_scale=Fal
     
     # Configuración del gráfico
     plt.xticks(range(len(bin_labels)), bin_labels, rotation=45, ha='right')
-    plt.title(f"{title}\nTotal valores únicos: {format_count(total_values)}", fontsize=14, pad=20)
+    plt.title(
+        f"{title}\nTotal valores únicos: {format_count(total_values)}"
+        f"({(total_values/len(frequencies)*100):.2f}% del total)", 
+        fontsize=14,
+        pad=20)
     plt.xlabel("Rango de repeticiones", fontsize=12)
     plt.ylabel("Cantidad de valores únicos" + (" (log)" if log_scale else ""), fontsize=12)
     plt.grid(True, which="both", ls="--", axis='y')
@@ -91,7 +95,7 @@ def main():
 
     frequencies = pd.Series(counter)
     total_unique = len(frequencies)
-    print(f"\n✅ Datos procesados - Total valores únicos: {format_count(total_unique)}")
+    print(f"\n✅ Datos procesados - Total valores únicos: {total_unique:,}")
 
     # Filtrar datos en grupos de frecuencias
     print("\n📂 Clasificando frecuencias...")
@@ -111,13 +115,13 @@ def main():
     # --- Imprimir resumen en terminal ---
     print("\n=== 📈 Resumen de frecuencias ===")
     print(f"\n🔵 Rango 1-99 repeticiones:")
-    print(f"   - Valores únicos: {format_count(len(low_freq))} ({len(low_freq)/total_unique:.1%})")
+    print(f"   - Valores únicos: {len(low_freq):,} ({len(low_freq)/total_unique:.1%})")
     
     print(f"\n🟢 Rango 100-1000 repeticiones:")
-    print(f"   - Valores únicos: {format_count(len(mid_freq))} ({len(mid_freq)/total_unique:.1%})")
+    print(f"   - Valores únicos: {len(mid_freq):,} ({len(mid_freq)/total_unique:.1%})")
     
     print(f"\n🔴 Rango 1001-10000 repeticiones:")
-    print(f"   - Valores únicos: {format_count(len(high_freq))} ({len(high_freq)/total_unique:.1%})")
+    print(f"   - Valores únicos: {len(high_freq):,} ({len(high_freq)/total_unique:.1%})")
 
     # --- Generar gráficos con barra de progreso ---
     print("\n🎨 Generando gráficos...")
@@ -126,9 +130,10 @@ def main():
         low_path = create_histogram(
             low_freq, 
             bins=low_bin,
+            frequencies=frequencies,
             title="Distribución de Frecuencias (1-99 repeticiones)",
             filename=f"histograma_1-99_{column}_{filename_base}.png",
-            color='#4C72B0'
+            color='#4C72B0',
         )
         pbar.update(1)
         
@@ -136,6 +141,7 @@ def main():
         mid_path = create_histogram(
             mid_freq,
             bins=mid_bin,
+            frequencies=frequencies,
             title="Distribución de Frecuencias (100-1000 repeticiones)",
             filename=f"histograma_100-1k_{column}_{filename_base}.png",
             color='#55A868',
@@ -147,6 +153,7 @@ def main():
         high_path = create_histogram(
             high_freq,
             bins=high_bin,
+            frequencies=frequencies,
             title="Distribución de Frecuencias (1001-10,000 repeticiones)",
             filename=f"histograma_1k-10k_{column}_{filename_base}.png",
             color='#C44E52',

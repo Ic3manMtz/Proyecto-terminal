@@ -1,44 +1,57 @@
 import dask.dataframe as dd
+import sys
+import os
+from tqdm import tqdm
 
-def eliminar_duplicados(input_file, output_file):
-    """
-    Elimina registros duplicados basados en las columnas 'identifier', 'device_lon' y 'device_lat'.
-    
-    Args:
-        input_file (str): Ruta del archivo CSV de entrada
-        output_file (str): Ruta del archivo CSV de salida sin duplicados
-    """
+def delete_duplicates(input_file, output_file):
+    tqdm.pandas(desc="Procesando datos")
     
     # Cargar el archivo CSV usando Dask
+    print(f"\nCargando archivo: {input_file}")
     ddf = dd.read_csv(input_file)
     
-    # Mostrar información inicial
-    print(f"\nProcesando archivo: {input_file}")
-    print(f"Número inicial de registros: {len(ddf):,}")
+    # Calcular número total de registros (con barra de progreso)
+    with tqdm(total=1, desc="Contando registros iniciales") as pbar:
+        initial_count = len(ddf.compute())
+        pbar.update(1)
     
-    # Eliminar duplicados basados en las columnas especificadas
-    # Mantenemos el primer registro de cada grupo de duplicados
-    ddf_sin_duplicados = ddf.drop_duplicates(
-        subset=['timestamp', 'device_lon', 'device_lat'],
-        keep='first'
-    )
+    print(f"Número inicial de registros: {initial_count:,}")
     
-    # Mostrar información después de eliminar duplicados
-    print(f"Número de registros después de eliminar duplicados: {len(ddf_sin_duplicados):,}")
+    # Eliminar duplicados con barra de progreso
+    print("\nEliminando duplicados...")
+    with tqdm(total=3, desc="Progreso") as pbar:
+        # Paso 1: Identificar duplicados
+        ddf_deduplicate = ddf.drop_duplicates(
+            subset=['timestamp', 'device_lon', 'device_lat'],
+            keep='first'
+        )
+        pbar.update(1)
+        
+        # Paso 2: Calcular recuento después de deduplicación
+        final_count = len(ddf_deduplicate.compute())
+        pbar.update(1)
+        
+        # Paso 3: Guardar resultados
+        ddf_deduplicate.to_csv(
+            output_file,
+            index=False,
+            single_file=True
+        )
+        pbar.update(1)
     
-    # Guardar el resultado en un nuevo archivo CSV
-    ddf_sin_duplicados.to_csv(
-        output_file,
-        index=False,
-        single_file=True  # Para que el resultado sea un solo archivo
-    )
-    
-    print(f"\nArchivo sin duplicados guardado en: {output_file}")
+    print(f"\nNúmero de registros después de eliminar duplicados: {final_count:,}")
+    print(f"Registros eliminados: {initial_count - final_count:,}")
+    print(f"Archivo sin duplicados guardado en: {output_file}")
 
 if __name__ == "__main__":
-    # Configurar rutas de archivos (modificar según sea necesario)
-    input_csv = "Mobility_Data_Slim.csv"  # Cambiar por tu archivo de entrada
-    output_csv = "Mobility_Data_woDuplicates.csv"  # Nombre del archivo de salida
+    # Configuración
+    if len(sys.argv) < 2:
+        print("Error: Debe especificar un archivo CSV como argumento")
+        sys.exit(1)
+
+    input_csv = sys.argv[1]
+    base_name = os.path.splitext(input_csv)[0]
+    output_csv = f"{base_name}_DeDuplicate.csv" 
     
     # Ejecutar la función principal
-    eliminar_duplicados(input_csv, output_csv)
+    delete_duplicates(input_csv, output_csv)
