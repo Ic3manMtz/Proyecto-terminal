@@ -14,7 +14,8 @@ class MainMenu:
         ("6", "Creación de histograma de frecuencias de la columna 'identifier'"), # Listo
         ("7", "Análisis detallado de la columna 'identifier'"), # Listo
         ("8", "Eliminar duplicados"), # Listo
-        ("9", "Salir")
+        ("9", "Creación de histogramas de la columna 'identifier' por día"),
+        ("10", "Salir")
     ]
 
     @staticmethod

@@ -618,7 +618,7 @@ En la sección \ref{sec:caracterizacion} se describen los pasos del proceso de c
 
 % --------------------------
 % Eliminación de duplicados
-% (basado en timestamp, device_lon, device_lat)
+% (basado en identifier, timestamp, device_lon, device_lat)
 % --------------------------
 \begin{lstlisting}[
     language=Python,
@@ -637,7 +637,7 @@ En la sección \ref{sec:caracterizacion} se describen los pasos del proceso de c
         print(f"Numero inicial de registros: {len(ddf):,}")
         
         ddf_deduplicate = ddf.drop_duplicates(
-            subset=['timestamp', 'device_lon', 'device_lat'],
+            subset=['identifier', 'timestamp', 'device_lon', 'device_lat'],
             keep='first'
         )
         
@@ -661,4 +661,14 @@ En la sección \ref{sec:caracterizacion} se describen los pasos del proceso de c
         output_csv = f"{base_name}_DeDuplicate.csv" 
         
         delete_duplicates(input_csv, output_csv)
+\end{lstlisting}
+
+% --------------------------
+% Distribución de individuos por día
+% --------------------------
+\begin{lstlisting}[
+    language=Python,
+    label={cod:identifier_histogram_daily}
+    ]
+    
 \end{lstlisting}

@@ -10,7 +10,6 @@ def delete_duplicates(input_file, output_file):
     print(f"\nCargando archivo: {input_file}")
     ddf = dd.read_csv(input_file)
     
-    # Calcular número total de registros (con barra de progreso)
     with tqdm(total=1, desc="Contando registros iniciales") as pbar:
         initial_count = len(ddf.compute())
         pbar.update(1)
@@ -20,9 +19,9 @@ def delete_duplicates(input_file, output_file):
     # Eliminar duplicados con barra de progreso
     print("\nEliminando duplicados...")
     with tqdm(total=3, desc="Progreso") as pbar:
-        # Paso 1: Identificar duplicados
+        # Paso 1: Identificar duplicados 
         ddf_deduplicate = ddf.drop_duplicates(
-            subset=['timestamp', 'device_lon', 'device_lat'],
+            subset=['identifier', 'timestamp', 'device_lon', 'device_lat'],
             keep='first'
         )
         pbar.update(1)

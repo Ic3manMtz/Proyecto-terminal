@@ -197,8 +197,51 @@ La siguiente columna a evaluar es \texttt{identifier}, corresponde al identifica
     \label{fig:histogramas}
 \end{figure}
 
-Con la información obtenida de los histogramas de la figura anterior, se puede observar que el \textbf{98.17\%} de los identificadores únicos tienen entre 1 y 99 repeticiones, lo que equivale a \textbf{5,912,437} individuos. Por otro lado, el \textbf{1.83\%} restante tiene entre 100 y 10,000 repeticiones, lo que equivale a \textbf{110,335} individuos. Con base en esta información aún no se puede determinar que registros eliminar. Por lo que ahora se eliminarán aquellos registros que sean duplicados, es decir, aquellos que tengan el mismo \texttt{timestamp}, \texttt{device\_lat} y \texttt{device\_lon}. Para ello se utilizó el código del Apéndice \ref{cod:csv_deduplicate}, que elimina los duplicados y genera un nuevo archivo CSV con los registros de individuos. 
+Con la información obtenida de los histogramas de la figura anterior, se puede observar que el \textbf{98.17\%} de los identificadores únicos tienen entre 1 y 99 repeticiones, lo que equivale a \textbf{5,912,437} individuos. Por otro lado, el \textbf{1.83\%} restante tiene entre 100 y 10,000 repeticiones, lo que equivale a \textbf{110,335} individuos. Con base en esta información aún no se puede determinar que registros eliminar. Por lo que ahora se eliminarán aquellos registros que sean duplicados, es decir, aquellos que tengan el mismo 
+\texttt{identifier}, \texttt{timestamp}, \texttt{device\_lat} y \texttt{device\_lon}. Para ello se utilizó el código del Apéndice \ref{cod:csv_deduplicate}, que elimina los duplicados y genera un nuevo archivo CSV con los registros de individuos. \\
+Con este nuevo archivo se vuelve a realizar el análisis de frecuencia de aparición de individuos. En la siguiente figura se muestra el histograma de la frecuencia de aparición de los identificadores únicos
 
-\newpage
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/histograma_identifier_Mobility_Data_Slim_DeDuplicate.png}
+    \caption{Frecuencia de aparición de los identificadores únicos después de eliminar duplicados.}
+    \label{fig:identifier_histogram_deduplicate}
+\end{figure}
 
+Comparando los resultados de la Figura \ref{fig:identifier_histogram} y la Figura \ref{fig:identifier_histogram_deduplicate} podemos destacar varios hallazgos importantes: 
 
+\begin{description}
+    \item[Preservación de la diversidad de individuos]: Los \textbf{6,022,772} únicos se mantuvieron sin cambios.
+    \item[Reducción de redundancias]: La eliminación del \textbf{27\%} de registros. De \textbf{70 millones} a \textbf{51 millones} de registros.
+    \item[Correcció de sesgos]: La reducción del \textbf{31.1\%} en la frecuencia máxima de aparición (de 7,400 a 5,100) corrige sesgos que afectaban especialmente a individuos con alta frecuencia de registros repetidos. 
+\end{description}
+
+Como podemos ver la Figura \ref{fig:histogramasDeDuplicate} la distribución de los individuos se mantiene similar; sin embargo, el \textbf{98.8\%} de los identificadores únicos tienen entre 1 y 99 repeticiones, lo que equivale a \textbf{5,950,336} individuos. Por otro lado, el \textbf{1.2\%} restante tiene entre 100 y 10,000 repeticiones, lo que equivale a \textbf{72,436} individuos. Con estos datos podemos concluir que la mayoría de los individuos tienen un número limitado de registros, lo que sugiere que la mayoría de los usuarios no están generando datos de manera continua o frecuente. 
+Ahora bien para poder tener una mejor idea de la distribución de los individuos, se analiza la distribución de los individuos sin duplicados para cada día registrado en el conjunto de datos. Para ello se utilizó el código del Apéndice \ref{cod:identifier_histogram_daily}.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth-1em}
+        \includegraphics[width=\linewidth]{img/histograma_1-99_identifier_Mobility_Data_Slim_DeDuplicate.png}
+        \caption{Histograma 1-99 repeticiones}
+        \label{fig:sub1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth-1em}
+        \includegraphics[width=\linewidth]{img/histograma_100-1k_identifier_Mobility_Data_Slim_DeDuplicate.png}
+        \caption{Histograma 100–1000 repeticiones}
+        \label{fig:sub2}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/histograma_1k-10k_identifier_Mobility_Data_Slim_DeDuplicate.png}
+        \caption{Histograma 1001–10000 repeticiones}
+        \label{fig:sub3}
+    \end{subfigure}
+
+    \caption{Comparación de histogramas por rangos de repeticiones.}
+    \label{fig:histogramasDeDuplicate}
+\end{figure}

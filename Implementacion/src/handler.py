@@ -31,6 +31,8 @@ class Handler:
         elif choice == '8':
             self.delete_duplicates()
         elif choice == '9':
+            self.identifier_histogram_by_day()
+        elif choice == '10':
             print("Salir")
             sys.exit(1)
         else:
@@ -173,3 +175,6 @@ class Handler:
             "src/features/delete_duplicates.py",
             filename
         ])
+        
+    def identifier_histogram_by_day(self):
+        print(f"¿Desea usar el archivo por defecto? ({self.csv}) [s/n]")
