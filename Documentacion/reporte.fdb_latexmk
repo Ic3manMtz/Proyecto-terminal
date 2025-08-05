@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1754429721.10047 "//192.168.2.4/Jorge/Proyecto-terminal/Documentacion/reporte.tex" "reporte.pdf" "reporte" 1754429741.19199 0
+["pdflatex"] 1754430114.51116 "//192.168.2.4/Jorge/Proyecto-terminal/Documentacion/reporte.tex" "reporte.pdf" "reporte" 1754430135.88487 0
   "//192.168.2.4/Jorge/Proyecto-terminal/Documentacion/reporte.tex" 1754424036 8839 21360b136b80fbdb0ee65261e5b73da1 ""
   "C:/Users/Joge/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1754065454 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Joge/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1095.pk" 1748969071 12668 84ff0839586d9c0eee2bf2792d7b90ea ""
@@ -223,7 +223,7 @@
   "C:/Users/Joge/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "Secciones/Anexos/anexoA.tex" 1753896420 12353 f68ee1c4ef31e2caacc40e533cad9868 ""
   "Secciones/Anexos/anexoB.tex" 1754351271 31226 834361e391577ca274cca29077fa06f1 ""
-  "Secciones/analisis.tex" 1754429699 3845 fee93b530fdb8665c2b03c8166b38e61 ""
+  "Secciones/analisis.tex" 1754430105 4575 21fa3fb8cac6c0b8876fbc3f53c3849f ""
   "Secciones/caracterizacion.tex" 1754427174 15374 d8afda5515514bc8680b10ac5770a3d5 ""
   "Secciones/introduccion.tex" 1753304194 1604 9b35b49f7eee9bfcb6fa988f272d5146 ""
   "Secciones/requisitos.tex" 1753739702 1508 61381926ae6dfd1b04b6bf3d75dad92b ""
@@ -247,12 +247,12 @@
   "img/histograma_identifier_Mobility_Data_Slim.png" 1753919869 340160 2bdb7126c0500ca95a2dac8b595c86fc ""
   "img/histograma_identifier_Mobility_Data_Slim_DeDuplicate.png" 1754022156 352460 2b16739b0bd3c924170e10ac855a541f ""
   "img/logoUAM.png" 1753290471 170682 f593393ca1399e51e26b2a0443b59849 ""
-  "reporte.aux" 1754429739 18133 344a24476c53a88ef3395855c3bb09ea "pdflatex"
-  "reporte.lof" 1754429739 1015 d769aa306314eeeee9600f58b458c6c7 "pdflatex"
-  "reporte.lol" 1754429739 3627 41f2ecab45bdd18f0cd93bc4550e5fe3 "pdflatex"
-  "reporte.out" 1754429739 5790 1c50d18e8fa009a623f0d2429f2c5c5e "pdflatex"
+  "reporte.aux" 1754430133 18133 344a24476c53a88ef3395855c3bb09ea "pdflatex"
+  "reporte.lof" 1754430133 1015 d769aa306314eeeee9600f58b458c6c7 "pdflatex"
+  "reporte.lol" 1754430133 3627 41f2ecab45bdd18f0cd93bc4550e5fe3 "pdflatex"
+  "reporte.out" 1754430133 5790 1c50d18e8fa009a623f0d2429f2c5c5e "pdflatex"
   "reporte.tex" 1754424036 8839 21360b136b80fbdb0ee65261e5b73da1 ""
-  "reporte.toc" 1754429739 2612 ff295ab8f4f7132488f22de3eb886331 "pdflatex"
+  "reporte.toc" 1754430133 2612 ff295ab8f4f7132488f22de3eb886331 "pdflatex"
   (generated)
   "reporte.aux"
   "reporte.lof"
