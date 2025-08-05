@@ -178,3 +178,18 @@ class Handler:
         
     def identifier_histogram_by_day(self):
         print(f"¿Desea usar el archivo por defecto? ({self.csv}) [s/n]")
+        use_default = input(" ➤ ").strip().lower()
+
+        if use_default == "s":
+            filename = self.csv
+        else:
+            filename = MainMenu.display_ask_filename("Número de registros")
+
+        if not filename.endswith('.csv'):
+            filename += '.csv'
+
+        subprocess.run([
+            "python3",
+            "src/features/identifier_histograms_daily.py",
+            filename
+        ])

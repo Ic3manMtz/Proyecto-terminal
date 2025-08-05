@@ -1,6 +1,7 @@
 \section{Caracterización de datos de trayectorias individuales}
 \label{sec:caracterizacion}
-El análisis de datos comienza con una etapa fundamental: la caracterización del conjunto de datos. Esta fase tiene como objetivo examinar y comprender la estructura, el contenido y las principales propiedades de los datos antes de aplicar técnicas analíticas más complejas. 
+El análisis de datos comienza con una etapa fundamental, la caracterización del conjunto de datos. Esta fase tiene como objetivo examinar y comprender la estructura, el contenido y las principales propiedades de los datos antes de aplicar técnicas analíticas más complejas. 
+
 En el caso de los datos de trayectorias individuales, la caracterización permite identificar posibles inconsistencias, redundancias y elementos irrelevantes que puedan afectar la calidad del análisis. Las tareas principales llevadas a cabo en esta etapa son las siguientes:
 \begin{itemize}
     \item Explorar las primeras filas del conjunto de datos para obtener una visión general de su estructura.
@@ -16,7 +17,8 @@ A continuación, se describen en detalle las acciones específicas realizadas du
 % --------------------------
 \subsection{Exploración inicial del conjunto de datos}
 \label{subsec:exploracion_inicial}
-Como primer paso en la caracterización, se realizó una exploración preliminar del conjunto de datos con el fin de comprender su estructura general. Para ello, se inspeccionaron las primeras dos filas, lo cual permitió identificar las columnas presentes y observar ejemplos representativos de sus valores.
+Como primer paso en la caracterización, se realiza una exploración preliminar del conjunto de datos con el fin de comprender su estructura general. Para ello, se inspeccionan las primeras dos filas del conjunto de datos, lo cual permite identificar las columnas presentes y observar ejemplos representativos de sus valores.
+
 El código utilizado para realizar esta exploración se encuentra en el Apéndice \ref{cod:csv_glance}. A continuación, se presenta un resumen de las columnas detectadas junto con una muestra de sus respectivos valores:
 
 \begin{enumerate}[leftmargin=*, align=left, noitemsep]
@@ -87,14 +89,14 @@ El código utilizado para realizar esta exploración se encuentra en el Apéndic
 % --------------------------
 \subsection{Dimensiones del conjunto de datos}
 \label{subsec:dimensiones}
-Para verificar las dimensiones del conjunto de datos, se utilizó la bilbioteca Dask, que permite trabajar con grandes volúmenes de datos de manera eficiente. Junto con Python se usó el código en el Apéndice \ref{cod:csv_count}. Como resultado ahora sabemos que el conjunto de datos contiene un total de \textbf{69,980,000} registros y \textbf{19} campos. Esto indica que hay una cantidad significativa de datos disponibles para el análisis.
+Para verificar las dimensiones del conjunto de datos, se utiliza la bilbioteca Dask, que permite trabajar con grandes volúmenes de datos de manera eficiente. Para hacer uso de esta biblioteca se usa el lenguaje de programación Python. El código del Apéndice \ref{cod:csv_count} nos da un ejemplo de su uso para esta etapa. El resultado de este script da como resultado que el conjunto de datos contiene un total de \textbf{69,980,000} registros y \textbf{19} campos. Esto indica que hay una cantidad significativa de datos disponibles para el análisis.
 
 % --------------------------
 % DEPURACIÓN DE COLUMNAS
 % --------------------------
 \subsection{Depuración de columnas}
 \label{subsec:depuracion_columnas}
-Dado que el conjunto de datos original contiene 19 campos, es fundamental identificar y eliminar aquellas columnas que no aportan valor al análisis. Para ello, se realizó una revisión de los valores únicos presentes en cada campo, con el objetivo de detectar información redundante o irrelevante. A partir de este análisis, se identificaron las siguientes columnas como innecesarias para los fines del estudio:
+Dado que el conjunto de datos original contiene 19 campos, es fundamental identificar y eliminar aquellas columnas que no aportan valor al análisis. Para ello, se realiza una revisión de los valores únicos presentes en cada campo, con el objetivo de detectar información redundante o irrelevante. A partir de este análisis, se identifican las siguientes columnas como innecesarias para los fines del estudio:
 
 \begin{itemize}
     \item \texttt{id}
@@ -111,7 +113,7 @@ Dado que el conjunto de datos original contiene 19 campos, es fundamental identi
     \item \texttt{data\_execute}
 \end{itemize}
 
-En lugar de eliminar columnas explícitamente, se optó por seleccionar únicamente aquellas que se desean conservar. El código utilizado para esta tarea se encuentra incluido en el Apéndice \ref{cod:csv_slim}. Dicho script emplea la biblioteca \texttt{dask} para cargar y guardar una nueva versión del conjunto de datos que contiene exclusivamente las siguientes columnas relevantes:
+En lugar de eliminar columnas explícitamente, se opta por seleccionar únicamente aquellas que se desean conservar. El código utilizado para esta tarea se encuentra incluido en el Apéndice \ref{cod:csv_slim}. Dicho script emplea la biblioteca \texttt{dask} para cargar y guardar una nueva versión del conjunto de datos que contiene exclusivamente las siguientes columnas relevantes:
 
 \begin{itemize}
     \item \texttt{identifier}
@@ -132,7 +134,7 @@ Como resultado, se genera un nuevo archivo \texttt{CSV} que conserva únicamente
 \subsection{Depuración de filas}
 \label{subsec:depuracion_filas}
 
-Una vez obtenida una versión más ligera del conjunto de datos, el siguiente paso consiste en identificar y eliminar aquellas filas que no aportan valor al análisis. Para ello, se generaron representaciones gráficas que permiten observar la distribución de los datos y facilitar la toma de decisiones. Las columnas seleccionadas para este proceso fueron:
+Una vez obtenida una versión más ligera del conjunto de datos, el siguiente paso consiste en identificar y eliminar aquellas filas que no aportan valor al análisis. Para ello, se generan representaciones gráficas que permiten observar la distribución de los datos y facilitar la toma de decisión. Las columnas seleccionadas para este proceso fueron:
 
 \begin{itemize}
     \item \texttt{identifier}: Identificador único del dispositivo.
@@ -148,7 +150,7 @@ La primera columna a analizar será \texttt{device\_horizontal\_accuracy}, que r
     \item Geolocalización por IP: 1000–5000 metros.
 \end{itemize}
 
-Con base en esta escala,  primero hay que identificar el rango de valores presentes en la columna. Para ello se utilizó el código mostrado en el Apéndice \ref{cod:unique_values}, el cual extrae los valores únicos de \texttt{device\_horizontal\_accuracy} y los guarda en un archivo de texto. El resultado indicó que los valores oscilan entre 0.916 y 199.9, lo que permitió construir un histograma (Apéndice \ref{cod:accuracy_histogram}) para analizar la frecuencia de cada valor y así evaluar su relevancia para el análisis. El resultado se muestra en la siguiente figura:
+Con base en esta escala,  primero hay que identificar el rango de valores presentes en la columna. Para ello se utiliza el código mostrado en el Apéndice \ref{cod:unique_values}, el cual extrae los valores únicos de \texttt{device\_horizontal\_accuracy} y los guarda en un archivo de texto. El resultado indica que los valores oscilan entre 0.916 y 199.9, lo que permite construir un histograma (Apéndice \ref{cod:accuracy_histogram}) para analizar la frecuencia de cada valor y así evaluar su relevancia para el análisis. El resultado se muestra en la siguiente figura:
 
 \begin{figure}[H]
     \centering
@@ -157,9 +159,9 @@ Con base en esta escala,  primero hay que identificar el rango de valores presen
     \label{fig:accuracy_histogram}
 \end{figure}
 
-Para el objetivo de este proyecto, se busca que la configuración del GPS sea lo más precisa posible, por lo que aquellos que estén dentro del rango del GPS puro (1-20 metros) son los más relevantes. Como se puede ver en la Figura \ref{fig:accuracy_histogram}, el \textbf{68.73\%} de los valores se encuentran dentro de este rango. Sin embargo, el \textbf{31.27\%} de registros con están por encima de este rango, precisión A-GPS (5-50 metros) y triangulación por WiFi/red móvil (20-500 metros).\\
-\\
-La siguiente columna a evaluar es \texttt{identifier}, corresponde al identificador único de cada dispositivo.  Para analizar la frecuencia de aparición de estos valores se empleó un script que agrupa las repeticiones por rangos y grafica la cantidad de valores únicos usando escala logarítmica (ver Apéndice \ref{cod:identifier_histogram}).
+Para el objetivo de este proyecto, se busca que la configuración del GPS sea lo más precisa posible, por lo que aquellos que estén dentro del rango del GPS puro (1-20 metros) son los más relevantes. Como se puede ver en la Figura \ref{fig:accuracy_histogram}, el \textbf{68.73\%} de los valores se encuentran dentro de este rango. Sin embargo, el \textbf{31.27\%} de registros con están por encima de este rango, precisión A-GPS (5-50 metros) y triangulación por WiFi/red móvil (20-500 metros).
+
+La siguiente columna a evaluar es \texttt{identifier}, corresponde al identificador único de cada dispositivo.  Para analizar la frecuencia de aparición de estos valores se emplea un script que agrupa las repeticiones por rangos y grafica la cantidad de valores únicos usando escala logarítmica (ver Apéndice \ref{cod:identifier_histogram}).
 
 \begin{figure}[H]
     \centering
@@ -168,7 +170,7 @@ La siguiente columna a evaluar es \texttt{identifier}, corresponde al identifica
     \label{fig:identifier_histogram}
 \end{figure}
 
- De este script sabemos que el total de individuos es de \textbf{6,022,772} de los cuales el \textbf{79.19\%} tienen una frecuencia de aparición de una a nueve veces, esto es \textbf{4,769,317} de individuos. Así mismo de la Figura \ref{fig:identifier_histogram} podemos observar que hay poco más de un \textbf{20\%} de individuos con más de 99 repeticiones. Por lo que se necesita hacer un análisis más detallado, para ello se ejecuta el código del Apéndice \ref{cod:identifier_histogram_detailed}, el cual segmenta los datos en tres rangos: 1-99, 100-1000 y 1001-10000 repeticiones.
+ Ejecutar este script permite saber que el total de individuos es de \textbf{6,022,772} de los cuales el \textbf{79.19\%} tienen una frecuencia de aparición de una a nueve veces, esto es \textbf{4,769,317} de individuos. Así mismo de la Figura \ref{fig:identifier_histogram} se observa que hay poco más de un \textbf{20\%} de individuos con más de 99 repeticiones. Por lo que se necesita hacer un análisis más detallado, para ello se ejecuta el código del Apéndice \ref{cod:identifier_histogram_detailed}, el cual segmenta los datos en tres rangos: 1-99, 100-1000 y 1001-10000 repeticiones.
 
 \begin{figure}[htbp]
     \centering
@@ -197,8 +199,11 @@ La siguiente columna a evaluar es \texttt{identifier}, corresponde al identifica
     \label{fig:histogramas}
 \end{figure}
 
-Con la información obtenida de los histogramas de la figura anterior, se puede observar que el \textbf{98.17\%} de los identificadores únicos tienen entre 1 y 99 repeticiones, lo que equivale a \textbf{5,912,437} individuos. Por otro lado, el \textbf{1.83\%} restante tiene entre 100 y 10,000 repeticiones, lo que equivale a \textbf{110,335} individuos. Con base en esta información aún no se puede determinar que registros eliminar. Por lo que ahora se eliminarán aquellos registros que sean duplicados, es decir, aquellos que tengan el mismo 
-\texttt{identifier}, \texttt{timestamp}, \texttt{device\_lat} y \texttt{device\_lon}. Para ello se utilizó el código del Apéndice \ref{cod:csv_deduplicate}, que elimina los duplicados y genera un nuevo archivo CSV con los registros de individuos. \\
+Con la información obtenida de los histogramas de la figura anterior, se puede observar que el \textbf{98.17\%} de los identificadores únicos tienen entre 1 y 99 repeticiones, lo que equivale a \textbf{5,912,437} individuos. Por otro lado, el \textbf{1.83\%} restante tiene entre 100 y 10,000 repeticiones, lo que equivale a \textbf{110,335} individuos. Con base en esta información aún no se puede determinar que registros eliminar.
+
+Por lo que el siguiente paso consiste en eliminar aquellos registros duplicados, es decir, aquellos que tengan el mismo valor en las columnas: 
+\texttt{identifier}, \texttt{timestamp}, \texttt{device\_lat} y \texttt{device\_lon}. Para ello se utiliza el código del Apéndice \ref{cod:csv_deduplicate}, que elimina los duplicados y genera un nuevo archivo CSV con los registros de individuos.
+
 Con este nuevo archivo se vuelve a realizar el análisis de frecuencia de aparición de individuos. En la siguiente figura se muestra el histograma de la frecuencia de aparición de los identificadores únicos
 
 \begin{figure}[H]
@@ -210,14 +215,15 @@ Con este nuevo archivo se vuelve a realizar el análisis de frecuencia de aparic
 
 Comparando los resultados de la Figura \ref{fig:identifier_histogram} y la Figura \ref{fig:identifier_histogram_deduplicate} podemos destacar varios hallazgos importantes: 
 
-\begin{description}
-    \item[Preservación de la diversidad de individuos]: Los \textbf{6,022,772} únicos se mantuvieron sin cambios.
-    \item[Reducción de redundancias]: La eliminación del \textbf{27\%} de registros. De \textbf{70 millones} a \textbf{51 millones} de registros.
-    \item[Correcció de sesgos]: La reducción del \textbf{31.1\%} en la frecuencia máxima de aparición (de 7,400 a 5,100) corrige sesgos que afectaban especialmente a individuos con alta frecuencia de registros repetidos. 
-\end{description}
+\begin{itemize}
+    \item El número de individuos (\textbf{6,022,772}) se mantuvo sin cambios.
+    \item La eliminación del \textbf{27\%} de registros. De \textbf{70 millones} a \textbf{51 millones} de registros.
+    \item La reducción del \textbf{31.1\%} en la frecuencia máxima de aparición (de 7,400 a 5,100) corrige sesgos que afectaban especialmente a individuos con alta frecuencia de registros repetidos. 
+\end{itemize}
 
-Como podemos ver la Figura \ref{fig:histogramasDeDuplicate} la distribución de los individuos se mantiene similar; sin embargo, el \textbf{98.8\%} de los identificadores únicos tienen entre 1 y 99 repeticiones, lo que equivale a \textbf{5,950,336} individuos. Por otro lado, el \textbf{1.2\%} restante tiene entre 100 y 10,000 repeticiones, lo que equivale a \textbf{72,436} individuos. Con estos datos podemos concluir que la mayoría de los individuos tienen un número limitado de registros, lo que sugiere que la mayoría de los usuarios no están generando datos de manera continua o frecuente. 
-Ahora bien para poder tener una mejor idea de la distribución de los individuos, se analiza la distribución de los individuos sin duplicados para cada día registrado en el conjunto de datos. Para ello se utilizó el código del Apéndice \ref{cod:identifier_histogram_daily}.
+De la Figura \ref{fig:histogramasDeDuplicate} se puede observar que la distribución de los individuos se mantiene similar; sin embargo, ahora el número de individuos que tienen entre 1 y 99 repeticiones aumentó del \textbf{98.17\%} al \textbf{98.8\%} , lo que equivale a un aumento de \textbf{37,899} individuos. Por otro lado, el número de individuos con más de 100 repeticiones bajó del \textbf{1.83\%} al \textbf{1.2\%}, lo que equivale a una disminución de \textbf{37,899} individuos, lo que sugiere que la mayoría de los individuos no generan datos de manera continua o frecuente. Sin embargo, es importante destacar que al eliminar aquellos puntos de recorrido duplicados por individuo permite asumir que los puntos de recorrido restantes son más representativos de la movilidad real de los individuos.
+
+Dado los resultados obtenidos en esta etapa de la caracterización, se concluye que no es necesario eliminar ningúna fila del conjunto de datos, ya que la depuración de columnas y la eliminación de duplicados han sido suficientes para optimizar la calidad del conjunto de datos.
 
 \begin{figure}[H]
     \centering
