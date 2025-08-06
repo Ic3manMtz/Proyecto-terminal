@@ -84,3 +84,14 @@ En esta sección se presenta un análisis detallado del conjunto de datos, que i
 De la figura anterior se puede observar que la distribución de individuos por día es bastante similar a la distribución vista en la Figura \ref{fig:identifier_histogram_deduplicate}, donde se observa que la mayoría de los individuos tienen una frecuncia de aparición baja. Además se puede ver que los primros seis días hay en promedio \textbf{1,400,000} de individuos, mientras que los últimos cuatro días este valor va disminuyendo hasta llegar a \textbf{5,293} individuos el día 15 de noviembre. Esto puede ser un indicativo de que la recolección de datos no fue constante a lo largo del tiempo, lo que podría deberse a diversos factores como problemas técnicos o cambios en el comportamiento de los individuos.
 
 Un patrón que puede dar mucha información es determinar cuantos individuos tienen puntos de recorrido en más de un día. Para esto se ejecuta el código del Apéndice 
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{img/multi_day_analysis_Mobility_Data_Slim_DeDuplicate.png}
+  \caption{Distribución de individuos por días.}
+  \label{fig:multi_day_analysis}
+\end{figure}
+
+El resultado de este análisis se muestra en la figura anterior, donde se puede observar que el \textbf{64.06\%} de los individuos tienen puntos de recorrido en un día nada más, esto representa \textbf{3,858,428} individuos. Por otro lado, el porcentaje de individuos que tienen puntos de recorrido en más de seis días es del \textbf{0.4\%}, lo que representa \textbf{77,878} individuos. Este análisis es importante porque permite identificar a los individuos que tienen un comportamiento más rutinario y que podrían ser más relevantes para el estudio de patrones de movilidad. 
+
+El siguiente paso es realizar una relación entre los individuos que tienen más puntos de recorrido y aquellos que tienen puntos de recorrido en más de un día. Esto puede con el fin de obtener una lista con los individuos con la mayor posibilidad de tener trayectorias más completas y representativas
