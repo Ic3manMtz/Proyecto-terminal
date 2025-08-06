@@ -1,10 +1,7 @@
 % --------------------------
 % ANÁLISIS DEL CONJUNTO DE DATOS DEPURADO
 % --------------------------
-\section{Análisis del conjunto de datos}
-\label{sec:analisis_conjunto_datos}
-
-En esta sección se presenta un análisis detallado del conjunto de datos, que incluye la identificación de patrones y tendencias en las trayectorias individuales. El conjunto de datos contiene puntos de recorrido obtenidos a lo largo de diez días. Por lo que el primer acercamiento del análisis es poder ver la distribución de los puntos de recorrido en cada día registrado por medio un histrograma por día. Para crear estos historgramas se ejecuta el código del Apéndice \ref{cod:identifier_histogram_daily}. A continuación, se muestran estos histogramas.
+En esta sección se presenta un análisis detallado del conjunto de datos, que incluye la identificación de patrones y tendencias en las trayectorias individuales. El conjunto de datos contiene puntos de recorrido obtenidos a lo largo de diez días. Por lo que el primer acercamiento del análisis es poder ver la distribución de los puntos de recorrido en cada día registrado por medio un histrograma por día. Para crear estos histogramas se ejecuta el código del Apéndice \ref{cod:identifier_histogram_daily}. A continuación, se muestran estos histogramas.
 
 \begin{figure}[htbp]
     \centering
@@ -94,4 +91,7 @@ Un patrón que puede dar mucha información es determinar cuantos individuos tie
 
 El resultado de este análisis se muestra en la figura anterior, donde se puede observar que el \textbf{64.06\%} de los individuos tienen puntos de recorrido en un día nada más, esto representa \textbf{3,858,428} individuos. Por otro lado, el porcentaje de individuos que tienen puntos de recorrido en más de seis días es del \textbf{0.4\%}, lo que representa \textbf{77,878} individuos. Este análisis es importante porque permite identificar a los individuos que tienen un comportamiento más rutinario y que podrían ser más relevantes para el estudio de patrones de movilidad. 
 
-El siguiente paso es realizar una relación entre los individuos que tienen más puntos de recorrido y aquellos que tienen puntos de recorrido en más de un día. Esto puede con el fin de obtener una lista con los individuos con la mayor posibilidad de tener trayectorias más completas y representativas
+Con esta información se puede realizar un análisis más detallado de las trauectorias de los individuos del conjunto de datos. Por ejemplo, se puede identificar a los individuos que tienen puntos de recorrido en más de un día y que además tienen una alta frecuencia de aparición en esos días. Para esto se puede utilizar un gestor de base de datos como PostgreSQL, que permite realizar consultas complejas y obtener información más detallada sobre los individuos y sus trayectorias.
+
+Para lograr esto, se puede utilizar el servicio de PostgreSQL creado al levantar el contenedor de Docker, como se describe en el Apéndice \ref{cod:docker_compose_file}. Es necesario crear una base de datos y una tabla para almacenar los datos. Importar los datos del archivo CSV a esta tabla se hace mediante el código del Apéndice \ref{cod:migrate_csv_to_postgres}. Una vez que los datos están en la base de datos, se pueden realizar consultas para obtener información más detallada sobre los individuos y sus trayectorias. A continuación, se exploraran algunos queries que permiten obtener información relevante sobre los individuos y sus trayectorias.
+

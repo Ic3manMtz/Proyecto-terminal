@@ -1,4 +1,3 @@
-\section{Caracterización de datos de trayectorias individuales}
 \label{sec:caracterizacion}
 El análisis de datos comienza con una etapa fundamental, la caracterización del conjunto de datos. Esta fase tiene como objetivo examinar y comprender la estructura, el contenido y las principales propiedades de los datos antes de aplicar técnicas analíticas más complejas. 
 
@@ -15,8 +14,8 @@ A continuación, se describen en detalle las acciones específicas realizadas du
 % --------------------------
 % EXPLORACIÓN INCIAL DEL CONJUNTO DE DATOS
 % --------------------------
-\subsection{Exploración inicial del conjunto de datos}
-\label{subsec:exploracion_inicial}
+\section{Exploración inicial del conjunto de datos}
+\label{sec:exploracion_inicial}
 Como primer paso en la caracterización, se realiza una exploración preliminar del conjunto de datos con el fin de comprender su estructura general. Para ello, se inspeccionan las primeras dos filas del conjunto de datos, lo cual permite identificar las columnas presentes y observar ejemplos representativos de sus valores.
 
 El código utilizado para realizar esta exploración se encuentra en el Apéndice \ref{cod:csv_glance}. A continuación, se presenta un resumen de las columnas detectadas junto con una muestra de sus respectivos valores:
@@ -87,15 +86,15 @@ El código utilizado para realizar esta exploración se encuentra en el Apéndic
 % --------------------------
 % DIMENSIONES DEL CONJUNTO DE DATOS
 % --------------------------
-\subsection{Dimensiones del conjunto de datos}
-\label{subsec:dimensiones}
+\section{Dimensiones del conjunto de datos}
+\label{sec:dimensiones}
 Para verificar las dimensiones del conjunto de datos, se utiliza la bilbioteca Dask, que permite trabajar con grandes volúmenes de datos de manera eficiente. Para hacer uso de esta biblioteca se usa el lenguaje de programación Python. El código del Apéndice \ref{cod:csv_count} nos da un ejemplo de su uso para esta etapa. El resultado de este script da como resultado que el conjunto de datos contiene un total de \textbf{69,980,000} registros y \textbf{19} campos. Esto indica que hay una cantidad significativa de datos disponibles para el análisis.
 
 % --------------------------
 % DEPURACIÓN DE COLUMNAS
 % --------------------------
-\subsection{Depuración de columnas}
-\label{subsec:depuracion_columnas}
+\section{Depuración de columnas}
+\label{sec:depuracion_columnas}
 Dado que el conjunto de datos original contiene 19 campos, es fundamental identificar y eliminar aquellas columnas que no aportan valor al análisis. Para ello, se realiza una revisión de los valores únicos presentes en cada campo, con el objetivo de detectar información redundante o irrelevante. A partir de este análisis, se identifican las siguientes columnas como innecesarias para los fines del estudio:
 
 \begin{itemize}
@@ -131,8 +130,8 @@ Como resultado, se genera un nuevo archivo \texttt{CSV} que conserva únicamente
 % --------------------------
 % DEPURACIÓN DE FILAS
 % --------------------------
-\subsection{Depuración de filas}
-\label{subsec:depuracion_filas}
+\section{Depuración de filas}
+\label{sec:depuracion_filas}
 
 Una vez obtenida una versión más ligera del conjunto de datos, el siguiente paso consiste en identificar y eliminar aquellas filas que no aportan valor al análisis. Para ello, se generan representaciones gráficas que permiten observar la distribución de los datos y facilitar la toma de decisión. Las columnas seleccionadas para este proceso fueron:
 

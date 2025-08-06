@@ -102,76 +102,125 @@ docker-compose --version
 % Archivo docker-compose.yml
 % --------------------------
 \section{Descripción del archivo \texttt{docker-compose.yml}}
-El archivo \texttt{docker-compose.yml} permite definir y configurar el entorno de ejecución del proyecto utilizando un contenedor de Docker. A continuación, se presenta su contenido y una explicación de cada uno de sus elementos:
-
+El archivo \texttt{docker-compose.yml} permite definir y configurar el entorno de ejecución del proyecto utilizando contenedores de Docker. A continuación, se presenta su contenido y una explicación de cada uno de sus elementos:
 \vspace{3mm}
 \begin{lstlisting}[
-			language=bash,
-			caption={Archivo docker-compose.yml},
-			label={cod:docker_compose_file}
-		]
-version: "3.8"
-
-services:
+  language=bash,
+  caption={Archivo docker-compose.yml},
+  label={cod:docker_compose_file}
+  ]
+  version: "3.8"
+  services:
   data-analysis:
-    image: python:3.13-bookworm
-    container_name: data-analysis
-    runtime: nvidia
-    tty: true
-    stdin_open: true
-    volumes:
-      - ./:/app
-      - python-packages:/usr/local/lib/python3.13/site-packages
-    command: sh -c "pip install -r requirements.txt && pip install -e . && python3 /app/src/main.py"
-    working_dir: /app
-    environment:
-      - PYTHONPATH=/app
-
-volumes:
-  python-packages:
+  image: python:3.13-bookworm
+  container_name: data-analysis
+  tty: true
+  stdin_open: true
+  volumes:
+  - ./:/app
+  working_dir: /app
+  environment:
+  - PYTHONPATH=/app
+  - DB_HOST=postgres
+  - DB_PORT=5432
+  - DB_NAME=data_analysis
+  - DB_USER=postgres
+  - DB_PASSWORD=postgres123
+  command: >
+  sh -c "
+  pip install --no-cache-dir -r requirements.txt &&
+  echo 'Esperando a que PostgreSQL este listo...' &&
+  until pg_isready -h postgres -p 5432 -U postgres; do
+  echo 'PostgreSQL no esta listo - esperando...'
+  sleep 2
+  done &&
+  echo 'PostgreSQL esta listo!' &&
+  tail -f /dev/null
+  "
+  depends_on:
+  postgres:
+  condition: service_healthy
+  networks:
+  - data-network
+  postgres:
+  image: postgres:15-alpine
+  container_name: postgres-db
+  restart: always
+  environment:
+  POSTGRES_DB: data_analysis
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres123
+  ports:
+  - "5432:5432"
+  volumes:
+  - postgres_data:/var/lib/postgresql/data
+  networks:
+  - data-network
+  healthcheck:
+  test: ["CMD-SHELL", "pg_isready -U postgres"]
+  interval: 10s
+  timeout: 5s
+  retries: 5
+  start_period: 30s
+  adminer:
+  image: adminer:latest
+  container_name: adminer
+  restart: always
+  ports:
+  - "8080:8080"
+  depends_on:
+  - postgres
+  networks:
+  - data-network
+  volumes:
+  postgres_data:
+  networks:
+  data-network:
+  driver: bridge
 \end{lstlisting}
-
 A continuación se explica el propósito de cada sección:
-
 \begin{itemize}
-  \item \texttt{version: "3.8"}\\
+  \item \texttt{version: "3.8"}\
   Define la versión del esquema de Docker Compose utilizado. La versión 3.8 es compatible con la mayoría de las características modernas de Docker.
-
-  \item \texttt{services} → \texttt{data-analysis}\\
-  Se define un servicio llamado \texttt{data-analysis}, que representa el contenedor principal del proyecto.
-
-  \item \texttt{image: python:3.13-bookworm}\\
-  Utiliza una imagen oficial de Python 3.13 basada en Debian Bookworm como entorno base.
-
-  \item \texttt{container\_name: data-analysis}\\
-  Asigna un nombre personalizado al contenedor para facilitar su identificación.
-
-  \item \texttt{runtime: nvidia}\\
-  Indica que el contenedor utilizará el runtime de NVIDIA para permitir acceso a la GPU. Requiere tener instalado \texttt{nvidia-docker}.
-
-  \item \texttt{tty: true} y \texttt{stdin\_open: true}\\
-  Habilitan la interacción con el terminal del contenedor, lo que es útil para ejecutar comandos manuales si es necesario.
-
-  \item \texttt{volumes}\\
+  \item \texttt{services}\
+  Define tres servicios que componen la aplicación: \texttt{data-analysis}, \texttt{postgres} y \texttt{adminer}.
+  \item \texttt{data-analysis}\
+  Servicio principal que contiene la aplicación de análisis de datos:
   \begin{itemize}
-    \item \texttt{./:/app}: Monta el directorio actual del proyecto como \texttt{/app} dentro del contenedor.
-    \item \texttt{python-packages:/usr/local/lib/python3.13/site-packages}: Crea un volumen persistente para las bibliotecas de Python instaladas.
+  \item \texttt{image: python:3.13-bookworm}: Utiliza una imagen oficial de Python 3.13 basada en Debian Bookworm.
+  \item \texttt{container\_name: data-analysis}: Asigna un nombre personalizado al contenedor.
+  \item \texttt{tty: true} y \texttt{stdin\_open: true}: Habilitan la interacción con el terminal del contenedor.
+  \item \texttt{volumes}: Monta el directorio actual del proyecto como \texttt{/app} dentro del contenedor.
+  \item \texttt{working\_dir: /app}: Establece el directorio de trabajo dentro del contenedor.
+  \item \texttt{environment}: Define variables de entorno incluyendo \texttt{PYTHONPATH} y las credenciales de conexión a la base de datos PostgreSQL.
+  \item \texttt{command}: Instala las dependencias, espera a que PostgreSQL esté disponible usando \texttt{pg\_isready}, y mantiene el contenedor activo.
+  \item \texttt{depends\_on}: Especifica que este servicio depende de que PostgreSQL esté saludable antes de iniciarse.
+  \item \texttt{networks}: Conecta el contenedor a la red \texttt{data-network}.
   \end{itemize}
-
-  \item \texttt{command}\\
-  Ejecuta una serie de comandos cuando el contenedor inicia: instala las dependencias del archivo \texttt{requirements.txt}, instala el proyecto en modo editable (\texttt{pip install -e .}) y ejecuta el archivo \texttt{main.py}.
-
-  \item \texttt{working\_dir: /app}\\
-  Establece el directorio de trabajo dentro del contenedor como \texttt{/app}.
-
-  \item \texttt{environment}\\
-  Define la variable de entorno \texttt{PYTHONPATH} para que Python pueda encontrar correctamente los módulos dentro del proyecto.
-  
-  \item \texttt{volumes → python-packages}\\
-  Declara un volumen persistente llamado \texttt{python-packages}, que se utiliza para almacenar los paquetes instalados sin perderlos entre reinicios del contenedor.
+  \item \texttt{postgres}\
+  Servicio de base de datos PostgreSQL:
+  \begin{itemize}
+  \item \texttt{image: postgres:15-alpine}: Utiliza la imagen oficial de PostgreSQL 15 basada en Alpine Linux.
+  \item \texttt{container\_name: postgres-db}: Nombre del contenedor de la base de datos.
+  \item \texttt{restart: always}: Configura el contenedor para reiniciarse automáticamente en caso de fallo.
+  \item \texttt{environment}: Define las variables de entorno para la configuración inicial de PostgreSQL.
+  \item \texttt{ports}: Expone el puerto 5432 para permitir conexiones externas a la base de datos.
+  \item \texttt{volumes}: Crea un volumen persistente para almacenar los datos de PostgreSQL.
+  \item \texttt{healthcheck}: Configura verificaciones de salud para determinar cuándo PostgreSQL está listo.
+  \end{itemize}
+  \item \texttt{adminer}\
+  Interfaz web para administración de la base de datos:
+  \begin{itemize}
+  \item \texttt{image: adminer:latest}: Utiliza la imagen oficial más reciente de Adminer.
+  \item \texttt{ports}: Expone el puerto 8080 para acceder a la interfaz web.
+  \item \texttt{depends\_on}: Especifica dependencia del servicio PostgreSQL.
+  \end{itemize}
+  \item \texttt{volumes : postgres\_data}\
+  Declara un volumen persistente para almacenar los datos de PostgreSQL, garantizando que los datos persistan entre reinicios de contenedores.
+  \item \texttt{networks : data-network}\
+  Define una red bridge personalizada que permite la comunicación entre los contenedores del proyecto.
 \end{itemize}
-
-Este archivo permite que el entorno de desarrollo sea fácilmente replicable y ejecutable, sin necesidad de instalar manualmente dependencias o configurar rutas en el sistema anfitrión.
+Esta configuración crea un entorno completo de desarrollo que incluye la aplicación de análisis de datos, una base de datos PostgreSQL y una herramienta de administración web, todos interconectados y fácilmente replicables en cualquier sistema que tenga Docker instalado.
 \newpage
 
 % --------------------------

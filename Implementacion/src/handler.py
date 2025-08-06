@@ -35,6 +35,8 @@ class Handler:
         elif choice == '10':
             self.get_routine_individuals()
         elif choice == '11':
+            self.migrate_csv_to_postgres()
+        elif choice == '12':
             print("Salir")
             sys.exit(1)
         else:
@@ -212,4 +214,10 @@ class Handler:
             "python3",
             "src/features/routine_individuals.py",
             filename
+        ])
+
+    def migrate_csv_to_postgres(self):
+        subprocess.run([
+            "python3",
+            "src/features/migrate_csv_to_postgres.py"
         ])

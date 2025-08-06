@@ -384,7 +384,6 @@ INPUT .\Secciones\requisitos.tex
 INPUT .\Secciones\requisitos.tex
 INPUT .\Secciones\requisitos.tex
 INPUT Secciones\requisitos.tex
-INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr9.tfm
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi9.tfm
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy9.tfm
@@ -553,12 +552,15 @@ INPUT .\img\multi_day_analysis_Mobility_Data_Slim_DeDuplicate.png
 INPUT .\img\multi_day_analysis_Mobility_Data_Slim_DeDuplicate.png
 INPUT .\img\multi_day_analysis_Mobility_Data_Slim_DeDuplicate.png
 INPUT .\img\multi_day_analysis_Mobility_Data_Slim_DeDuplicate.png
+INPUT .\Secciones\observaciones.tex
+INPUT .\Secciones\observaciones.tex
+INPUT Secciones\observaciones.tex
 INPUT .\Secciones\Anexos\anexoA.tex
 INPUT .\Secciones\Anexos\anexoA.tex
 INPUT Secciones\Anexos\anexoA.tex
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt12.tfm
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1095.tfm
-INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tctt1095.tfm
+INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt12.tfm
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tctt1000.tfm
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx9.tfm
@@ -578,8 +580,6 @@ INPUT .\reporte.out
 INPUT .\reporte.out
 INPUT C:\Users\Joge\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tctt1000.pk
 INPUT C:\Users\Joge\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tctt1000.pk
-INPUT C:\Users\Joge\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tctt1095.pk
-INPUT C:\Users\Joge\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tctt1095.pk
 INPUT C:\Users\Joge\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1095.pk
 INPUT C:\Users\Joge\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1095.pk
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb

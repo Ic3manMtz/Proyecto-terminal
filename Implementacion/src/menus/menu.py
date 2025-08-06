@@ -16,7 +16,8 @@ class MainMenu:
         ("8", "Eliminar duplicados"), # Listo
         ("9", "Creación de histogramas de la columna 'identifier' por día"), # Listo
         ("10", "Obtener individuos rutinarios"),
-        ("11", "Salir")
+        ("11", "Migrar csv a postgres"),
+        ("12", "Salir")
     ]
 
     @staticmethod

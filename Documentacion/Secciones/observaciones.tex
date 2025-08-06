@@ -1,0 +1,18 @@
+% --------------------------
+% Observaciones y recomendaciones
+% --------------------------
+Durante el proceso de caracterización de datos de trayectorias individuales del Capítulo \ref{sec:caracterizacion} se identificaron aspectos importantes que impactan la calidad del análisis y la validez de los resultados obtenidos. Esta sección presenta las principales observaciones derivadas del proceso y las recomendaciones para mejorar futuros análisis.
+
+\section{Calidad de datos}
+La caracterizacíón reveló que el \textbf{68.73\%} de los registros tienen una precisión GPS dentro del rango satelital (1-20 metros), mientras que el \textbf{31.27\%} presenta una menor precisión. 
+\textbf{Recomendación}: Se sugiere establecer un filtro que conserve únicamente registros con precisión GPS dentro del rango satelital (1-20 metros), en este caso el campo responsable es \texttt{device\_horizontal\_accuracy}. Esto garantizará mayor confiabilidad en las coordenadas de posición.
+
+\section{Duplicación significativa de registros}
+Se detectó un \textbf{27\%} de registros duplicados en el conjunto de datos original, lo que representa aproximandamente \textbf{19 millones} de entradas redundantes.
+\textbf{Recomendación}: Implementar rutinas automáticas de detección de duplicados como paso inicial. Esto optimizará el almacenamiento y procesamiento, además de mejorar la calidad del análisis.
+
+\section{Persistencia de individuos}
+Los datos muestran una marcada disminución en el número de individuos registrados a lo largo del periodo de tiempo, pasando de aproximandamente \textbf{1.4 millones} de indivudos en los primeros seis días a apenas \textbf{5,293} indivudos para el último día.
+\textbf{Recomendación}: Esta tendencia sugiere posibles problemas en la recolección de datos o en la participación de los individuos. Se recomienda investigar la causa de esta disminución, y considerar recolectar datos en periodos más cortos para mantener una muestra representativa. Incluso delimitar la recolección a una zona geográfica específica.
+
+
