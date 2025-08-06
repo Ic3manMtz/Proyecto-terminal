@@ -33,6 +33,8 @@ class Handler:
         elif choice == '9':
             self.identifier_histogram_by_day()
         elif choice == '10':
+            self.get_routine_individuals()
+        elif choice == '11':
             print("Salir")
             sys.exit(1)
         else:
@@ -92,7 +94,7 @@ class Handler:
         if use_default == "s":
             filename = self.csv
         else:
-            filename = MainMenu.display_ask_filename("Número de registros")
+            filename = MainMenu.display_ask_filename("Valores únicos")
 
         if not filename.endswith('.csv'):
             filename += '.csv'
@@ -110,7 +112,7 @@ class Handler:
         if use_default == "s":
             filename = self.csv
         else:
-            filename = MainMenu.display_ask_filename("Número de registros")
+            filename = MainMenu.display_ask_filename("Histograma de frecuencias de 'device_horizontal_accuracy'")
 
         if not filename.endswith('.csv'):
             filename += '.csv'
@@ -128,7 +130,7 @@ class Handler:
         if use_default == "s":
             filename = self.csv
         else:
-            filename = MainMenu.display_ask_filename("Número de registros")
+            filename = MainMenu.display_ask_filename("Histograma de frecuencias de 'identifier'")
 
         if not filename.endswith('.csv'):
             filename += '.csv'
@@ -146,7 +148,7 @@ class Handler:
         if use_default == "s":
             filename = self.csv
         else:
-            filename = MainMenu.display_ask_filename("Número de registros")
+            filename = MainMenu.display_ask_filename("Histograma detallado de 'identifier'")
 
         if not filename.endswith('.csv'):
             filename += '.csv'
@@ -165,7 +167,7 @@ class Handler:
         if use_default == "s":
             filename = self.csv
         else:
-            filename = MainMenu.display_ask_filename("Número de registros")
+            filename = MainMenu.display_ask_filename("Eliminar duplicados")
 
         if not filename.endswith('.csv'):
             filename += '.csv'
@@ -183,7 +185,7 @@ class Handler:
         if use_default == "s":
             filename = self.csv
         else:
-            filename = MainMenu.display_ask_filename("Número de registros")
+            filename = MainMenu.display_ask_filename("Histograma de frecuencias de 'identifier' por día")
 
         if not filename.endswith('.csv'):
             filename += '.csv'
@@ -191,5 +193,23 @@ class Handler:
         subprocess.run([
             "python3",
             "src/features/identifier_histograms_daily.py",
+            filename
+        ])
+
+    def get_routine_individuals(self):
+        print(f"¿Desea usar el archivo por defecto? ({self.csv}) [s/n]")
+        use_default = input(" ➤ ").strip().lower()
+
+        if use_default == "s":
+            filename = self.csv
+        else:
+            filename = MainMenu.display_ask_filename("Obtener individuos rutinarios")
+
+        if not filename.endswith('.csv'):
+            filename += '.csv'
+
+        subprocess.run([
+            "python3",
+            "src/features/routine_individuals.py",
             filename
         ])

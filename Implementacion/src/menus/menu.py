@@ -15,7 +15,8 @@ class MainMenu:
         ("7", "Análisis detallado de la columna 'identifier'"), # Listo
         ("8", "Eliminar duplicados"), # Listo
         ("9", "Creación de histogramas de la columna 'identifier' por día"), # Listo
-        ("10", "Salir")
+        ("10", "Obtener individuos rutinarios"),
+        ("11", "Salir")
     ]
 
     @staticmethod
