@@ -17,7 +17,8 @@ class MainMenu:
         ("9", "Creación de histogramas de la columna 'identifier' por día"), # Listo
         ("10", "Obtener individuos rutinarios"),
         ("11", "Migrar csv a postgres"),
-        ("12", "Salir")
+        ("12", "Mostrar coordenadas de un identificador"),
+        ("13", "Salir")
     ]
 
     @staticmethod

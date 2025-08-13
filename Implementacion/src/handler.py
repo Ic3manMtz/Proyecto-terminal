@@ -37,6 +37,8 @@ class Handler:
         elif choice == '11':
             self.migrate_csv_to_postgres()
         elif choice == '12':
+            self.show_coordinates()
+        elif choice == '13':
             print("Salir")
             sys.exit(1)
         else:
@@ -220,4 +222,10 @@ class Handler:
         subprocess.run([
             "python3",
             "src/features/migrate_csv_to_postgres.py"
+        ])
+
+    def show_coordinates(self):
+        subprocess.run([
+            "python3",
+            "src/features/show_coordinates.py"
         ])

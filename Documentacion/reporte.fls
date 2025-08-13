@@ -236,6 +236,8 @@ INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\generic\dirtree\dirtree.te
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\generic\dirtree\dirtree.tex
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\enumitem\enumitem.sty
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\enumitem\enumitem.sty
+INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\booktabs\booktabs.sty
+INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\booktabs\booktabs.sty
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\tools\calc.sty
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\tools\calc.sty
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\hyperref\hyperref.sty
@@ -554,7 +556,11 @@ INPUT .\img\multi_day_analysis_Mobility_Data_Slim_DeDuplicate.png
 INPUT .\img\multi_day_analysis_Mobility_Data_Slim_DeDuplicate.png
 INPUT .\Secciones\observaciones.tex
 INPUT .\Secciones\observaciones.tex
+INPUT .\Secciones\observaciones.tex
+INPUT .\Secciones\observaciones.tex
 INPUT Secciones\observaciones.tex
+INPUT .\Secciones\Anexos\anexoA.tex
+INPUT .\Secciones\Anexos\anexoA.tex
 INPUT .\Secciones\Anexos\anexoA.tex
 INPUT .\Secciones\Anexos\anexoA.tex
 INPUT Secciones\Anexos\anexoA.tex
@@ -566,6 +572,8 @@ INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tctt1000
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx9.tfm
 INPUT .\Secciones\Anexos\anexoB.tex
 INPUT .\Secciones\Anexos\anexoB.tex
+INPUT .\Secciones\Anexos\anexoB.tex
+INPUT .\Secciones\Anexos\anexoB.tex
 INPUT Secciones\Anexos\anexoB.tex
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
@@ -575,6 +583,9 @@ INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symb
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam7.tfm
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
+INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
+INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
+INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
 INPUT reporte.aux
 INPUT .\reporte.out
 INPUT .\reporte.out
@@ -604,6 +615,8 @@ INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr9.pfb
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr9.pfb
+INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Users\Joge\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt10.pfb

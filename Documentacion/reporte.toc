@@ -1,5 +1,5 @@
 \babel@toc {spanish}{}\relax 
-\contentsline {chapter}{Lista de Códigos}{\es@scroman {iv}}{chapter*.4}%
+\contentsline {chapter}{Lista de Códigos}{\es@scroman {v}}{chapter*.4}%
 \contentsline {chapter}{\numberline {1}Introducción del Proyecto}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Descripción general del proyecto}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Objetivos y propósitos}{1}{section.1.2}%
@@ -12,18 +12,19 @@
 \contentsline {section}{\numberline {3.3}Depuración de columnas}{5}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Depuración de filas}{6}{section.3.4}%
 \contentsline {chapter}{\numberline {4}Análisis del conjunto de datos}{11}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Observaciones y recomendaciones}{14}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Calidad de datos}{14}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Duplicación significativa de registros}{14}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Persistencia de individuos}{14}{section.5.3}%
-\contentsline {chapter}{\numberline {A}Uso de Docker y Docker Compose}{16}{appendix.Alph1}%
-\contentsline {section}{\numberline {A.1}¿Qué son Docker y Docker Compose?}{16}{section.Alph1.1}%
-\contentsline {section}{\numberline {A.2}Instalación en Linux (Ubuntu/Debian)}{16}{section.Alph1.2}%
-\contentsline {section}{\numberline {A.3}Instalación en Windows}{17}{section.Alph1.3}%
-\contentsline {section}{\numberline {A.4}Descripción del archivo \texttt {docker-compose.yml}}{18}{section.Alph1.4}%
-\contentsline {section}{\numberline {A.5}Scripts de control del contenedor}{21}{section.Alph1.5}%
-\contentsline {subsection}{\numberline {A.5.1}\texttt {start\_container.sh}}{21}{subsection.Alph1.5.1}%
-\contentsline {subsection}{\numberline {A.5.2}\texttt {restart\_container.sh}}{21}{subsection.Alph1.5.2}%
-\contentsline {subsection}{\numberline {A.5.3}\texttt {stop\_container.sh}}{22}{subsection.Alph1.5.3}%
-\contentsline {section}{\numberline {A.6}Proceso de uso y desarrollo del contenedor}{22}{section.Alph1.6}%
-\contentsline {chapter}{\numberline {B}Scripts para la caracterización de datos}{24}{appendix.Alph2}%
+\contentsline {section}{\numberline {4.1}Queries para el análisis de trayectorias individuales}{14}{section.4.1}%
+\contentsline {chapter}{\numberline {5}Observaciones y recomendaciones}{17}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Calidad de datos}{17}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Duplicación significativa de registros}{17}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Persistencia de individuos}{17}{section.5.3}%
+\contentsline {chapter}{\numberline {A}Uso de Docker y Docker Compose}{19}{appendix.Alph1}%
+\contentsline {section}{\numberline {A.1}¿Qué son Docker y Docker Compose?}{19}{section.Alph1.1}%
+\contentsline {section}{\numberline {A.2}Instalación en Linux (Ubuntu/Debian)}{19}{section.Alph1.2}%
+\contentsline {section}{\numberline {A.3}Instalación en Windows}{20}{section.Alph1.3}%
+\contentsline {section}{\numberline {A.4}Descripción del archivo \texttt {docker-compose.yml}}{21}{section.Alph1.4}%
+\contentsline {section}{\numberline {A.5}Scripts de control del contenedor}{24}{section.Alph1.5}%
+\contentsline {subsection}{\numberline {A.5.1}\texttt {start\_container.sh}}{24}{subsection.Alph1.5.1}%
+\contentsline {subsection}{\numberline {A.5.2}\texttt {restart\_container.sh}}{24}{subsection.Alph1.5.2}%
+\contentsline {subsection}{\numberline {A.5.3}\texttt {stop\_container.sh}}{25}{subsection.Alph1.5.3}%
+\contentsline {section}{\numberline {A.6}Proceso de uso y desarrollo del contenedor}{25}{section.Alph1.6}%
+\contentsline {chapter}{\numberline {B}Scripts para la caracterización de datos}{27}{appendix.Alph2}%
